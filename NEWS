@@ -1,0 +1,6 @@
+Version 0.4 (2012-03-18)
+o Added more documentation examples, using Sake and Adopted data from heplots
+o now Depends: heplots for example data
+
+Version 0.3 (2012-02-13)
+o Initial package version

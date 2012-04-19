@@ -1,0 +1,15 @@
+Package: mvinfluence
+Type: Package
+Title: Influence Measures and Diagnostic Plots for Multivariate Linear
+        Models
+Version: 0.4
+Date: 2012-03-18
+Author: Michael Friendly
+Maintainer: Michael Friendly <friendly@yorku.ca>
+Description: This package computes regression deletion
+	diagnostics for multivariate linear models and provides some associated
+	diagnostic plots.
+Depends: car, heplots
+Suggests:
+License: GPL-2
+Packaged: 2012-03-18 21:51:10 UTC; Michael
