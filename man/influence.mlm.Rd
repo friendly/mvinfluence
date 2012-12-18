@@ -58,19 +58,20 @@ are possible choices, returning the \eqn{|H|} and \eqn{tr(H)}
 respectively.
 }
   \item{funnames}{
-%%     ~~Describe \code{funnames} here~~
+logical. Should the \code{FUN} name be prepended to the statistics when
+creating a data frame?
 }
 
   \item{infl}{
-An influence structure as returned by \code
+An influence structure as returned by \code{\link{mlm.influence}}
 }
   \item{\dots}{
-%%     ~~Describe \code{\dots} here~~
+Other arguments passed to methods
 }
 
 
   \item{digits}{
-%%     ~~Describe \code{digits} here~~
+Number of digits for the print method
 }
 }
 \details{
@@ -91,9 +92,9 @@ General Classes of Influence Measures for Multivariate Regression.
 \author{
 Michael Friendly
 }
-\note{
-%%  ~~further notes~~
-}
+%\note{
+%%%  ~~further notes~~
+%}
 
 %% ~Make other sections like Warning with \section{Warning }{....} ~
 
@@ -104,5 +105,5 @@ Michael Friendly
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.
-\keyword{ ~kwd1 }
-\keyword{ ~kwd2 }% __ONLY ONE__ keyword per line
+\keyword{models}
+\keyword{regression}% __ONLY ONE__ keyword per line
