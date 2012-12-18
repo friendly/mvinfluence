@@ -6,7 +6,8 @@
 Regression Deletion Diagnostics for Multivariate Linear Models
 }
 \description{
-This collection of functions is designed to compute regression deletion
+The functions \code{cooks.distance.mlm} and \code{hatvalues.mlm}
+are designed as extractor functions for regression deletion
 diagnostics for multivariate linear models following Barrett & Ling (1992)
 that are close analogs of
 methods for univariate and generalized linear models handled by the
@@ -28,7 +29,7 @@ subsets of observations of size \code{m>1}.
 \arguments{
 
   \item{model}{
-An \code{mlm} object, as returned by \code{\link[stats]{lm}}
+A \code{mlm} object, as returned by \code{\link[stats]{lm}} with a multivariate response
 }
   \item{do.coef}{
 logical. Should the coefficients be returned in the \code{inflmlm} object?
@@ -39,23 +40,27 @@ Size of the subsets for deletion diagnostics
 
 
   \item{infl}{
-An influence structure as returned by \code{\link{mlm.influence}}
+An influence structure, of class \code{inflmlm} as returned by \code{\link{mlm.influence}}
 }
   \item{\dots}{
 Other arguments, passed on
 }
 
 }
-%\details{
-%%%  ~~ If necessary, more details than the description above ~~
-%}
-%\value{
-%%%  ~Describe the value returned
-%%%  If it is a LIST, use
-%%%  \item{comp1 }{Description of 'comp1'}
-%%%  \item{comp2 }{Description of 'comp2'}
-%%% ...
-%}
+\details{
+%%  ~~ If necessary, more details than the description above ~~
+}
+\value{
+When \code{m=1}, these functions return a vector, corresponding to the observations
+in the data set.
+
+When \code{m>1}, they return a list of \eqn{m \times m} matrices,
+corresponding to deletion of subsets of size \code{m}.
+%%  If it is a LIST, use
+%%  \item{comp1 }{Description of 'comp1'}
+%%  \item{comp2 }{Description of 'comp2'}
+%% ...
+}
 \references{
 Barrett, B. E. and Ling, R. F. (1992).
 General Classes of Influence Measures for Multivariate Regression.

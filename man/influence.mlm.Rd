@@ -1,7 +1,5 @@
 \name{influence.mlm}
 \alias{as.data.frame.inflmlm}
-\alias{cooks.distance.mlm}
-\alias{hatvalues.mlm}
 \alias{influence.mlm}
 \alias{mlm.influence}
 \alias{print.inflmlm}
@@ -28,10 +26,6 @@ mlm.influence(model, do.coef = TRUE, m = 1, ...)
 \method{as.data.frame}{inflmlm}(x, FUN = det, funnames = TRUE)
 
 \method{print}{inflmlm}(x, digits = max(3, getOption("digits") - 4), FUN = det, ...)
-
-\method{cooks.distance}{mlm}(model, infl = mlm.influence(model, do.coef = FALSE), ...)
-
-\method{hatvalues}{mlm}(model, m = 1, infl, ...)
 
 
 }
@@ -62,9 +56,6 @@ logical. Should the \code{FUN} name be prepended to the statistics when
 creating a data frame?
 }
 
-  \item{infl}{
-An influence structure as returned by \code{\link{mlm.influence}}
-}
   \item{\dots}{
 Other arguments passed to methods
 }
@@ -102,6 +93,7 @@ Michael Friendly
 \code{\link{influencePlot.mlm}}, ~~~
 }
 \examples{
+# none yet
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.
