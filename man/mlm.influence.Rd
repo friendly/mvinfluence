@@ -1,31 +1,18 @@
 \name{mlm.influence}
 \alias{mlm.influence}
-\alias{influence.mlm}
-\alias{as.data.frame.inflmlm}
-\alias{print.inflmlm}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
-Regression Deletion Diagnostics for Multivariate Linear Models
+Calculate Regression Deletion Diagnostics for Multivariate Linear Models
 }
 \description{
-This collection of functions is designed to compute regression deletion
-diagnostics for multivariate linear models following Barrett & Ling (1992)
-that are close analogs of
-methods for univariate and generalized linear models handled by the
-\code{\link[stats]{influence.measures}} in the \pkg{stats} package.
+\code{mlm.influence} is the main computational function in this package.
+It is usually not called directly, but rather via its alias,
+\code{\link{influence.mlm}}, the S3 method for a \code{mlm} object.
 
-In addition, the functions provide diagnostics for deletion of
-subsets of observations of size \code{m>1}.
 }
 \usage{
 
 mlm.influence(model, do.coef = TRUE, m = 1, ...)
-
-\method{influence}{mlm}(model, do.coef = TRUE, m = 1, ...)
-
-\method{as.data.frame}{inflmlm}(x, ..., FUN = det, funnames = TRUE)
-
-\method{print}{inflmlm}(x, digits = max(3, getOption("digits") - 4), FUN = det, ...)
 
 }
 %- maybe also 'usage' for other objects documented here.
@@ -41,28 +28,10 @@ logical. Should the coefficients be returned in the \code{inflmlm} object?
 Size of the subsets for deletion diagnostics
 }
 
-  \item{x}{
-An \code{inflmlm} object, as returned by \code{mlm.influence}
-}
-  \item{FUN}{
-For \code{m>1}, the function to be applied to the \eqn{H} and \eqn{Q}
-matrices returning a scalar value.  \code{FUN=det} and \code{FUN=tr}
-are possible choices, returning the \eqn{|H|} and \eqn{tr(H)}
-respectively.
-}
-  \item{funnames}{
-logical. Whether the \code{as.data.frame} method should prepend \code{FUN}
-to the variable names
-}
-
   \item{\dots}{
 Further arguments passed to other methods
 }
 
-
-  \item{digits}{
-Number of digits to print.
-}
 }
 \details{
 The computations and methods for the \code{m=1} case are straight-forward,

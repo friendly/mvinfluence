@@ -23,8 +23,8 @@ subsets of observations of size \code{m>1}. Associated methods for
 \tabular{ll}{
 Package: \tab mvinfluence\cr
 Type: \tab Package\cr
-Version: \tab 0.4\cr
-Date: \tab 2012-03-18\cr
+Version: \tab 0.5\cr
+Date: \tab 2012-12-19\cr
 License: \tab GPL-2\cr
 }
 %~~ An overview of how to use the package, including the most important ~~

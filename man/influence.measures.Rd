@@ -47,9 +47,9 @@ Other arguments, passed on
 }
 
 }
-\details{
-%%  ~~ If necessary, more details than the description above ~~
-}
+%\details{
+%%%  ~~ If necessary, more details than the description above ~~
+%}
 \value{
 When \code{m=1}, these functions return a vector, corresponding to the observations
 in the data set.

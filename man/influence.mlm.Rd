@@ -1,7 +1,6 @@
 \name{influence.mlm}
 \alias{as.data.frame.inflmlm}
 \alias{influence.mlm}
-\alias{mlm.influence}
 \alias{print.inflmlm}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
@@ -19,11 +18,9 @@ subsets of observations of size \code{m>1}.
 }
 \usage{
 
-mlm.influence(model, do.coef = TRUE, m = 1, ...)
-
 \method{influence}{mlm}(model, do.coef = TRUE, m = 1, ...)
 
-\method{as.data.frame}{inflmlm}(x, FUN = det, funnames = TRUE)
+\method{as.data.frame}{inflmlm}(x, ..., FUN = det, funnames = TRUE)
 
 \method{print}{inflmlm}(x, digits = max(3, getOption("digits") - 4), FUN = det, ...)
 
@@ -60,19 +57,27 @@ creating a data frame?
 Other arguments passed to methods
 }
 
-
   \item{digits}{
 Number of digits for the print method
 }
 }
-\details{
-%%  ~~ If necessary, more details than the description above ~~
-}
+%\details{
+%%%  ~~ If necessary, more details than the description above ~~
+%}
 \value{
-%%  ~Describe the value returned
+\code{influence.mlm} returns an S3 object of class \code{inflmlm}, a list with the following components
 %%  If it is a LIST, use
-%%  \item{comp1 }{Description of 'comp1'}
-%%  \item{comp2 }{Description of 'comp2'}
+  \item{m}{Deletion subset size}
+  \item{H}{Hat values, \eqn{H_I}. If \code{m=1}, a vector of diagonal entries of the \sQuote{hat} matrix.
+  	Otherwise, a list of \eqn{m \times m} matrices corresponding to the \code{subsets}.}
+  \item{Q}{Residuals, \eqn{Q_I}.}
+  \item{CookD}{Cook's distance values}
+  \item{L}{Leverage components}
+  \item{R}{Residual components}
+  \item{subsets}{Indices of the observations in the subsets of size \code{m}}
+  \item{labels}{Observation labels}
+  \item{call}{Model call for the \code{mlm} object}
+  \item{Beta}{Deletion regression coefficients-- included if \code{do.coef=TRUE}}
 %% ...
 }
 \references{
