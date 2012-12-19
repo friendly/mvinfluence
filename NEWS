@@ -1,3 +1,6 @@
+Version 0.5 (2012-12-19)
+o Fixed documentation errors; now builds correctly
+
 Version 0.4 (2012-03-18)
 o Added more documentation examples, using Sake and Adopted data from heplots
 o now Depends: heplots for example data
