@@ -1,4 +1,4 @@
-\name{Jfuns.Rd}
+\name{Jfuns}
 \alias{Jdet}
 \alias{Jtr}
 \alias{COOKD}
@@ -20,6 +20,7 @@ corresponding to the hat and residual matrices in univariate models.
 
 For subset size \eqn{m = 1} these evaluate to scalar equivalents of
 hat values and studentized residuals.
+
 For subset size \eqn{m > 1} these are \eqn{m \times m} matrices and
 functions in the \eqn{J^{det}} class use \eqn{|H_I|} and \eqn{|Q_I|},
 while those in the \eqn{J^{tr}} class use \eqn{tr(H_I)} and \eqn{tr(Q_I)}.
@@ -77,7 +78,9 @@ deletion subset size
 
 }
 \details{
-These functions are purely experimental and not intended to be used directly
+These functions are purely experimental and not intended to be used directly.
+However, they may be useful to define other influence measures than are currently
+implemented here.
 }
 \value{
 The scalar result of the computation.
@@ -109,4 +112,4 @@ Michael Friendly
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.
 \keyword{array}
-\keyword{ ~kwd2 }% __ONLY ONE__ keyword per line
+%\keyword{ ~kwd2 }% __ONLY ONE__ keyword per line

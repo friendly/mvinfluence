@@ -61,9 +61,15 @@ Other arguments passed to methods
 Number of digits for the print method
 }
 }
-%\details{
-%%%  ~~ If necessary, more details than the description above ~~
-%}
+\details{
+\code{influence.mlm} is a simple wrapper for the computational function, \code{\link{mlm.influence}}
+designed to provide an S3 method for class \code{"mlm"} objects.
+
+There are still infelicities in the methods for the \code{m>1} case in the current implementation.
+In particular, for \code{m>1}, you must call \code{influence.mlm} directly, rather than using
+the S3 generic \code{influence()}.
+
+}
 \value{
 \code{influence.mlm} returns an S3 object of class \code{inflmlm}, a list with the following components
 %%  If it is a LIST, use
@@ -95,10 +101,32 @@ Michael Friendly
 %% ~Make other sections like Warning with \section{Warning }{....} ~
 
 \seealso{
-\code{\link{influencePlot.mlm}}, ~~~
+\code{\link{influencePlot.mlm}}, \code{\link{mlm.influence}}
 }
 \examples{
-# none yet
+# Rohwer data
+Rohwer2 <- subset(Rohwer, subset=group==2)
+rownames(Rohwer2)<- 1:nrow(Rohwer2)
+Rohwer.mod <- lm(cbind(SAT, PPVT, Raven) ~ n+s+ns+na+ss, data=Rohwer2)
+
+# m=1 diagnostics
+influence(Rohwer.mod)
+
+# try an m=2 case
+res2 <- influence.mlm(Rohwer.mod, m=2, do.coef=FALSE)
+res2.df <- as.data.frame(res2)
+head(res2.df)
+scatterplotMatrix(log(res2.df))
+
+
+influencePlot(Rohwer.mod, id.n=4, type="cookd")
+
+
+# Sake data
+Sake.mod <- lm(cbind(taste,smell) ~ ., data=Sake)
+influence(Sake.mod)
+influencePlot(Sake.mod, id.n=3, type="cookd")
+
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.

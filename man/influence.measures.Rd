@@ -8,8 +8,8 @@ Regression Deletion Diagnostics for Multivariate Linear Models
 \description{
 The functions \code{cooks.distance.mlm} and \code{hatvalues.mlm}
 are designed as extractor functions for regression deletion
-diagnostics for multivariate linear models following Barrett & Ling (1992)
-that are close analogs of
+diagnostics for multivariate linear models following Barrett & Ling (1992).
+These are close analogs of
 methods for univariate and generalized linear models handled by the
 \code{\link[stats]{influence.measures}} in the \code{stats} package.
 
@@ -79,7 +79,13 @@ Michael Friendly
 \code{\link{influencePlot.mlm}}, ~~~
 }
 \examples{
-# none yet
+Rohwer2 <- subset(Rohwer, subset=group==2)
+rownames(Rohwer2)<- 1:nrow(Rohwer2)
+Rohwer.mod <- lm(cbind(SAT, PPVT, Raven) ~ n+s+ns+na+ss, data=Rohwer2)
+
+hatvalues(Rohwer.mod)
+cooks.distance(Rohwer.mod)
+
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.
