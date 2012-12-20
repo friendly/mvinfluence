@@ -39,6 +39,7 @@ be able to fit a linear model with a multivariate response,
 and then get useful diagnostics and plots with
 \preformatted{
   influence(mymlm)
+  hatvalues(mymlm)
   influencePlot(mymlm, ...)  
 }
 
@@ -61,12 +62,12 @@ Barrett, B. E. (2003). Understanding Influence in Multivariate Regression.
 
 A. J. Lawrence (1995).
 Deletion Influence and Masking in Regression
-\emph{Journal of the Royal Statistical Society. Series B (Methodological)} , Vol. \bold{57}, No. 1, pp. 181-189 
+\emph{Journal of the Royal Statistical Society. Series B (Methodological)} , Vol. \bold{57}, No. 1, pp. 181-189. 
 }
 
 \keyword{ package }
 \seealso{
-\code{\link{influence.measures}}, \code{\link{influence.mlm}}, ...
+\code{\link{influence.measures}}, \code{\link{influence.mlm}}, \code{\link{influencePlot.mlm}}, ...
 
 \code{\link{Jdet}},  \code{\link{Jtr}}
 provide some theoretical description and definitions of influence measures in the
