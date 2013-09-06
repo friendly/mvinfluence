@@ -10,7 +10,7 @@ This function creates various types of
 observations proportional to Cook's distances. 
 
 \code{type="cookd"} plots Cook's distance against hat values;
-\code{type="stres"} plots squared Studentized residuals against hat values;
+\code{type="stres"} plots squared (internally) Studentized residuals against hat values;
 \code{type="LR"} plots residual components against leverage components,
 with the property that contours of constant Cook's distance fall on diagonal
 lines with slope = -1.
@@ -27,7 +27,7 @@ lines with slope = -1.
 %- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{model}{
-An \code{mlm} object, as returned by \code{\link[stats]{lm}}
+An \code{mlm} object, as returned by \code{\link[stats]{lm}} with a multivariate response.
 }
   \item{scale}{a factor to adjust the radii of the circles, in relation to \code{sqrt(CookD)}
 }

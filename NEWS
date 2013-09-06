@@ -1,3 +1,7 @@
+Version 0.7 (2013-09-06)
+o Added reference line for type=='stres' plot
+o Added Fertilizer data
+
 Version 0.6 (2012-12-20)
 o Added further documentation and examples
 

@@ -21,8 +21,10 @@ function(model, scale=12, type=c("cookd", "stres", "LR"),
 	if(missing(labels)) labels <- rownames(df)
 	
 	p <- nrow(coef(model))
+	q <- ncol(coef(model))
 	n <- length(infl$H)
 	scale=scale/max(sqrt(CookD))
+	# TODO: replace with grDevices::adjustcolor to avoid CRAN warning
 	if (fill) cols <- heplots:::trans.colors(fill.col, alpha=fill.alpha.max * CookD/(max(CookD)))
 
 	if(id.method != "identify"){
@@ -43,9 +45,10 @@ function(model, scale=12, type=c("cookd", "stres", "LR"),
     	id.n=id.n, id.cex=id.cex, id.col=id.col)
 	}
 	else if (type=='stres') {
-		plot(H, Q, xlab="Hat value", ylab="Squared Residual", cex=scale*CookD, ...)
+		plot(H, Q, xlab="Hat value", ylab="Squared Studentized Residual", cex=scale*CookD, ...)
 		if (fill) points(H, Q, cex=scale*CookD, pch=16, col=cols)
 		abline(v=c(2, 3)*p/n, lty=ref.lty, col=ref.col)
+		abline(h=qbeta(.95, q/2, (n-p-q)/2), lty=ref.lty, col=ref.col)
 		noteworthy <- car:::showLabels(H, Q, labels=labels, id.method=id.method, 
     	id.n=id.n, id.cex=id.cex, id.col=id.col)
 	}

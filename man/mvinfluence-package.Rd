@@ -27,8 +27,8 @@ Associated methods for the case
 \tabular{ll}{
 Package: \tab mvinfluence\cr
 Type: \tab Package\cr
-Version: \tab 0.6\cr
-Date: \tab 2012-12-20\cr
+Version: \tab 0.7\cr
+Date: \tab 2013--9-06\cr
 License: \tab GPL-2\cr
 }
 The design goal for this package is that, as an extension of standard methods for univariate linear models, you should
