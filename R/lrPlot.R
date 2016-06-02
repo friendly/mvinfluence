@@ -9,7 +9,8 @@ lrPlot <- function(model, ...){
     }
 
 lrPlot.lm <- function(model, scale=12,  
-		xlab="log Leverage factor [log H/p*(1-H)]", ylab="log (Studentized Residual^2)",
+		xlab="log Leverage factor [log H/p*(1-H)]", 
+		ylab="log (Studentized Residual^2)",
 		xlim=NULL, ylim, 
     labels, 
     id.method = "noteworthy",
@@ -77,7 +78,7 @@ lrPlot.lm <- function(model, scale=12,
 	   id.method <- which.all
 	   }
 
-	noteworthy <- car:::showLabels(L, R, labels=labels, id.method=id.method, 
+	noteworthy <- car::showLabels(L, R, labels=labels, id.method=id.method, 
     id.n=id.n, id.cex=id.cex, id.col=id.col)
   	if (length(noteworthy > 0))
 	res <- data.frame(Rstudent=rstud, Hat=hatval, CookD=CookD, L, R)[noteworthy,]

@@ -9,14 +9,14 @@ This function creates various types of
  \dQuote{bubble} plots of influence measures with the areas of the circles representing the 
 observations proportional to Cook's distances. 
 
-\code{type="cookd"} plots Cook's distance against hat values;
 \code{type="stres"} plots squared (internally) Studentized residuals against hat values;
+\code{type="cookd"} plots Cook's distance against hat values;
 \code{type="LR"} plots residual components against leverage components,
 with the property that contours of constant Cook's distance fall on diagonal
 lines with slope = -1.
 }
 \usage{
-\method{influencePlot}{mlm}(model, scale = 12, type = c("cookd", "stres", "LR"), 
+\method{influencePlot}{mlm}(model, scale = 12, type=c("stres", "LR", "cookd"), 
 	infl = mlm.influence(model, do.coef = FALSE), FUN = det, 
 	fill = TRUE, fill.col = "red", fill.alpha.max = 0.5, 
 	labels, 
@@ -32,7 +32,7 @@ An \code{mlm} object, as returned by \code{\link[stats]{lm}} with a multivariate
   \item{scale}{a factor to adjust the radii of the circles, in relation to \code{sqrt(CookD)}
 }
   \item{type}{
-Type of plot: one of \code{c("cookd", "stres", "LR")}
+Type of plot: one of \code{c("stres", "cookd", "LR")}
 }
   \item{infl}{
 influence measure structure as returned by \code{\link{mlm.influence}}
@@ -98,7 +98,7 @@ Michael Friendly
 \code{\link[car]{influencePlot}} in the car package
 }
 \examples{
-data(Rohwer, package="heplot")
+data(Rohwer, package="heplots")
 Rohwer2 <- subset(Rohwer, subset=group==2)
 rownames(Rohwer2)<- 1:nrow(Rohwer2)
 Rohwer.mod <- lm(cbind(SAT, PPVT, Raven) ~ n+s+ns+na+ss, data=Rohwer2)
@@ -108,14 +108,14 @@ influencePlot(Rohwer.mod, id.n=4, type="stres")
 influencePlot(Rohwer.mod, id.n=4, type="LR")
 
 # Sake data
-data(Sake, package="heplot")
+data(Sake, package="heplots")
 	Sake.mod <- lm(cbind(taste,smell) ~ ., data=Sake)
 	influencePlot(Sake.mod, id.n=3, type="cookd")
 	influencePlot(Sake.mod, id.n=3, type="stres")
 	influencePlot(Sake.mod, id.n=3, type="LR")
 
 # Adopted data	
-data(Adopted, package="heplot")
+data(Adopted, package="heplots")
 	Adopted.mod <- lm(cbind(Age2IQ, Age4IQ, Age8IQ, Age13IQ) ~ AMED + BMIQ, data=Adopted)
   influencePlot(Adopted.mod, id.n=3)
 	influencePlot(Adopted.mod, id.n=3, type="LR", ylim=c(-4,-1.5))

@@ -1,1 +1,27 @@
-exportPattern("^[[:alpha:]]+")
+
+importFrom("car", "showLabels", "influencePlot")
+importFrom("heplots", "trans.colors")
+importFrom("stats", "cooks.distance", "hatvalues", "influence")
+
+#exportPattern("^[[:alpha:]]+")
+
+export(
+  cooks.distance.mlm,
+  hatvalues.mlm,
+  influence.mlm,
+  influencePlot.mlm,
+  lrPlot,
+  mpower,
+  tr
+)
+
+S3method(lrPlot, lm)
+
+S3method(hatvalues, mlm)
+S3method(cooks.distance, mlm)
+S3method(influence, mlm)
+S3method(influencePlot, mlm)
+
+S3method(print, inflmlm)
+S3method(as.data.frame, inflmlm)
+

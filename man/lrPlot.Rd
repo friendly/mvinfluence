@@ -20,11 +20,15 @@
 lrPlot(model, ...)
 
 \method{lrPlot}{lm}(model, scale = 12, 
-	xlab = "log Leverage factor [log H/p*(1-H)]", ylab = "log (Studentized Residual^2)", 
+	xlab = "log Leverage factor [log H/p*(1-H)]", 
+	ylab = "log (Studentized Residual^2)", 
 	xlim = NULL, ylim, 
 	labels, 
-	id.method = "noteworthy", id.n = if (id.method[1] == "identify") Inf else 0, id.cex = 1, id.col = palette()[1],
-	ref = c("h", "v", "d", "c"), ref.col = "gray", ref.lty = 2, ref.lab = TRUE, 
+	id.method = "noteworthy", 
+	id.n = if (id.method[1] == "identify") Inf else 0, 
+	id.cex = 1, id.col = palette()[1],
+	ref = c("h", "v", "d", "c"), ref.col = "gray", 
+	ref.lty = 2, ref.lab = TRUE, 
 	 ...)
 }
 %- maybe also 'usage' for other objects documented here.
