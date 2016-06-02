@@ -18,7 +18,7 @@ lines with slope = -1.
 \usage{
 \method{influencePlot}{mlm}(model, scale = 12, type = c("cookd", "stres", "LR"), 
 	infl = mlm.influence(model, do.coef = FALSE), FUN = det, 
-	fill = TRUE, fill.col = "blue", fill.alpha.max = 0.5, 
+	fill = TRUE, fill.col = "red", fill.alpha.max = 0.5, 
 	labels, 
 	id.method = "noteworthy", id.n = if (id.method[1] == "identify") Inf else 0, 
 	id.cex = 1, id.col = palette()[1], 

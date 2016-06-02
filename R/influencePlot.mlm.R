@@ -1,7 +1,7 @@
 influencePlot.mlm <-
 function(model, scale=12, type=c("cookd", "stres", "LR"),
 		infl=mlm.influence(model, do.coef = FALSE), FUN=det,
-    fill=TRUE, fill.col="blue",
+    fill=TRUE, fill.col="red",
     fill.alpha.max=0.5,
     labels, 
     id.method = "noteworthy",
