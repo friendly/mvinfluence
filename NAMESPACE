@@ -1,7 +1,14 @@
 
+# imports
 importFrom("car", "showLabels", "influencePlot", "infIndexPlot", "influenceIndexPlot")
 importFrom("heplots", "trans.colors", "Mahalanobis")
-importFrom("stats", "cooks.distance", "hatvalues", "influence")
+importFrom("grDevices", "palette")
+importFrom("graphics", "abline", "axis", "box", "mtext", "par", "plot",
+                       "points", "text")
+importFrom("stats", "cooks.distance", "hatvalues", "influence",
+                    "coef", "model.frame", "model.matrix",
+                    "model.response", "qbeta", "qf", "residuals", "rstudent")
+importFrom("utils", "combn")
 
 #exportPattern("^[[:alpha:]]+")
 
