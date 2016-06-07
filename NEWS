@@ -2,6 +2,7 @@ Version 0.8 (2016-06-02)
 
 o Fixed problems for CRAN: NAMESPACE, Rd files
 o Added more examples to Rd files
+o Added infIndexPlot for index plots of diagnostic measures
 
 Version 0.7 (2013-09-06)
 o Added reference line for type=='stres' plot
