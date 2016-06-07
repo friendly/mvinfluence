@@ -100,19 +100,18 @@ Michael Friendly
 \examples{
 data(Rohwer, package="heplots")
 Rohwer2 <- subset(Rohwer, subset=group==2)
-rownames(Rohwer2)<- 1:nrow(Rohwer2)
 Rohwer.mod <- lm(cbind(SAT, PPVT, Raven) ~ n+s+ns+na+ss, data=Rohwer2)
 
-influencePlot(Rohwer.mod, id.n=4, type="cookd")
 influencePlot(Rohwer.mod, id.n=4, type="stres")
 influencePlot(Rohwer.mod, id.n=4, type="LR")
+influencePlot(Rohwer.mod, id.n=4, type="cookd")
 
 # Sake data
 data(Sake, package="heplots")
 	Sake.mod <- lm(cbind(taste,smell) ~ ., data=Sake)
-	influencePlot(Sake.mod, id.n=3, type="cookd")
 	influencePlot(Sake.mod, id.n=3, type="stres")
 	influencePlot(Sake.mod, id.n=3, type="LR")
+	influencePlot(Sake.mod, id.n=3, type="cookd")
 
 # Adopted data	
 data(Adopted, package="heplots")

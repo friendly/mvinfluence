@@ -70,6 +70,7 @@ function(model, scale=12, type=c("stres", "LR", "cookd"),
 	  	## FIXME:  m>1 car::showLabels returns the labels, not the indices
 	  	if (m>1) noteworthy <- inf
 	  	res <- data.frame(H, Q, CookD, L, R)[noteworthy,]
+	  	rownames(res) <- labels[noteworthy]
 			return(res)
 		}
 
