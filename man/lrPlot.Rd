@@ -102,7 +102,7 @@ Michael Friendly
 %% ~Make other sections like Warning with \section{Warning }{....} ~
 
 \seealso{
-\code{\link{influencePlot}}
+\code{\link{influencePlot.mlm}}
 
 \code{\link[car]{influencePlot}} in the \code{car} package for other methods
 }

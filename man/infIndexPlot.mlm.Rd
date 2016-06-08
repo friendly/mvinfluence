@@ -84,7 +84,7 @@ Michael Friendly; borrows code from \code{car::infIndexPlot}
 %% ~Make other sections like Warning with \section{Warning }{....} ~
 
 \seealso{
-\code{\link{influencePlot}}, 
+\code{\link{influencePlot.mlm}}, 
 \code{\link[heplots]{Mahalanobis}},
 \code{\link[car]{infIndexPlot}},
 
