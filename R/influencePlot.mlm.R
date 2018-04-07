@@ -41,16 +41,16 @@ function(model, scale=12, type=c("stres", "LR", "cookd"),
 #		abline(h=qf(.95, 1, n-p), lty=ref.lty, col=ref.col)
 		abline(h=4/(n-p), lty=ref.lty, col=ref.col)
 		abline(v=c(2, 3)*p/n, lty=ref.lty, col=ref.col)
-		noteworthy <- car::showLabels(H, CookD, labels=labels, id.method=id.method, 
-    	id.n=id.n, id.cex=id.cex, id.col=id.col)
+		noteworthy <- car::showLabels(H, CookD, labels=labels, method=id.method, 
+    	n=id.n, cex=id.cex, col=id.col)
 	}
 	else if (type=='stres') {
 		plot(H, Q, xlab="Hat value", ylab="Squared Studentized Residual", cex=scale*CookD, ...)
 		if (fill) points(H, Q, cex=scale*CookD, pch=16, col=cols)
 		abline(v=c(2, 3)*p/n, lty=ref.lty, col=ref.col)
 		abline(h=qbeta(.95, q/2, (n-p-q)/2), lty=ref.lty, col=ref.col)
-		noteworthy <- car::showLabels(H, Q, labels=labels, id.method=id.method, 
-    	id.n=id.n, id.cex=id.cex, id.col=id.col)
+		noteworthy <- car::showLabels(H, Q, labels=labels, method=id.method, 
+    	n=id.n, cex=id.cex, col=id.col)
 	}
 	else if (type=='LR') {
 		logL <- log(L)
@@ -61,8 +61,8 @@ function(model, scale=12, type=c("stres", "LR", "cookd"),
 		xmax <- ceiling(par("usr")[2])
 		# FIXME: bit of a kludge in calculating intercepts of diagonal lines
 		for(a in (2*xmin):xmax) abline(a=a, b=-1, col=ref.col, lty=ref.lty)	
-		noteworthy <- car::showLabels(logL, logR, labels=labels, id.method=id.method, 
-    	id.n=id.n, id.cex=id.cex, id.col=id.col)
+		noteworthy <- car::showLabels(logL, logR, labels=labels, method=id.method, 
+    	n=id.n, cex=id.cex, col=id.col)
 		}
 #browser()
 

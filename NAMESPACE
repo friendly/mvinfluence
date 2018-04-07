@@ -17,6 +17,7 @@ export(
   hatvalues.mlm,
   influence.mlm,
   influencePlot.mlm,
+  mlm.influence,
   lrPlot,
   mpower,
   tr,

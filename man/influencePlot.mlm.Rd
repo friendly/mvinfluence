@@ -79,6 +79,10 @@ Barrett, B. E. and Ling, R. F. (1992).
 General Classes of Influence Measures for Multivariate Regression.
 \emph{Journal of the American Statistical Association}, \bold{87}(417), 184-191.
 
+Barrett, B. E. (2003).
+Understanding Influence in Multivariate Regression 
+\emph{Communications in Statistics - Theory and Methods}, \bold{32}, 667-680.
+
 McCulloch, C. E. & Meeter, D. (1983).
 Discussion of "Outliers..." by R. J. Beckman and R. D. Cook.
  \emph{Technometrics},  25, 152-155

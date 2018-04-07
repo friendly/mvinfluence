@@ -78,8 +78,8 @@ lrPlot.lm <- function(model, scale=12,
 	   id.method <- which.all
 	   }
 
-	noteworthy <- car::showLabels(L, R, labels=labels, id.method=id.method, 
-    id.n=id.n, id.cex=id.cex, id.col=id.col)
+	noteworthy <- car::showLabels(L, R, labels=labels, method=id.method, 
+    n=id.n, cex=id.cex, col=id.col)
   	if (length(noteworthy > 0))
 	res <- data.frame(Rstudent=rstud, Hat=hatval, CookD=CookD, L, R)[noteworthy,]
 	return(res)
