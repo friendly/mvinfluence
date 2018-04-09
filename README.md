@@ -16,4 +16,4 @@ provided.
 
 Get the released version from CRAN:
 
-     install.packages("mvinfluence")
+     install.packages("matlib")
