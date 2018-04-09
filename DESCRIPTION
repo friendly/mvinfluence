@@ -12,6 +12,8 @@ Description: Computes regression deletion diagnostics for multivariate linear mo
 	provided.
 Depends: car, heplots
 Suggests:
+LazyData: TRUE
 License: GPL-2
-URL: http://datavis.ca/R
+URL: https://github.com/friendly/mvinfluence
+BugReports: https://github.com/friendly/mvinfluence/issues
 Packaged: 2012-03-18 21:51:10 UTC; Michael
