@@ -23,13 +23,15 @@ Get the released version from CRAN:
 The design goal for this package is that, as an extension of standard methods for univariate linear models, you should
 be able to fit a linear model with a multivariate response,
 
-    mymlm <- lm( cbind(y1, y2, y3) ~ x1 + x2 +x3, data=mydata)
+    mymlm <- lm( cbind(y1, y2, y3) ~ x1 + x2 + x3, data=mydata)
 
 and then get useful diagnostics and plots with:
 
     influence(mymlm)
     hatvalues(mymlm)
     influencePlot(mymlm, ...)  
+
+## Examples
 
 
 

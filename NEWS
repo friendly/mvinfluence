@@ -1,3 +1,7 @@
+Version 0.8-2 (2018-04-10)
+
+o use LazyData
+
 Version 0.8-1 (2018-04-07)
 
 o fix errors resulting from car::showLabels changes
