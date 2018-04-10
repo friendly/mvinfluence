@@ -1,0 +1,82 @@
+---
+output: github_document
+---
+
+<!-- README.md is generated from README.Rmd. Please edit that file and knit again -->
+
+
+```{r, echo = FALSE}
+knitr::opts_chunk$set(
+  warning = FALSE,   # avoid warnings and messages in the output
+  message = FALSE,
+  collapse = TRUE,
+  fig.width = 5,
+  fig.height = 5,
+  comment = "#>",
+  fig.path = "README-"
+)
+
+par(mar=c(3,3,1,1)+.1)
+```
+
+```{r, echo=FALSE}
+library(mvinfluence)
+```
+
+[![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/mvinfluence)](https://cran.r-project.org/package=mvinfluence)
+[![](http://cranlogs.r-pkg.org/badges/grand-total/mvinfluence)](https://cran.r-project.org/package=mvinfluence)
+[![Rdoc](http://www.rdocumentation.org/badges/version/mvinfluence)](http://www.rdocumentation.org/packages/mvinfluence)
+
+
+
+# mvinfluence
+**Influence Measures and Diagnostic Plots for Multivariate Linear Models**
+
+Functions in this package compute regression deletion diagnostics for multivariate linear models and provides some associated
+diagnostic plots.  The diagnostic measures include hat-values (leverages), generalized Cook's distance, and
+generalized squared 'studentized' residuals.  Several types of plots to detect influential observations are
+provided.
+
+## Installation
+
+Get the released version from CRAN:
+
+     install.packages("mvinfluence")
+
+## Goals
+
+The design goal for this package is that, as an extension of standard methods for univariate linear models, you should
+be able to fit a linear model with a multivariate response,
+
+    mymlm <- lm( cbind(y1, y2, y3) ~ x1 + x2 + x3, data=mydata)
+
+and then get useful diagnostics and plots with:
+
+    influence(mymlm)
+    hatvalues(mymlm)
+    influencePlot(mymlm, ...)  
+
+## Examples
+
+Fit a MLM to a subset of the Rohwer data (the Low SES group).  
+The default influence plot (`type="stres"`) shows the squared standardized residual against the Hat value.
+The areas of the circles representing the observations are proportional to generalized Cook's distances. 
+```{r rohwer1}
+data(Rohwer, package="heplots")
+Rohwer2 <- subset(Rohwer, subset=group==2)
+Rohwer.mod <- lm(cbind(SAT, PPVT, Raven) ~ n+s+ns+na+ss, data=Rohwer2)
+
+influencePlot(Rohwer.mod, id.n=4)
+```
+
+An alternative (`type="stres"`) plots residual components against leverage components,
+with the property that contours of constant Cook's distance fall on diagonal
+lines with slope = -1.
+
+```{r rohwer2}
+influencePlot(Rohwer.mod, id.n=4, type="LR")
+```
+
+
+
+
