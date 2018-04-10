@@ -7,7 +7,9 @@ mvinfluence
 
 **Influence Measures and Diagnostic Plots for Multivariate Linear Models**
 
-Functions in this package compute regression deletion diagnostics for multivariate linear models and provides some associated diagnostic plots. The diagnostic measures include hat-values (leverages), generalized Cook's distance, and generalized squared 'studentized' residuals. Several types of plots to detect influential observations are provided.
+Functions in this package compute regression deletion diagnostics for multivariate linear models following methods proposed by Barrett & Ling (1992) and provide some associated diagnostic plots. The diagnostic measures include hat-values (leverages), generalized Cook's distance, and generalized squared 'studentized' residuals. Several types of plots to detect influential observations are provided.
+
+In addition, the functions provide diagnostics for deletion of subsets of observations of size `m>1`. This case is theoretically interesting because sometimes pairs (`m=2`) of influential observations can mask each other, sometimes they can have joint influence far exceeding their individual effects, as well as other interesting phenomena described by Lawrence (1995). Associated methods for the case `m>1` are still under development in this package.
 
 Installation
 ------------
@@ -70,3 +72,12 @@ influencePlot(Rohwer.mod, id.n=4, type="LR")
     #> 62 0.1571260 0.38198170 0.26008352 0.1864170 0.45318959
     #> 64 0.3672647 0.21279661 0.33866160 0.5804397 0.33631219
     #> 66 0.3042700 0.22949988 0.30259634 0.4373392 0.32986917
+
+References
+----------
+
+Barrett, B. E. and Ling, R. F. (1992). General Classes of Influence Measures for Multivariate Regression. *Journal of the American Statistical Association*, **87**(417), 184-191.
+
+Barrett, B. E. (2003). Understanding Influence in Multivariate Regression. *Communications in Statistics -- Theory and Methods*, **32**, 3, 667-680.
+
+A. J. Lawrence (1995). Deletion Influence and Masking in Regression *Journal of the Royal Statistical Society. Series B (Methodological)* , **57**, No. 1, pp. 181-189.

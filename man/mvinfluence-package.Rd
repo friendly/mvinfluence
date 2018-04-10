@@ -27,14 +27,14 @@ Associated methods for the case
 \tabular{ll}{
 Package: \tab mvinfluence\cr
 Type: \tab Package\cr
-Version: \tab 0.8-1\cr
-Date: \tab 2018-04-07\cr
+Version: \tab 0.8-2\cr
+Date: \tab 2018-04-10\cr
 License: \tab GPL-2\cr
 }
 The design goal for this package is that, as an extension of standard methods for univariate linear models, you should
 be able to fit a linear model with a multivariate response,
 \preformatted{
-  mymlm <- lm( cbind(y1, y2, y3) ~ x1 + x2 +x3, data=mydata)
+  mymlm <- lm( cbind(y1, y2, y3) ~ x1 + x2 + x3, data=mydata)
 }
 and then get useful diagnostics and plots with
 \preformatted{
