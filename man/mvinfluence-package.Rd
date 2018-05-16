@@ -3,8 +3,7 @@
 \alias{mvinfluence}
 \docType{package}
 \title{
-Influence Measures and Diagnostic Plots for Multivariate Linear Models
-
+\packageTitle{mvinfluence}
 }
 \description{
 This collection of functions is designed to compute regression deletion
@@ -23,34 +22,32 @@ as well as other interesting phenomena described by Lawrence (1995).
 Associated methods for the case
 \code{m>1} are still under development in this package.
 }
+
 \details{
-\tabular{ll}{
-Package: \tab mvinfluence\cr
-Type: \tab Package\cr
-Version: \tab 0.8-2\cr
-Date: \tab 2018-04-10\cr
-License: \tab GPL-2\cr
-}
+
+The DESCRIPTION file:
+\packageDESCRIPTION{mvinfluence}
+\packageIndices{mvinfluence}
+~~ An overview of how to use the package, including the most important ~~
+~~ functions ~~
 The design goal for this package is that, as an extension of standard methods for univariate linear models, you should
 be able to fit a linear model with a multivariate response,
 \preformatted{
   mymlm <- lm( cbind(y1, y2, y3) ~ x1 + x2 + x3, data=mydata)
-}
+  }
 and then get useful diagnostics and plots with
 \preformatted{
   influence(mymlm)
   hatvalues(mymlm)
   influencePlot(mymlm, ...)  
+  }
 }
 
 
-%~~ An overview of how to use the package, including the most important ~~
-%~~ functions ~~
-}
 \author{
-Michael Friendly
+\packageAuthor{mvinfluence}
 
-Maintainer: Michael Friendly <friendly@yorku.ca>
+Maintainer: \packageMaintainer{mvinfluence}
 }
 \references{
 Barrett, B. E. and Ling, R. F. (1992).
