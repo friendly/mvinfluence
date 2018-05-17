@@ -46,7 +46,7 @@ All may be abbreviated by the first one or more letters.
   \item{pch}{
 Plotting character for points
 }
-  \item{id.method,labels,id.n,id.cex,id.col,id.location}{Arguments for the labelling of
+  \item{id.method,labels,id.n,id.cex,id.col,id.location}{Arguments for the labeling of
     points.  The default is \code{id.n=0} for labeling no points.  See
     \code{\link[car]{showLabels}} for details of these arguments.
 }

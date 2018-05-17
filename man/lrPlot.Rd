@@ -10,7 +10,7 @@
   circles representing the observations proportional to Cook's distances.
 
   This plot, suggested by McCulloch & Meeter (1983) has the attractive property that
-  contours of equal Cook's distance are diagnonal lines with slope = -1.
+  contours of equal Cook's distance are diagonal lines with slope = -1.
   Various reference lines are drawn on the plot corresponding to 
   twice and three times the average hat value, a \dQuote{large} squared studentized
   residual and contours of Cook's distance.
@@ -44,8 +44,8 @@ lrPlot(model, ...)
   	typically extend the y axis enough to swamp the large residuals, so the default for
   	\code{ylim} is set to a range of 6 log units starting at the maximum value.
 }
-  \item{labels, id.method, id.n, id.cex, id.col}{settings for labelling
-points; see \code{link{showLabels}} for details. To omit point labelling, set
+  \item{labels, id.method, id.n, id.cex, id.col}{settings for labeling
+points; see \code{link{showLabels}} for details. To omit point labeling, set
 \code{id.n=0}, the default.  The default \code{id.method="noteworthy"} is used
 in this function to indicate setting labels for points with large
 Studentized residuals, hat-values or Cook's distances. See Details below.  Set 
