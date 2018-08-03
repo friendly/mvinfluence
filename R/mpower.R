@@ -1,8 +1,42 @@
-
 # compute A^n where A is a square matrix, allowing non-integer and negative powers
 # For integer values, see the technique in...
 #http://en.wikipedia.org/wiki/Exponentiation_by_squaring
 
+
+
+#' General Matrix Power
+#' 
+#' Calculates the \code{n}-th power of a square matrix, where \code{n} can be a
+#' positive or negative integer or a fractional power.
+#' 
+#' If \code{n<0}, the method is applied to \eqn{A^{-1}}. When \code{n} is an
+#' integer, the function uses the Russian peasant method, or repeated squaring
+#' for efficiency.  Otherwise, it uses the spectral decomposition of \code{A},
+#' requiring a symmetric matrix.
+#' 
+#' @aliases mpower %^%
+#' @param A A square matrix. Must also be symmetric for non-integer powers.
+#' @param n matrix power
+#' @return Returns the matrix \eqn{A^n} %% ~Describe the value returned %% If
+#' it is a LIST, use %% \item{comp1 }{Description of 'comp1'} %% \item{comp2
+#' }{Description of 'comp2'} %% ...
+#' @author Michael Friendly
+#' @seealso Packages corpcor and expm define similar functions.
+#' @keywords array
+#' @examples
+#' 
+#' M <- matrix(sample(1:9), 3,3)
+#' mpower(M,2)
+#' mpower(M,4)
+#' 
+#' # make a symmetric matrix
+#' MM <- crossprod(M)
+#' mpower(MM, -1)
+#' Mhalf <- mpower(MM, 1/2)
+#' all.equal(MM, Mhalf %*% Mhalf)
+#' 
+#' 
+#' @export mpower
 mpower <-
 function(A,n){
 	is.wholenumber <-

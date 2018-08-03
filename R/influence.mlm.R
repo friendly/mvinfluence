@@ -1,3 +1,80 @@
+#' Regression Deletion Diagnostics for Multivariate Linear Models
+#' 
+#' This collection of functions is designed to compute regression deletion
+#' diagnostics for multivariate linear models following Barrett & Ling (1992)
+#' that are close analogs of methods for univariate and generalized linear
+#' models handled by the \code{\link[stats]{influence.measures}} in the
+#' \pkg{stats} package.
+#' 
+#' In addition, the functions provide diagnostics for deletion of subsets of
+#' observations of size \code{m>1}.
+#' 
+#' \code{influence.mlm} is a simple wrapper for the computational function,
+#' \code{\link{mlm.influence}} designed to provide an S3 method for class
+#' \code{"mlm"} objects.
+#' 
+#' There are still infelicities in the methods for the \code{m>1} case in the
+#' current implementation. In particular, for \code{m>1}, you must call
+#' \code{influence.mlm} directly, rather than using the S3 generic
+#' \code{influence()}.
+#' 
+#' @aliases as.data.frame.inflmlm influence.mlm print.inflmlm
+#' @param model An \code{mlm} object, as returned by \code{\link[stats]{lm}}
+#' @param do.coef logical. Should the coefficients be returned in the
+#' \code{inflmlm} object?
+#' @param m Size of the subsets for deletion diagnostics
+#' @param x An \code{inflmlm} object, as returned by \code{mlm.influence}
+#' @param FUN For \code{m>1}, the function to be applied to the \eqn{H} and
+#' \eqn{Q} matrices returning a scalar value.  \code{FUN=det} and \code{FUN=tr}
+#' are possible choices, returning the \eqn{|H|} and \eqn{tr(H)} respectively.
+#' @param funnames logical. Should the \code{FUN} name be prepended to the
+#' statistics when creating a data frame?
+#' @param \dots Other arguments passed to methods
+#' @param digits Number of digits for the print method
+#' @return \code{influence.mlm} returns an S3 object of class \code{inflmlm}, a
+#' list with the following components %% If it is a LIST, use \item{m}{Deletion
+#' subset size} \item{H}{Hat values, \eqn{H_I}. If \code{m=1}, a vector of
+#' diagonal entries of the \sQuote{hat} matrix.  Otherwise, a list of \eqn{m
+#' \times m} matrices corresponding to the \code{subsets}.} \item{Q}{Residuals,
+#' \eqn{Q_I}.} \item{CookD}{Cook's distance values} \item{L}{Leverage
+#' components} \item{R}{Residual components} \item{subsets}{Indices of the
+#' observations in the subsets of size \code{m}} \item{labels}{Observation
+#' labels} \item{call}{Model call for the \code{mlm} object}
+#' \item{Beta}{Deletion regression coefficients-- included if
+#' \code{do.coef=TRUE}} %% ...
+#' @author Michael Friendly
+#' @seealso \code{\link{influencePlot.mlm}}, \code{\link{mlm.influence}}
+#' @references Barrett, B. E. and Ling, R. F. (1992). General Classes of
+#' Influence Measures for Multivariate Regression. \emph{Journal of the
+#' American Statistical Association}, \bold{87}(417), 184-191.
+#' @keywords models regression
+#' @examples
+#' 
+#' # Rohwer data
+#' Rohwer2 <- subset(Rohwer, subset=group==2)
+#' rownames(Rohwer2)<- 1:nrow(Rohwer2)
+#' Rohwer.mod <- lm(cbind(SAT, PPVT, Raven) ~ n+s+ns+na+ss, data=Rohwer2)
+#' 
+#' # m=1 diagnostics
+#' influence(Rohwer.mod)
+#' 
+#' # try an m=2 case
+#' res2 <- influence.mlm(Rohwer.mod, m=2, do.coef=FALSE)
+#' res2.df <- as.data.frame(res2)
+#' head(res2.df)
+#' scatterplotMatrix(log(res2.df))
+#' 
+#' 
+#' influencePlot(Rohwer.mod, id.n=4, type="cookd")
+#' 
+#' 
+#' # Sake data
+#' Sake.mod <- lm(cbind(taste,smell) ~ ., data=Sake)
+#' influence(Sake.mod)
+#' influencePlot(Sake.mod, id.n=3, type="cookd")
+#' 
+#' 
+#' @export influence.mlm
 influence.mlm <-
 function(model, do.coef=TRUE, m=1, ...)
 	mlm.influence(model, do.coef = do.coef, m=m,  ...)
