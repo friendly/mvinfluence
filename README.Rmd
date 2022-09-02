@@ -13,7 +13,7 @@ knitr::opts_chunk$set(
   fig.width = 5,
   fig.height = 5,
   comment = "#>",
-  fig.path = "README-"
+  fig.path = "man/figures/README-"
 )
 
 par(mar=c(3,3,1,1)+.1)
@@ -25,11 +25,11 @@ library(mvinfluence)
 
 [![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/mvinfluence)](https://cran.r-project.org/package=mvinfluence)
 [![](http://cranlogs.r-pkg.org/badges/grand-total/mvinfluence)](https://cran.r-project.org/package=mvinfluence)
-[![Rdoc](http://www.rdocumentation.org/badges/version/mvinfluence)](http://www.rdocumentation.org/packages/mvinfluence)
 
 
 
-# mvinfluence
+# mvinfluence <img src="man/figures/mvinfluence-logo.png" align="right" height="200px" />
+
 **Influence Measures and Diagnostic Plots for Multivariate Linear Models**
 
 Functions in this package compute regression deletion diagnostics for multivariate linear models following
@@ -56,7 +56,7 @@ Get the released version from CRAN:
 ## Goals
 
 The design goal for this package is that, as an extension of standard methods for univariate linear models, you should
-be able to fit a linear model with a multivariate response,
+be able to fit a linear model with a **multivariate** response,
 
     mymlm <- lm( cbind(y1, y2, y3) ~ x1 + x2 + x3, data=mydata)
 
@@ -64,7 +64,11 @@ and then get useful diagnostics and plots with:
 
     influence(mymlm)
     hatvalues(mymlm)
+    cooks.distance(mymlm)
     influencePlot(mymlm, ...)  
+
+As is done in comparable univariate functions in the `car` package, _noteworthy_ points are
+identified in printed output and graphs.
 
 ## Examples
 
@@ -86,6 +90,13 @@ lines with slope = -1.
 ```{r rohwer2}
 influencePlot(Rohwer.mod, id.n=4, type="LR")
 ```
+
+## Citation
+To cite `mvinfluence` in publications, use:
+```{r citation}
+citation("mvinfluence")
+```
+
 
 ## References
 
