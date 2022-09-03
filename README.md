@@ -3,6 +3,7 @@
 
 [![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/mvinfluence)](https://cran.r-project.org/package=mvinfluence)
 [![](http://cranlogs.r-pkg.org/badges/grand-total/mvinfluence)](https://cran.r-project.org/package=mvinfluence)
+[![DOI](https://zenodo.org/badge/128774860.svg)](https://zenodo.org/badge/latestdoi/128774860)
 
 # mvinfluence <img src="man/figures/mvinfluence-logo.png" align="right" height="200px" />
 
