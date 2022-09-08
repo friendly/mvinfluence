@@ -1,5 +1,22 @@
+#' Print an inflmlm object
+#'
+#' @param x       An \code{inflmlm} object
+#' @param digits  Number of digits to print 
+#' @param FUN     Function to combine diagnostics when \code{m>1}, one of \code{det} or \code{tr}
+#' @param ...     passed to \code{print()}
+#'
+#' @return        Invisibly returns the object
+#' @export
+#'
+#' @examples
+#' none
+#' 
 print.inflmlm <-
-function(x, digits = max(3, getOption("digits") - 4), FUN=det, ...) {
+function(x, 
+         digits = max(3, getOption("digits") - 4), 
+         FUN=det, 
+         ...) 
+{
 	df <- as.data.frame(x, FUN=FUN)
 	cat("Multivariate influence statistics for model:\n", 
 	 paste(deparse(x$call), sep = "\n", collapse = "\n"), 

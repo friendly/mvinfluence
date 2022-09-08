@@ -8,24 +8,33 @@
 #' as are the computations for the \code{m>1} case.  Associated methods for
 #' \code{m>1} are still under development.
 #' 
-#' @param model An \code{mlm} object, as returned by \code{\link[stats]{lm}}
-#' @param do.coef logical. Should the coefficients be returned in the
-#' \code{inflmlm} object?
-#' @param m Size of the subsets for deletion diagnostics
-#' @param \dots Further arguments passed to other methods
+#' @param model      An \code{mlm} object, as returned by \code{\link[stats]{lm}}
+#' @param do.coef    logical. Should the coefficients be returned in the
+#'                   \code{inflmlm} object?
+#' @param m          Size of the subsets for deletion diagnostics
+#' @param \dots      Further arguments passed to other methods
+#' 
 #' @return \code{mlm.influence} returns an S3 object of class \code{inflmlm}, a
-#' list with the following components %% If it is a LIST, use \item{m}{Deletion
-#' subset size} \item{H}{Hat values, \eqn{H_I}. If \code{m=1}, a vector of
-#' diagonal entries of the \sQuote{hat} matrix.  Otherwise, a list of \eqn{m
-#' \times m} matrices corresponding to the \code{subsets}.} \item{Q}{Residuals,
-#' \eqn{Q_I}.} \item{CookD}{Cook's distance values} \item{L}{Leverage
-#' components} \item{R}{Residual components} \item{subsets}{Indices of the
-#' observations in the subsets of size \code{m}} \item{labels}{Observation
-#' labels} \item{call}{Model call for the \code{mlm} object}
-#' \item{Beta}{Deletion regression coefficients-- included if
-#' \code{do.coef=TRUE}} %% ...
+#' list with the following components: 
+#'    \item{m}{Deletion subset size} \item{H}{Hat values, \eqn{H_I}. If \code{m=1}, a vector of
+#'             diagonal entries of the \sQuote{hat} matrix.  Otherwise, a list of \eqn{m\times m} 
+#'             matrices corresponding to the \code{subsets}.} 
+#'     \item{Q}{Residuals, \eqn{Q_I}.} 
+#'     \item{CookD}{Cook's distance values} 
+#'     \item{L}{Leverage components} 
+#'     \item{R}{Residual components} 
+#'     \item{subsets}{Indices of the
+#'            observations in the subsets of size \code{m}} 
+#'     \item{labels}{Observation labels} 
+#'     \item{call}{Model call for the \code{mlm} object}
+#'     \item{Beta}{Deletion regression coefficients-- included if\code{do.coef=TRUE}} %% ...
+#'
+#' @method influence mlm
+#' @export
+#' @importFrom stats model.matrix model.frame model.response
 #' @author Michael Friendly
-#' @seealso \code{\link{influencePlot.mlm}}, ~~~
+#' @seealso \code{\link{influencePlot.mlm}}
+#' 
 #' @references Barrett, B. E. and Ling, R. F. (1992). General Classes of
 #' Influence Measures for Multivariate Regression. \emph{Journal of the
 #' American Statistical Association}, \bold{87}(417), 184-191.
@@ -128,7 +137,15 @@ function (model, do.coef = TRUE, m=1, ...)
 		R <- unlist(R)
 		subsets <- c(subsets)
 	}
-	result <- list(m=m, H=H, Q=Q, CookD=CookD, L=L, R=R, subsets=subsets, labels=labels, call=call)
+	result <- list(m=m, 
+	               H=H, 
+	               Q=Q, 
+	               CookD=CookD, 
+	               L=L, 
+	               R=R, 
+	               subsets=subsets, 
+	               labels=labels, 
+	               call=call)
 	if (do.coef) result <- c(result, list(Beta=Beta))
 	class(result) <-"inflmlm"
 	result
