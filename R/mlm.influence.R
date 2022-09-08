@@ -24,6 +24,8 @@
 #'     \item{L}{Leverage components} 
 #'     \item{R}{Residual components} 
 #'     \item{subsets}{Indices of the
+#'     \item{CookD}{Cook's distance values} \item{L}{Leverage components} 
+#'     \item{R}{Residual components} \item{subsets}{Indices of the
 #'            observations in the subsets of size \code{m}} 
 #'     \item{labels}{Observation labels} 
 #'     \item{call}{Model call for the \code{mlm} object}
