@@ -9,19 +9,20 @@
 #' Calculates the \code{n}-th power of a square matrix, where \code{n} can be a
 #' positive or negative integer or a fractional power.
 #' 
-#' If \code{n<0}, the method is applied to \eqn{A^{-1}}. When \code{n} is an
+#' If \code{n<0}, the method is applied to \eqn{A^{-1}}. 
+#' When \code{n} is an
 #' integer, the function uses the Russian peasant method, or repeated squaring
-#' for efficiency.  Otherwise, it uses the spectral decomposition of \code{A},
+#' for efficiency.  
+#' Otherwise, it uses the spectral decomposition of \code{A},
 #' requiring a symmetric matrix.
 #' 
 #' @aliases mpower %^%
 #' @param A A square matrix. Must also be symmetric for non-integer powers.
 #' @param n matrix power
-#' @return Returns the matrix \eqn{A^n} %% ~Describe the value returned %% If
-#' it is a LIST, use %% \item{comp1 }{Description of 'comp1'} %% \item{comp2
-#' }{Description of 'comp2'} %% ...
+#' @return Returns the matrix \eqn{A^n} 
+#' 
 #' @author Michael Friendly
-#' @seealso Packages corpcor and expm define similar functions.
+#' @seealso Packages \code{corpcor} and \code{expm} define similar functions.
 #' @keywords array
 #' @examples
 #' 
@@ -37,8 +38,8 @@
 #' 
 #' 
 #' @export mpower
-mpower <-
-function(A,n){
+mpower <- function(A,n){
+
 	is.wholenumber <-
     function(x, tol = .Machine$double.eps^0.5)  abs(x - round(x)) < tol
 	if(!ncol(A)==nrow(A)) stop("Input must be a square matrix")
@@ -70,4 +71,5 @@ function(A,n){
 	return(result)
 }
 
+#' @export
 "%^%" <- function(A,n) mpower(A,n)

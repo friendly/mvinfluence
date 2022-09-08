@@ -4,9 +4,7 @@
 #' 
 #' 
 #' @param M a matrix
-#' @return returns the sum of the diagonal elements %% ~Describe the value
-#' returned %% If it is a LIST, use %% \item{comp1 }{Description of 'comp1'} %%
-#' \item{comp2 }{Description of 'comp2'} %% ...
+#' @return returns the sum of the diagonal elements of the matrix
 #' @author Michael Friendly
 #' @keywords array
 #' @examples
@@ -15,5 +13,4 @@
 #' tr(M)
 #' 
 #' @export tr
-tr <-
-function(M) sum(diag(M))
+tr <- function(M) sum(diag(M))
