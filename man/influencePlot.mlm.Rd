@@ -104,6 +104,8 @@ Michael Friendly
 \examples{
 data(Rohwer, package="heplots")
 Rohwer2 <- subset(Rohwer, subset=group==2)
+rownames(Rohwer2)<- 1:nrow(Rohwer2)
+
 Rohwer.mod <- lm(cbind(SAT, PPVT, Raven) ~ n+s+ns+na+ss, data=Rohwer2)
 
 influencePlot(Rohwer.mod, id.n=4, type="stres")

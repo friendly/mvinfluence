@@ -38,8 +38,10 @@ infIndexPlot.mlm <- function(model,
 # check for row.names, and use them if they are numeric.
    if(missing(labels)) labels <-  row.names(model$model)
 
-   op <- par(mfrow=c(length(what), 1), mar=c(1, 4, 0, 2) + .0,
-             mgp=c(2, 1, 0), oma=c(6, 0, 6, 0))
+   op <- par(mfrow=c(length(what), 1), 
+             mar=c(1, 4, 0, 2) + .0,
+             mgp=c(2, 1, 0), oma=c(6, 0, 6, 0),
+             xpd = NA)
 
    oldwarn <- options()$warn
    options(warn=-1)
