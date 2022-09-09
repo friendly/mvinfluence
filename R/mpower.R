@@ -8,20 +8,23 @@
 #' 
 #' Calculates the \code{n}-th power of a square matrix, where \code{n} can be a
 #' positive or negative integer or a fractional power.
-#' 
+#'
+#' @details  
 #' If \code{n<0}, the method is applied to \eqn{A^{-1}}. 
 #' When \code{n} is an
 #' integer, the function uses the Russian peasant method, or repeated squaring
 #' for efficiency.  
 #' Otherwise, it uses the spectral decomposition of \code{A},
+#' \eqn{\mathbf{A}^n = \mathbf{V} \mathbf{D}^n \mathbf{V}^{T}}
 #' requiring a symmetric matrix.
 #' 
 #' @aliases mpower %^%
-#' @param A A square matrix. Must also be symmetric for non-integer powers.
-#' @param n matrix power
-#' @return Returns the matrix \eqn{A^n} 
+#' @param A   A square matrix. Must also be symmetric for non-integer powers.
+#' @param n   matrix power
+#' @return    Returns the matrix \eqn{A^n} 
 #' 
 #' @author Michael Friendly
+#' @references \url{http://en.wikipedia.org/wiki/Exponentiation_by_squaring}
 #' @seealso Packages \code{corpcor} and \code{expm} define similar functions.
 #' @keywords array
 #' @examples

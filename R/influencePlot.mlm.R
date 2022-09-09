@@ -2,7 +2,7 @@
 #' 
 #' This function creates various types of \dQuote{bubble} plots of influence
 #' measures with the areas of the circles representing the observations
-#' proportional to Cook's distances.
+#' proportional to generalized Cook's distances.
 #' 
 #' \code{type="stres"} plots squared (internally) Studentized residuals against
 #' hat values; \code{type="cookd"} plots Cook's distance against hat values;

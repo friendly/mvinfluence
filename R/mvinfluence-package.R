@@ -16,9 +16,48 @@
 #' far exceeding their individual effects, as well as other interesting phenomena described 
 #' by Lawrence (1995). Associated methods for the case \code{m>1} are still under development in this package.
 #' 
+#' @section Notation
+#' Let \eqn{\mathbf{X}} be the model matrix in the multivariate linear model, 
+#' \eqn{\mathbf{Y}_{n \times p} = \mathbf{X} \mathbf{\beta} + \mathfb{E}}.
+#' The usual least squares estimate of \eqn{\mathbf{\beta}} is given by
+#' \eqn{\mathbf{B} = (\mathbf{X}^{T} \mathbf{X})^{-1}  \mathbf{X}^{T} \mathbf{Y}}.
+#' 
+#' Then let 
+#'   \itemize{
+#'      \item \eqn{\mathbf{X}_I} be the submatrix of \eqn{\mathbf{X}} whose \eqn{m} rows are indexed by \eqn{I},
+#'      \item \eqn{\mathbf{X}_(I)} is the complement, the submatrix of \eqn{\mathbf{X}} with the \eqn{m} rows in \eqn{I} deleted,
+#'   }
+#'  
+#'  Matrices \eqn{\mathbf{Y}_I}, \eqn{\mathbf{Y}_(I)}, and \eqn{\mathbf{E}_I} are defined similarly.
+#'  
+#'  @section Measures
+#'  The influence measures defined by Barrett & Ling (1992) are functions of two matrices \eqn{\mathbf{H}_I} and \eqn{\mathbf{Q}_I}
+#'  defined as follows
+#'    \itemize{
+#'       \item For the full data set, the \dQuote{hat matrix}, \eqn{\mathbf{H}}, is given by
+#'             \eqn{\mathbf{H} = \mathbf{X} (\mathbf{X}^{T} \mathbf{X})^{-1} \mathbf{X}^{T} },
+#'       \item \eqn{\mathbf{H}_I} is \eqn{m \times m} the submatrix of \eqn{\mathbf{H}} corresponding to the index set,
+#'             \eqn{\mathbf{H}_I = \mathbf{X} (\mathbf{X}_I^{T} \mathbf{X}_I)^{-1} \mathbf{X}^{T} },
+#'       \item \eqn{\mathbf{Q}} is the anlaog of \eqn{\mathbf{H}} defined for the residual matrix \eqn{\mathbf{E}},
+#'             \eqn{\mathbf{Q} = \mathbf{E} (\mathbf{E}^{T} \mathbf{E})^{-1} \mathbf{E}^{T} }, with corresponding submatrix
+#'             \eqn{\mathbf{Q}_I = \mathbf{E} (\mathbf{E}_I^{T} \mathbf{E}_I)^{-1} \mathbf{E}^{T} },
+#'    } 
 #' 
 #' @docType package
 #' @name mvinfluence
+#' @references 
+#'    Barrett, B. E. and Ling, R. F. (1992).
+#'      General Classes of Influence Measures for Multivariate Regression.
+#'      \emph{Journal of the American Statistical Association}, \bold{87}(417), 184-191.
+#'
+#'    Barrett, B. E. (2003). Understanding Influence in Multivariate Regression.
+#'      \emph{Communications in Statistics -- Theory and Methods}, \bold{32}, 3, 667-680.
+#'
+#'    A. J. Lawrence (1995).
+#'      Deletion Influence and Masking in Regression.
+#'      \emph{Journal of the Royal Statistical Society. Series B (Methodological)} , \bold{57}, 1, 181-189. 
+#'
+#' 
 #' @importFrom car showLabels influencePlot infIndexPlot influenceIndexPlot
 #' @importFrom heplots trans.colors Mahalanobis
 #' @importFrom grDevices palette
@@ -26,15 +65,15 @@
 #' @importFrom stats cooks.distance hatvalues influence coef model.frame model.matrix
 #' @importFrom stats model.response qbeta qf residuals rstudent
 #' @importFrom utils combn
-
+#'
 #' @S3method lrPlot lm
-
+#'
 #' @S3method hatvalues mlm
 #' @S3method cooks.distance mlm
 #' @S3method influence mlm
 #' @S3method influencePlot mlm
 #' @S3method infIndexPlot mlm
-
+#'
 #' @S3method print inflmlm
 #' @S3method as.data.frame inflmlm
 
