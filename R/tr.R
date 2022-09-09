@@ -2,6 +2,9 @@
 #' 
 #' Calculates the trace of a matrix
 #' 
+#' For square, symmetric matrices, such as covariance matrices, the trace is sometimes
+#' used as a measure of size, e.g., in Pillai's trace criterion for a MLM.
+#' 
 #' 
 #' @param M a matrix
 #' @return returns the sum of the diagonal elements of the matrix
