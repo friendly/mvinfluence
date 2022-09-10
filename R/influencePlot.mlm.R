@@ -47,6 +47,7 @@
 #' 
 #' \code{\link[car]{influencePlot}} in the car package
 #'
+#' @method influencePlot mlm
 #' @importFrom grDevices palette
 #' @importFrom stats model.response qbeta qf residuals rstudent
 #' 
@@ -86,6 +87,7 @@
 #' 
 #' 
 #' @export influencePlot.mlm
+#' 
 influencePlot.mlm <-
 function(model, scale=12, type=c("stres", "LR", "cookd"),
 		infl=mlm.influence(model, do.coef = FALSE), FUN=det,

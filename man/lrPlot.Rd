@@ -6,12 +6,58 @@
 \title{Regression LR Influence Plot}
 \usage{
 lrPlot(model, ...)
+
+\method{lrPlot}{lm}(
+  model,
+  scale = 12,
+  xlab = "log Leverage factor [log H/p*(1-H)]",
+  ylab = "log (Studentized Residual^2)",
+  xlim = NULL,
+  ylim,
+  labels,
+  id.method = "noteworthy",
+  id.n = if (id.method[1] == "identify") Inf else 0,
+  id.cex = 1,
+  id.col = palette()[1],
+  ref = c("h", "v", "d", "c"),
+  ref.col = "gray",
+  ref.lty = 2,
+  ref.lab = TRUE,
+  ...
+)
 }
 \arguments{
-\item{model}{a linear or generalized-linear model.}
+\item{model}{a model object fit by \code{lm}}
 
 \item{\dots}{arguments to pass to the \code{plot} and \code{points}
 functions.}
+
+\item{scale}{a factor to adjust the radii of the circles, in relation to \code{sqrt(CookD)}}
+
+\item{xlab, ylab}{axis labels.}
+
+\item{xlim, ylim}{Limits for x and y axes. In the space of (L, R) very small
+residuals typically extend the y axis enough to swamp the large residuals,
+so the default for \code{ylim} is set to a range of 6 log units starting at
+the maximum value.}
+
+\item{labels, id.method, id.n, id.cex, id.col}{settings for labeling points; see
+\code{link{showLabels}} for details. To omit point labeling, set
+\code{id.n=0}, the default.  The default \code{id.method="noteworthy"} is
+used in this function to indicate setting labels for points with large
+Studentized residuals, hat-values or Cook's distances. See Details below.
+Set \code{id.method="identify"} for interactive point identification.}
+
+\item{ref}{Options to draw reference lines, any one or more of \code{c("h", "v", "d", "c")}.
+\code{"h"} and \code{"v"} draw horizontal and vertical
+ reference lines at noteworthy values of R and L respectively. \code{"d"}
+ draws equally spaced diagonal reference lines for contours of equal CookD.
+ \code{"c"} draws diagonal reference lines corresponding to approximate 0.95 and 0.99 contours of CookD.}
+
+\item{ref.col, ref.lty}{Color and line type for reference lines.  Reference
+lines for \code{"c" \%in\% ref} are handled separately.}
+
+\item{ref.lab}{A logical, indicating whether the reference lines should be labeled.}
 }
 \value{
 If points are identified, returns a data frame with the hat values,
@@ -77,7 +123,7 @@ Beckman and R. D. Cook.  \emph{Technometrics}, 25, 152-155.
 }
 \seealso{
 \code{\link{influencePlot.mlm}}
-\code{\link[car]{influencePlot}} in the \code{car} package for other methods
+        \code{\link[car]{influencePlot}} in the \code{car} package for other methods
 }
 \author{
 Michael Friendly

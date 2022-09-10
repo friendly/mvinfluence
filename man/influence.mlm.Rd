@@ -2,8 +2,6 @@
 % Please edit documentation in R/influence.mlm.R
 \name{influence.mlm}
 \alias{influence.mlm}
-\alias{as.data.frame.inflmlm}
-\alias{print.inflmlm}
 \title{Regression Deletion Diagnostics for Multivariate Linear Models}
 \usage{
 \method{influence}{mlm}(model, do.coef = TRUE, m = 1, ...)

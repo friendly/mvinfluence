@@ -2,8 +2,8 @@ Package: mvinfluence
 Type: Package
 Title: Influence Measures and Diagnostic Plots for Multivariate Linear
         Models
-Version: 0.8-3
-Date: 2018-05-16
+Version: 0.8-4
+Date: 2022-09-10
 Author: Michael Friendly
 Maintainer: Michael Friendly <friendly@yorku.ca>
 Description: Computes regression deletion diagnostics for multivariate linear models and provides some associated

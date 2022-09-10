@@ -18,7 +18,7 @@
 #' \code{influence.mlm} directly, rather than using the S3 generic
 #' \code{influence()}.
 #' 
-#' @aliases as.data.frame.inflmlm influence.mlm print.inflmlm
+#' @aliases influence.mlm
 #' @param model An \code{mlm} object, as returned by \code{\link[stats]{lm}}
 #' @param do.coef logical. Should the coefficients be returned in the
 #' \code{inflmlm} object?

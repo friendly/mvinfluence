@@ -34,7 +34,7 @@
 #'         for its side-effect of drawing a plot.
 #' @author Michael Friendly
 #' @seealso \code{\link{influencePlot.mlm}}
-#' \code{\link[car]{influencePlot}} in the \code{car} package for other methods
+#'         \code{\link[car]{influencePlot}} in the \code{car} package for other methods
 #' @references A. J. Lawrence (1995). Deletion Influence and Masking in
 #' Regression \emph{Journal of the Royal Statistical Society. Series B
 #' (Methodological)} , Vol. \bold{57}, No. 1, pp. 181-189.
@@ -78,7 +78,9 @@ lrPlot <- function(model, ...){
 
 #' LR plot for lm objects
 #' 
+#' @rdname lrPlot
 #' @method lrPlot lm
+#' @param model a model object fit by \code{lm}
 #' @param scale a factor to adjust the radii of the circles, in relation to \code{sqrt(CookD)}
 #' @param xlab,ylab axis labels.
 #' @param xlim,ylim Limits for x and y axes. In the space of (L, R) very small
@@ -124,7 +126,7 @@ lrPlot.lm <- function(model,
 	L <- Hfun(hatval)
 	R <- log(rstud^2)
 	if (missing(labels)) labels <- names(rstud)
-	cook <- sqrt(CookD<-cooks.distance(model))
+	cook <- sqrt(CookD <- cooks.distance(model))
 	scale <- scale/max(cook, na.rm=TRUE)
 	n <- sum(!is.na(rstud))
 #	cutoff <- sqrt(4/(n - p))

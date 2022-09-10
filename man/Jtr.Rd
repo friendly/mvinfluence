@@ -9,6 +9,14 @@
 \title{General Classes of Influence Measures}
 \usage{
 Jtr(H, Q, a, b, f)
+
+Jdet(H, Q, a, b, f)
+
+COOKD(H, Q, n, p, r, m)
+
+DFFITS(H, Q, n, p, r, m)
+
+COVRATIO(H, Q, n, p, r, m)
 }
 \arguments{
 \item{H}{a scalar or \eqn{m \times m} matrix giving the hat values for subset \eqn{I}}
@@ -66,4 +74,7 @@ American Statistical Association}, \bold{87}(417), 184-191.
 \author{
 Michael Friendly
 }
+\keyword{J}
 \keyword{array}
+\keyword{function}
+\keyword{trace}

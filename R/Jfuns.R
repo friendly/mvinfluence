@@ -36,10 +36,6 @@
 #' @param a the \eqn{a} parameter for the \eqn{J^{det}} and \eqn{J^{tr}} classes
 #' @param b the \eqn{b} parameter for the \eqn{J^{det}} and \eqn{J^{tr}} classes
 #' @param f scaling factor for the \eqn{J^{det}} and \eqn{J^{tr}} classes
-#' @param n sample size
-#' @param p number of predictor variables
-#' @param r number of response variables
-#' @param m deletion subset size
 #' @return The scalar result of the computation. 
 #' @author Michael Friendly
 #' @references Barrett, B. E. and Ling, R. F. (1992). General Classes of
@@ -47,29 +43,46 @@
 #' American Statistical Association}, \bold{87}(417), 184-191.
 #' @keywords array
 
+#' J trace function
 Jtr <- function (H, Q, a, b, f) {
 		I <- diag(nrow(H))
 		res <- H %*% Q %*% mpower(I-H-Q, a) %*% mpower(I-H, b)
 		f * tr(res)
 	}
+
+#' J det function
+#' 
+#' @rdname Jtr
 Jdet <- function (H, Q, a, b, f) {
 		I <- diag(nrow(H))
 		res <- H %*% Q %*% mpower(I-H-Q, a) %*% mpower(I-H, b)
 		f * det(res)
 	}
 
-	# Cook D, in terms of Jtr()
+#' Cook D, in terms of Jtr()
+#'
+#' @param n sample size
+#' @param p number of predictor variables
+#' @param r number of response variables
+#' @param m deletion subset size
+#' @rdname Jtr
+
 COOKD <- function(H, Q, n, p, r, m) {
  		f <- (n-p)/p
  		Jtr(H, Q, 0, -2, f)
  }
 
-	# DFFITS^2, in terms of Jtr()
+#' DFFITS^2, in terms of Jtr()
+#' 
+#' @rdname Jtr
 DFFITS <- function(H, Q, n, p, r, m) {
  		f <- (n-p-m)/p
  		Jtr(H, Q, -1, 0, f)
  }
  
+#' COVRATIO, in terms of Jdet()
+#' @rdname Jtr
+
 COVRATIO <- function(H, Q, n, p, r, m) {
  		f <- ((n-p)/(n-p-m))^r*p
  		Jdet(H, Q, p, -(r+p), f)
