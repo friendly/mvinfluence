@@ -32,16 +32,19 @@
 #' @param \dots Other arguments passed to methods
 #' @param digits Number of digits for the print method
 #' @return \code{influence.mlm} returns an S3 object of class \code{inflmlm}, a
-#' list with the following components %% If it is a LIST, use \item{m}{Deletion
-#' subset size} \item{H}{Hat values, \eqn{H_I}. If \code{m=1}, a vector of
-#' diagonal entries of the \sQuote{hat} matrix.  Otherwise, a list of \eqn{m
-#' \times m} matrices corresponding to the \code{subsets}.} \item{Q}{Residuals,
-#' \eqn{Q_I}.} \item{CookD}{Cook's distance values} \item{L}{Leverage
-#' components} \item{R}{Residual components} \item{subsets}{Indices of the
-#' observations in the subsets of size \code{m}} \item{labels}{Observation
-#' labels} \item{call}{Model call for the \code{mlm} object}
-#' \item{Beta}{Deletion regression coefficients-- included if
-#' \code{do.coef=TRUE}} %% ...
+#' list with the following components 
+#'     \item{m}{Deletion subset size} 
+#'     \item{H}{Hat values, \eqn{H_I}. If \code{m=1}, a vector of
+#'              diagonal entries of the \sQuote{hat} matrix.  Otherwise, a list of 
+#'              \eqn{m \times m} matrices corresponding to the \code{subsets}.} 
+#'      \item{Q}{Residuals, \eqn{Q_I}.} 
+#'      \item{CookD}{Cook's distance values} 
+#'      \item{L}{Leverage components} 
+#'      \item{R}{Residual components} 
+#'      \item{subsets}{Indices of the observations in the subsets of size \code{m}} 
+#'      \item{labels}{Observation labels} 
+#'      \item{call}{Model call for the \code{mlm} object}
+#'     \item{Beta}{Deletion regression coefficients-- included if\code{do.coef=TRUE}} 
 #' @author Michael Friendly
 #' @seealso \code{\link{influencePlot.mlm}}, \code{\link{mlm.influence}}
 #' @references Barrett, B. E. and Ling, R. F. (1992). General Classes of
@@ -69,6 +72,7 @@
 #' 
 #' 
 #' # Sake data
+#' data(Sake, package="heplots")
 #' Sake.mod <- lm(cbind(taste,smell) ~ ., data=Sake)
 #' influence(Sake.mod)
 #' influencePlot(Sake.mod, id.n=3, type="cookd")

@@ -9,7 +9,7 @@
 #'             a single statistic. The default is \code{det}. An alternative is \code{tr}, for matrix trace.
 #' @param funnames 
 #'
-#' @return
+#' @return     A data frame containing the influence statistics
 #' @export
 #'
 #' @examples

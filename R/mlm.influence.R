@@ -16,20 +16,22 @@
 #' 
 #' @return \code{mlm.influence} returns an S3 object of class \code{inflmlm}, a
 #' list with the following components: 
-#'    \item{m}{Deletion subset size} \item{H}{Hat values, \eqn{H_I}. If \code{m=1}, a vector of
+#'    \item{m}{Deletion subset size} 
+#'    \item{H}{Hat values, \eqn{H_I}. If \code{m=1}, a vector of
 #'             diagonal entries of the \sQuote{hat} matrix.  Otherwise, a list of \eqn{m\times m} 
 #'             matrices corresponding to the \code{subsets}.} 
 #'     \item{Q}{Residuals, \eqn{Q_I}.} 
 #'     \item{CookD}{Cook's distance values} 
 #'     \item{L}{Leverage components} 
 #'     \item{R}{Residual components} 
-#'     \item{subsets}{Indices of the
-#'     \item{CookD}{Cook's distance values} \item{L}{Leverage components} 
-#'     \item{R}{Residual components} \item{subsets}{Indices of the
-#'            observations in the subsets of size \code{m}} 
+#'     \item{subsets}{Indices of the subsets}
+#'     \item{CookD}{Cook's distance values} 
+#'     \item{L}{Leverage components} 
+#'     \item{R}{Residual components} 
+#'     \item{subsets}{Indices of the observations in the subsets of size \code{m}} 
 #'     \item{labels}{Observation labels} 
 #'     \item{call}{Model call for the \code{mlm} object}
-#'     \item{Beta}{Deletion regression coefficients-- included if\code{do.coef=TRUE}} %% ...
+#'     \item{Beta}{Deletion regression coefficients-- included if\code{do.coef=TRUE}} 
 #'
 #' @method influence mlm
 #' @export

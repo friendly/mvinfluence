@@ -44,7 +44,7 @@
 #'         draws equally spaced diagonal reference lines for contours of equal CookD.
 #'         \code{"c"} draws diagonal reference lines corresponding to approximate 0.95 and 0.99 contours of CookD.
 #' @param ref.col,ref.lty Color and line type for reference lines.  Reference
-#'        lines for \code{"c" %in% ref} are handled separately.
+#'        lines for \code{"c" \%in\% ref} are handled separately.
 #' @param ref.lab A logical, indicating whether the reference lines should be labeled.
 #' @param \dots arguments to pass to the \code{plot} and \code{points}
 #'         functions.
