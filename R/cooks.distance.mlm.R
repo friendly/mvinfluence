@@ -13,6 +13,7 @@
 #' @param infl  A \code{inflmlm} object. The default simply runs \code{mlm.influence()} on the model, suppressing coefficients.
 #' @param ...   Ignored
 #'
+#' @importFrom stats cooks.distance hatvalues influence coef model.frame model.matrix
 #' @return      A vector of Cook's distances
 #' @export
 #' @references Barrett, B. E. and Ling, R. F. (1992). General Classes of

@@ -31,14 +31,10 @@
 #' than are currently implemented here.
 #' 
 #' @aliases Jdet Jtr COOKD COVRATIO DFFITS
-#' @param H a scalar or \eqn{m \times m} matrix giving the hat values for
-#' subset \eqn{I}
-#' @param Q a scalar or \eqn{m \times m} matrix giving the residual values for
-#' subset \eqn{I}
-#' @param a the \eqn{a} parameter for the \eqn{J^{det}} and \eqn{J^{tr}}
-#' classes
-#' @param b the \eqn{b} parameter for the \eqn{J^{det}} and \eqn{J^{tr}}
-#' classes
+#' @param H a scalar or \eqn{m \times m} matrix giving the hat values for subset \eqn{I}
+#' @param Q a scalar or \eqn{m \times m} matrix giving the residual values for subset \eqn{I}
+#' @param a the \eqn{a} parameter for the \eqn{J^{det}} and \eqn{J^{tr}} classes
+#' @param b the \eqn{b} parameter for the \eqn{J^{det}} and \eqn{J^{tr}} classes
 #' @param f scaling factor for the \eqn{J^{det}} and \eqn{J^{tr}} classes
 #' @param n sample size
 #' @param p number of predictor variables

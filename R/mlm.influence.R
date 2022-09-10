@@ -33,6 +33,7 @@
 #'     \item{call}{Model call for the \code{mlm} object}
 #'     \item{Beta}{Deletion regression coefficients-- included if\code{do.coef=TRUE}} 
 #'
+#' @importFrom utils combn
 #' @method influence mlm
 #' @export
 #' @importFrom stats model.matrix model.frame model.response

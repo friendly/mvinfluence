@@ -76,6 +76,9 @@
 #' infIndexPlot(rohwer.mlm, id.n=3)
 #' 
 #' 
+#' @importFrom car showLabels influencePlot infIndexPlot influenceIndexPlot
+#' @importFrom heplots trans.colors Mahalanobis
+#' @method   infIndexPlot mlm
 #' @export infIndexPlot.mlm
 infIndexPlot.mlm <- function(model,
 		 infl=mlm.influence(model, do.coef = FALSE), FUN=det,

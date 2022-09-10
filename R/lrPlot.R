@@ -26,26 +26,6 @@
 #' 
 #' @aliases lrPlot lrPlot.lm
 #' @param model a linear or generalized-linear model.
-#' @param scale a factor to adjust the radii of the circles, in relation to \code{sqrt(CookD)}
-#' @param xlab,ylab axis labels.
-#' @param xlim,ylim Limits for x and y axes. In the space of (L, R) very small
-#'        residuals typically extend the y axis enough to swamp the large residuals,
-#'        so the default for \code{ylim} is set to a range of 6 log units starting at
-#'        the maximum value.
-#' @param labels,id.method,id.n,id.cex,id.col settings for labeling points; see
-#'         \code{link{showLabels}} for details. To omit point labeling, set
-#'         \code{id.n=0}, the default.  The default \code{id.method="noteworthy"} is
-#'         used in this function to indicate setting labels for points with large
-#'         Studentized residuals, hat-values or Cook's distances. See Details below.
-#'         Set \code{id.method="identify"} for interactive point identification.
-#' @param ref Options to draw reference lines, any one or more of \code{c("h", "v", "d", "c")}.  
-#'        \code{"h"} and \code{"v"} draw horizontal and vertical
-#'         reference lines at noteworthy values of R and L respectively. \code{"d"}
-#'         draws equally spaced diagonal reference lines for contours of equal CookD.
-#'         \code{"c"} draws diagonal reference lines corresponding to approximate 0.95 and 0.99 contours of CookD.
-#' @param ref.col,ref.lty Color and line type for reference lines.  Reference
-#'        lines for \code{"c" \%in\% ref} are handled separately.
-#' @param ref.lab A logical, indicating whether the reference lines should be labeled.
 #' @param \dots arguments to pass to the \code{plot} and \code{points}
 #'         functions.
 #' @return If points are identified, returns a data frame with the hat values,
@@ -96,7 +76,34 @@ lrPlot <- function(model, ...){
     UseMethod("lrPlot")
     }
 
-lrPlot.lm <- function(model, scale=12,  
+#' LR plot for lm objects
+#' 
+#' @method lrPlot lm
+#' @param scale a factor to adjust the radii of the circles, in relation to \code{sqrt(CookD)}
+#' @param xlab,ylab axis labels.
+#' @param xlim,ylim Limits for x and y axes. In the space of (L, R) very small
+#'        residuals typically extend the y axis enough to swamp the large residuals,
+#'        so the default for \code{ylim} is set to a range of 6 log units starting at
+#'        the maximum value.
+#' @param labels,id.method,id.n,id.cex,id.col settings for labeling points; see
+#'         \code{link{showLabels}} for details. To omit point labeling, set
+#'         \code{id.n=0}, the default.  The default \code{id.method="noteworthy"} is
+#'         used in this function to indicate setting labels for points with large
+#'         Studentized residuals, hat-values or Cook's distances. See Details below.
+#'         Set \code{id.method="identify"} for interactive point identification.
+#' @param ref Options to draw reference lines, any one or more of \code{c("h", "v", "d", "c")}.  
+#'        \code{"h"} and \code{"v"} draw horizontal and vertical
+#'         reference lines at noteworthy values of R and L respectively. \code{"d"}
+#'         draws equally spaced diagonal reference lines for contours of equal CookD.
+#'         \code{"c"} draws diagonal reference lines corresponding to approximate 0.95 and 0.99 contours of CookD.
+#' @param ref.col,ref.lty Color and line type for reference lines.  Reference
+#'        lines for \code{"c" \%in\% ref} are handled separately.
+#' @param ref.lab A logical, indicating whether the reference lines should be labeled.
+#' @importFrom graphics abline axis box mtext par plot points text
+#' @export
+
+lrPlot.lm <- function(model, 
+                      scale=12,  
 		xlab="log Leverage factor [log H/p*(1-H)]", 
 		ylab="log (Studentized Residual^2)",
 		xlim=NULL, ylim, 

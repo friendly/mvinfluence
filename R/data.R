@@ -9,9 +9,9 @@
 #' @docType data
 #' @format A data frame with 8 observations on the following 3 variables.
 #' \describe{ 
-#'     \item{list("grain")}{amount of grain produced}
-#'     \item{list("straw")}{amount of straw produced}
-#'     \item{list("fertilizer")}{amount of fertilizer applied} }
+#'     \item{grain}{amount of grain produced}
+#'     \item{straw}{amount of straw produced}
+#'     \item{fertilizer}{amount of fertilizer applied} }
 #' @references Hossain, A. and Naik, D. N. (1989). Detection of influential
 #' observations in multivariate regression. \emph{Journal of Applied
 #' Statistics}, 16 (1), 25-37.

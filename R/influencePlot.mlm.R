@@ -46,6 +46,10 @@
 #' @seealso \code{\link{mlm.influence}}, \code{\link{lrPlot}}
 #' 
 #' \code{\link[car]{influencePlot}} in the car package
+#'
+#' @importFrom grDevices palette
+#' @importFrom stats model.response qbeta qf residuals rstudent
+#' 
 #' @references Barrett, B. E. and Ling, R. F. (1992). General Classes of
 #' Influence Measures for Multivariate Regression. \emph{Journal of the
 #' American Statistical Association}, \bold{87}(417), 184-191.

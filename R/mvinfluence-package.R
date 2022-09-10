@@ -74,15 +74,15 @@
 #' @importFrom stats model.response qbeta qf residuals rstudent
 #' @importFrom utils combn
 #'
-#' @S3method lrPlot lm
+#' @method lrPlot lm
 #'
-#' @S3method hatvalues mlm
-#' @S3method cooks.distance mlm
-#' @S3method influence mlm
-#' @S3method influencePlot mlm
-#' @S3method infIndexPlot mlm
+#' @method hatvalues mlm
+#' @method cooks.distance mlm
+#' @method influence mlm
+#' @method influencePlot mlm
+#' @method infIndexPlot mlm
 #'
-#' @S3method print inflmlm
-#' @S3method as.data.frame inflmlm
+#' @method print inflmlm
+#' @method as.data.frame inflmlm
 
 

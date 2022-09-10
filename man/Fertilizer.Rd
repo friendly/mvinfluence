@@ -7,9 +7,9 @@
 \format{
 A data frame with 8 observations on the following 3 variables.
 \describe{ 
-    \item{list("grain")}{amount of grain produced}
-    \item{list("straw")}{amount of straw produced}
-    \item{list("fertilizer")}{amount of fertilizer applied} }
+    \item{grain}{amount of grain produced}
+    \item{straw}{amount of straw produced}
+    \item{fertilizer}{amount of fertilizer applied} }
 }
 \source{
 Anderson, T. W. (1984). \emph{An Introduction to Multivariate

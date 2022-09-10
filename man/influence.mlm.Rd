@@ -17,17 +17,6 @@
 \item{m}{Size of the subsets for deletion diagnostics}
 
 \item{\dots}{Other arguments passed to methods}
-
-\item{x}{An \code{inflmlm} object, as returned by \code{mlm.influence}}
-
-\item{FUN}{For \code{m>1}, the function to be applied to the \eqn{H} and
-\eqn{Q} matrices returning a scalar value.  \code{FUN=det} and \code{FUN=tr}
-are possible choices, returning the \eqn{|H|} and \eqn{tr(H)} respectively.}
-
-\item{funnames}{logical. Should the \code{FUN} name be prepended to the
-statistics when creating a data frame?}
-
-\item{digits}{Number of digits for the print method}
 }
 \value{
 \code{influence.mlm} returns an S3 object of class \code{inflmlm}, a

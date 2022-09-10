@@ -23,14 +23,7 @@
 #' @param do.coef logical. Should the coefficients be returned in the
 #' \code{inflmlm} object?
 #' @param m Size of the subsets for deletion diagnostics
-#' @param x An \code{inflmlm} object, as returned by \code{mlm.influence}
-#' @param FUN For \code{m>1}, the function to be applied to the \eqn{H} and
-#' \eqn{Q} matrices returning a scalar value.  \code{FUN=det} and \code{FUN=tr}
-#' are possible choices, returning the \eqn{|H|} and \eqn{tr(H)} respectively.
-#' @param funnames logical. Should the \code{FUN} name be prepended to the
-#' statistics when creating a data frame?
 #' @param \dots Other arguments passed to methods
-#' @param digits Number of digits for the print method
 #' @return \code{influence.mlm} returns an S3 object of class \code{inflmlm}, a
 #' list with the following components 
 #'     \item{m}{Deletion subset size} 

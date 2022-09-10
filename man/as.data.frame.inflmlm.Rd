@@ -7,14 +7,14 @@
 \method{as.data.frame}{inflmlm}(x, ..., FUN = det, funnames = TRUE)
 }
 \arguments{
-\item{x}{a \code}
+\item{x}{An \code{inflmlm} object, as returned by \code{mlm.influence}}
 
 \item{...}{ignored}
 
 \item{FUN}{in the case where the subset size, \code{m>1}, the function used on the \code{H, Q, L, R} to calculate
 a single statistic. The default is \code{det}. An alternative is \code{tr}, for matrix trace.}
 
-\item{funnames}{}
+\item{funnames}{logical. Should the \code{FUN} name be prepended to the statistics when creating a data frame?}
 }
 \value{
 A data frame containing the influence statistics

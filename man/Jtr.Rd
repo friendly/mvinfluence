@@ -11,17 +11,13 @@
 Jtr(H, Q, a, b, f)
 }
 \arguments{
-\item{H}{a scalar or \eqn{m \times m} matrix giving the hat values for
-subset \eqn{I}}
+\item{H}{a scalar or \eqn{m \times m} matrix giving the hat values for subset \eqn{I}}
 
-\item{Q}{a scalar or \eqn{m \times m} matrix giving the residual values for
-subset \eqn{I}}
+\item{Q}{a scalar or \eqn{m \times m} matrix giving the residual values for subset \eqn{I}}
 
-\item{a}{the \eqn{a} parameter for the \eqn{J^{det}} and \eqn{J^{tr}}
-classes}
+\item{a}{the \eqn{a} parameter for the \eqn{J^{det}} and \eqn{J^{tr}} classes}
 
-\item{b}{the \eqn{b} parameter for the \eqn{J^{det}} and \eqn{J^{tr}}
-classes}
+\item{b}{the \eqn{b} parameter for the \eqn{J^{det}} and \eqn{J^{tr}} classes}
 
 \item{f}{scaling factor for the \eqn{J^{det}} and \eqn{J^{tr}} classes}
 
