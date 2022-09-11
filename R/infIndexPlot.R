@@ -3,6 +3,7 @@
 # 30 March 10: bug-fixes and changed arguments, S. Weisberg
 # 15 October 13:  Bug-fix on labelling x-axis
 # 25 April 2016:  For compatibility with Rcmdr, change na.action=exclude to na.action=na.omit SW.
+# 8 Sep 2022: try setting xpd=TRUE; allow to suppress main title
 # modified for use in mvinfluence by MF
 
 # influenceIndexPlot <- function(model, ...)
@@ -111,8 +112,10 @@ infIndexPlot.mlm <- function(model,
 # check for row.names, and use them if they are numeric.
    if(missing(labels)) labels <-  row.names(model$model)
 
-   op <- par(mfrow=c(length(what), 1), mar=c(1, 4, 0, 2) + .0,
-             mgp=c(2, 1, 0), oma=c(6, 0, 6, 0))
+   op <- par(mfrow=c(length(what), 1), 
+             mar=c(1, 4, 0, 2) + .0,
+             mgp=c(2, 1, 0), oma=c(6, 0, 6, 0),
+             xpd = TRUE)
 
    oldwarn <- options()$warn
    options(warn=-1)
@@ -145,7 +148,7 @@ infIndexPlot.mlm <- function(model,
             id.method=id.method, id.n=id.n, id.cex=id.cex,
             id.col=id.col, id.location=id.location)
     }
-    mtext(side=3, outer=TRUE, main, cex=1.2, line=1)
+    if (!is.null(main)) mtext(side=3, outer=TRUE, main, cex=1.2, line=1)
     mtext(side=1, outer=TRUE, "Index", line=3)
    invisible()
 }
