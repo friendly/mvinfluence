@@ -13,10 +13,11 @@ knitr::opts_chunk$set(
   fig.width = 5,
   fig.height = 5,
   comment = "#>",
-  fig.path = "README-"
+  fig.path = "man/figures/README-"
 )
 
 par(mar=c(3,3,1,1)+.1)
+options(digits=4)
 ```
 
 ```{r, echo=FALSE}
@@ -25,11 +26,12 @@ library(mvinfluence)
 
 [![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/mvinfluence)](https://cran.r-project.org/package=mvinfluence)
 [![](http://cranlogs.r-pkg.org/badges/grand-total/mvinfluence)](https://cran.r-project.org/package=mvinfluence)
-[![Rdoc](http://www.rdocumentation.org/badges/version/mvinfluence)](http://www.rdocumentation.org/packages/mvinfluence)
+[![DOI](https://zenodo.org/badge/128774860.svg)](https://zenodo.org/badge/latestdoi/128774860)
 
 
 
-# mvinfluence
+# mvinfluence <img src="man/figures/mvinfluence-logo.png" align="right" height="200px" />
+
 **Influence Measures and Diagnostic Plots for Multivariate Linear Models**
 
 Functions in this package compute regression deletion diagnostics for multivariate linear models following
@@ -56,7 +58,7 @@ Get the released version from CRAN:
 ## Goals
 
 The design goal for this package is that, as an extension of standard methods for univariate linear models, you should
-be able to fit a linear model with a multivariate response,
+be able to fit a linear model with a **multivariate** response,
 
     mymlm <- lm( cbind(y1, y2, y3) ~ x1 + x2 + x3, data=mydata)
 
@@ -64,28 +66,61 @@ and then get useful diagnostics and plots with:
 
     influence(mymlm)
     hatvalues(mymlm)
+    cooks.distance(mymlm)
     influencePlot(mymlm, ...)  
+
+As is done in comparable univariate functions in the `car` package, _noteworthy_ points are
+identified in printed output and graphs.
 
 ## Examples
 
-Fit a MLM to a subset of the Rohwer data (the Low SES group).  
+Here, we fit a MLM to a subset of the Rohwer data (the Low SES group).
 The default influence plot (`type="stres"`) shows the squared standardized residual against the Hat value.
 The areas of the circles representing the observations are proportional to generalized Cook's distances. 
 ```{r rohwer1}
 data(Rohwer, package="heplots")
 Rohwer2 <- subset(Rohwer, subset=group==2)
+rownames(Rohwer2)<- 1:nrow(Rohwer2)
 Rohwer.mod <- lm(cbind(SAT, PPVT, Raven) ~ n+s+ns+na+ss, data=Rohwer2)
 
-influencePlot(Rohwer.mod, id.n=4)
+(infl <-influencePlot(Rohwer.mod, id.n=4, type = "stres"))
 ```
 
-An alternative (`type="stres"`) plots residual components against leverage components,
-with the property that contours of constant Cook's distance fall on diagonal
-lines with slope = -1.
+The function returns (and prints) a data frame  of the influence statistics for the identified points.
+"Noteworthy" points are those that are unusual on _either_ Hat value (H) or the squared studentized residual (Q),
+so more points will be shown than the `id.n` value.
+It is often more useful to sort these in descending order by one of the influence measures.
+
+```{r infl}
+infl |> dplyr::arrange(desc(H))
+```
+
+
+An alternative (`type="LR"`) plots residual components against leverage components,
+both on log scales. Because influence is a product of residual * Leverage, this plot
+had the property that contours of constant Cook's distance fall on diagonal
+lines with slope = -1. This plot is often easier to read than the standard version.
 
 ```{r rohwer2}
 influencePlot(Rohwer.mod, id.n=4, type="LR")
 ```
+
+If you wish to see how the observations fare on each of the the measures (as well as Mahalanobis $D^2$),
+the `inflIndexPlot()` function gives you index plots.
+
+```{r indexplot, fig.width=9}
+infIndexPlot(Rohwer.mod, id.n=3, id.col = "red", id.cex=1.5)
+```
+
+In this example, note that while case 5 stands out as influential, it does not have an exceptionally
+large $D^2$.
+
+## Citation
+To cite `mvinfluence` in publications, use:
+```{r citation}
+citation("mvinfluence")
+```
+
 
 ## References
 
