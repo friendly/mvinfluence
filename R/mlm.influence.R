@@ -35,7 +35,6 @@
 #'
 #' @importFrom utils combn
 #' @method influence mlm
-#' @export
 #' @importFrom stats model.matrix model.frame model.response
 #' @author Michael Friendly
 #' @seealso \code{\link{influencePlot.mlm}}
@@ -61,7 +60,7 @@
 #' influence(Sake.mod)
 #' 
 #' 
-#' @export mlm.influence
+#' @export
 mlm.influence <-
 function (model, do.coef = TRUE, m=1, ...) 
 {

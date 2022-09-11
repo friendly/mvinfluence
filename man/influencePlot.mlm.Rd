@@ -99,9 +99,9 @@ data(Sake, package="heplots")
 
 # Adopted data	
 data(Adopted, package="heplots")
-	Adopted.mod <- lm(cbind(Age2IQ, Age4IQ, Age8IQ, Age13IQ) ~ AMED + BMIQ, data=Adopted)
-  influencePlot(Adopted.mod, id.n=3)
-	influencePlot(Adopted.mod, id.n=3, type="LR", ylim=c(-4,-1.5))
+Adopted.mod <- lm(cbind(Age2IQ, Age4IQ, Age8IQ, Age13IQ) ~ AMED + BMIQ, data=Adopted)
+influencePlot(Adopted.mod, id.n=3)
+influencePlot(Adopted.mod, id.n=3, type="LR", ylim=c(-4,-1.5))
 
 
 }

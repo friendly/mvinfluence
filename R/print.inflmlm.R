@@ -9,7 +9,7 @@
 #' @export
 #'
 #' @examples
-#' none
+#' # none
 #' 
 print.inflmlm <-
 function(x, 
@@ -17,10 +17,11 @@ function(x,
          FUN=det, 
          ...) 
 {
+  if (!inherits(x, "inflmlm")) stop('Not a class("inflmlm") object')
 	df <- as.data.frame(x, FUN=FUN)
 	cat("Multivariate influence statistics for model:\n", 
 	    paste(deparse(x$call), sep = "\n", collapse = "\n"), 
-	    "\n m=", x$m, "case deletion diagnostics",
+	    "\n m= ", x$m, "case deletion diagnostics",
 	    ifelse(x$m>1, paste(", using", deparse(substitute(FUN)), "for matrix values\n\n"), "\n"))
 	print(df, digits=digits, ...)
 	invisible(x)

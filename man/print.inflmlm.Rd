@@ -22,6 +22,6 @@ Invisibly returns the object
 Print an inflmlm object
 }
 \examples{
-none
+# none
 
 }

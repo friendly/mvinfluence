@@ -71,7 +71,7 @@
 #' influencePlot(dmod, id.n=3)
 #' lrPlot(dmod, id.n=3)
 #' 
-#' @export lrPlot
+#' @export
 lrPlot <- function(model, ...){
     UseMethod("lrPlot")
     }

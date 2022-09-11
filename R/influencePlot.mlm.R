@@ -48,6 +48,7 @@
 #' \code{\link[car]{influencePlot}} in the car package
 #'
 #' @method influencePlot mlm
+#' @importFrom car influencePlot
 #' @importFrom grDevices palette
 #' @importFrom stats model.response qbeta qf residuals rstudent
 #' 
@@ -81,12 +82,12 @@
 #' 
 #' # Adopted data	
 #' data(Adopted, package="heplots")
-#' 	Adopted.mod <- lm(cbind(Age2IQ, Age4IQ, Age8IQ, Age13IQ) ~ AMED + BMIQ, data=Adopted)
-#'   influencePlot(Adopted.mod, id.n=3)
-#' 	influencePlot(Adopted.mod, id.n=3, type="LR", ylim=c(-4,-1.5))
+#' Adopted.mod <- lm(cbind(Age2IQ, Age4IQ, Age8IQ, Age13IQ) ~ AMED + BMIQ, data=Adopted)
+#' influencePlot(Adopted.mod, id.n=3)
+#' influencePlot(Adopted.mod, id.n=3, type="LR", ylim=c(-4,-1.5))
 #' 
 #' 
-#' @export influencePlot.mlm
+#' @export
 #' 
 influencePlot.mlm <-
 function(model, scale=12, type=c("stres", "LR", "cookd"),

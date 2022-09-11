@@ -78,16 +78,20 @@
 #' 
 #' @importFrom car showLabels influencePlot infIndexPlot influenceIndexPlot
 #' @importFrom heplots trans.colors Mahalanobis
+#' @importFrom grDevices palette
 #' @method   infIndexPlot mlm
-#' @export infIndexPlot.mlm
+#' @export 
 infIndexPlot.mlm <- function(model,
-		 infl=mlm.influence(model, do.coef = FALSE), FUN=det,
+		 infl=mlm.influence(model, do.coef = FALSE), 
+		 FUN=det,
      vars=c("Cook", "Studentized", "hat", "DSQ"), 
      main=paste("Diagnostic Plots for", deparse(substitute(model))),
      pch = 19,
      labels, id.method = "y", 
      id.n = if(id.method[1]=="identify") Inf else 0,
-     id.cex=1, id.col=palette()[1], id.location="lr",
+     id.cex=1, 
+		 id.col=palette()[1], 
+		 id.location="lr",
      grid=TRUE, ...) {
 
 		m <- infl$m

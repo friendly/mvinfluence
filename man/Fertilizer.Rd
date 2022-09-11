@@ -35,9 +35,9 @@ mod <- lm(cbind(grain, straw) ~ fertilizer, data=Fertilizer)
 Anova(mod)
 
 # influence plots (m=1)
-influencePlot.mlm(mod)
-influencePlot.mlm(mod, type='LR')
-influencePlot.mlm(mod, type='stres')
+influencePlot(mod)
+influencePlot(mod, type='LR')
+influencePlot(mod, type='stres')
 
 
 }
