@@ -139,9 +139,9 @@ citation("mvinfluence")
 #> 
 #> To cite package 'mvinfluence' in publications use:
 #> 
-#>   Michael Friendly (2018). mvinfluence: Influence Measures and
+#>   Michael Friendly (2022). mvinfluence: Influence Measures and
 #>   Diagnostic Plots for Multivariate Linear Models. R package version
-#>   0.8-3. https://github.com/friendly/mvinfluence
+#>   0.8-4. https://github.com/friendly/mvinfluence
 #> 
 #> A BibTeX entry for LaTeX users is
 #> 
@@ -149,8 +149,8 @@ citation("mvinfluence")
 #>     title = {mvinfluence: Influence Measures and Diagnostic Plots for Multivariate Linear
 #> Models},
 #>     author = {Michael Friendly},
-#>     year = {2018},
-#>     note = {R package version 0.8-3},
+#>     year = {2022},
+#>     note = {R package version 0.8-4},
 #>     url = {https://github.com/friendly/mvinfluence},
 #>   }
 #> 
