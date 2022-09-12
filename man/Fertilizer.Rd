@@ -13,7 +13,7 @@ A data frame with 8 observations on the following 3 variables.
 }
 \source{
 Anderson, T. W. (1984). \emph{An Introduction to Multivariate
-Statistical Analysis}, New York: Wiley, p. 369.
+    Statistical Analysis}, New York: Wiley, p. 369.
 }
 \description{
 A small data set on the use of fertilizer (x) in relation to the amount of
@@ -43,7 +43,7 @@ influencePlot(mod, type='stres')
 }
 \references{
 Hossain, A. and Naik, D. N. (1989). Detection of influential
-observations in multivariate regression. \emph{Journal of Applied
-Statistics}, 16 (1), 25-37.
+    observations in multivariate regression. 
+    \emph{Journal of Applied  Statistics}, 16 (1), 25-37.
 }
 \keyword{datasets}

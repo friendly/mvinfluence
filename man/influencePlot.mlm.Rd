@@ -31,7 +31,7 @@ with a multivariate response.}
 \item{scale}{a factor to adjust the radii of the circles, in relation to
 \code{sqrt(CookD)}}
 
-\item{type}{Type of plot: one of \code{c("stres", "cookd", "LR")}}
+\item{type}{Type of plot: one of \code{c("stres", "cookd", "LR")}. See Details.}
 
 \item{infl}{influence measure structure as returned by
 \code{\link{mlm.influence}}}
@@ -46,7 +46,7 @@ the base fill color to which transparency specified by \code{fill.alpha.max}
 is applied.}
 
 \item{labels, id.method, id.n, id.cex, id.col}{settings for labelling points;
-see \code{link{showLabels}} for details. To omit point labelling, set
+see \code{\link{showLabels}} for details. To omit point labelling, set
 \code{id.n=0}, the default.  The default \code{id.method="noteworthy"} is
 used in this function to indicate setting labels for points with large
 Studentized residuals, hat-values or Cook's distances. See Details below.
@@ -59,9 +59,9 @@ implemented in this version}
 }
 \value{
 If points are identified, returns a data frame with the hat values,
-Studentized residuals and Cook's distance of the identified points.  If no
-points are identified, nothing is returned.  This function is primarily used
-for its side-effect of drawing a plot.
+              Studentized residuals and Cook's distance of the identified points.  If no
+              points are identified, nothing is returned.  This function is primarily used
+              for its side-effect of drawing a plot.
 }
 \description{
 This function creates various types of \dQuote{bubble} plots of influence

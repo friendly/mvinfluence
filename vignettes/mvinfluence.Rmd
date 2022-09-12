@@ -1,0 +1,119 @@
+---
+title: "Univariate versus Multivariate Influence"
+author: "Michael Friendly"
+date: "`r Sys.Date()`"
+output: 
+  rmarkdown::html_vignette:
+    fig_caption: yes
+vignette: >
+  %\VignetteIndexEntry{Univariate versus Multivariate Influence}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  message = FALSE,
+  warning = FALSE,
+  comment = "#>",
+  fig.width =  7,
+  fig.height = 6
+)
+
+options(digits = 4)
+```
+
+
+Influence measures are well-known for linear models with a single response variable.
+These measures, such as Cook's D, DFFITS and DFBETAS assess the impact of each observation by calculating measures of
+the change in regression coefficients, fitted values, etc. when that observation is omitted from
+the data (Belsley, Kuh and Welsch (1980), Cook and Weisberg (1982)).
+
+For models with two or more response variables, the functions in the `mvinfluence` package
+calculate natural extensions of the standard measures `hatvalues`, `cooks.distance`
+according to the theory presented in Barrett & Ling (1992). However, multivariate influence
+turns out to be more interesting and complex than just the collection of diagnostics for
+the separate responses, as this example illustrates.
+
+```{r packages}
+library(tibble)
+library(ggplot2)
+library(car)
+library(mvinfluence)
+```
+
+
+## A Toy Example
+
+This example, from Barrett (2003), considers the simplest case, of one predictor (`x`) and
+two response variables, `y1` and `y2`.
+
+```{r toy-data}
+Toy <- tibble(
+   case = 1:9,
+   x =  c(1,    1,    2,    2,    3,    3,    4,    4,    10),
+   y1 = c(0.10, 1.90, 1.00, 2.95, 2.10, 4.00, 2.95, 4.95, 10.00),
+   y2 = c(0.10, 1.80, 1.00, 2.93, 2.00, 4.10, 3.05, 4.93, 10.00)
+)
+```
+
+A quick peek at the data indicates that `y1` and `y2` are nearly perfectly correlated.
+Both of these are linear with `x` and there is one extreme point (case 9).
+
+```{r scatmat}
+car::scatterplotMatrix(~y1 + y2 + x, data=Toy, cex=2,
+        col = "blue", pch = 16,
+        id = list(n=1, cex=2), 
+        regLine = list(lwd = 2, col="red"),
+        smooth = FALSE)
+```
+
+We fit the univariate models with `y1` and `y2` separately and then the multivariate model.
+
+```{r models}
+Toy.lm1 <- lm(y1 ~ x, data=Toy)
+Toy.lm2 <- lm(y2 ~ x, data=Toy)
+Toy.mlm <- lm(cbind(y1, y2) ~ x, data=Toy)
+```
+
+First, let's examine the Cook's D statistics for the models. Note that the function `cooks.distance()`
+invokes `stats::cooks.distance.lm()` for the univariate response models, but
+invokes `mvinfluence::cooks.distance.mlm()` for the multivariate model.
+
+The only thing remarkable here is for case 9:  The univariate Cook's Ds, `D1` and `D2` are very small,
+yet the multivariate statistic, `D12` is over 10 times the next smallest value.
+```{r}
+df <- Toy
+df$D1  <- cooks.distance(Toy.lm1)
+df$D2  <- cooks.distance(Toy.lm2)
+df$D12 <- cooks.distance(Toy.mlm)
+
+df
+```
+
+We can see how case 9 stands out in the influence plots. It has an extreme hat value, but, because it's residual is
+very small, 
+```{r inflplots, fig.show='hold', out.width="49%"}
+car::influencePlot(Toy.lm1)
+car::influencePlot(Toy.lm2)
+```
+
+
+## References
+
+Barrett, B. E. and Ling, R. F. (1992).
+General Classes of Influence Measures for Multivariate Regression.
+*Journal of the American Statistical Association*, **87**(417), 184-191.
+
+Barrett, B. E. (2003). Understanding Influence in Multivariate Regression.
+*Communications in Statistics -- Theory and Methods*, **32**, 3, 667-680.
+
+Belsley, D. A., Kuh, E. and Welsch, R. E. (1980). **Regression Diagnostics**. New York: Wiley.
+
+Cook, R. D. and Weisberg, S. (1982). **Residuals and Influence in Regression**. London: Chapman and Hall.
+
+Lawrence, A. J. (1995). Deletion Influence and Masking in Regression.
+*Journal of the Royal Statistical Society. Series B (Methodological)* , **57**, No. 1, pp. 181-189. 
+
+

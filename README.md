@@ -169,6 +169,6 @@ Barrett, B. E. (2003). Understanding Influence in Multivariate
 Regression. *Communications in Statistics – Theory and Methods*, **32**,
 3, 667-680.
 
-A. J. Lawrence (1995). Deletion Influence and Masking in Regression
+Lawrence, A. J. (1995). Deletion Influence and Masking in Regression.
 *Journal of the Royal Statistical Society. Series B (Methodological)* ,
 **57**, No. 1, pp. 181-189.
