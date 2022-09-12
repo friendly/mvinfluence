@@ -18,6 +18,7 @@
 #' \code{influence.mlm} directly, rather than using the S3 generic
 #' \code{influence()}.
 #' 
+#' @aliases influence.mlm
 #' @method influence mlm
 #' @param model An \code{mlm} object, as returned by \code{\link[stats]{lm}}
 #' @param do.coef logical. Should the coefficients be returned in the
