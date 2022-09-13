@@ -128,6 +128,7 @@ influencePlot(Toy.mlm, id.n=2, type = 'LR')
 
 The DFBETAS statistics give the estimated change in the regression coefficients when each case is deleted in turn.
 We can gain some insight as to why case 9 is unremarkable in the univariate regressions by plotting these.
+The values come from `stats::dfbetas` and return the standardized values.
 
 ```{r dfbetas-plot, fig.width=9, fig.height=4.5}
 db1 <- as.data.frame(dfbetas(Toy.lm1))
@@ -151,6 +152,8 @@ gg2 <- ggplot(data = db2, aes(x=`(Intercept)`, y=x, label=rownames(db2))) +
 gg1 + gg2
 ```
 
+The values for case 9 are nearly (0, 0) in both plots, indicating that deleting this case has negligible effect
+in both univariate regressions.
 
 ## References
 
