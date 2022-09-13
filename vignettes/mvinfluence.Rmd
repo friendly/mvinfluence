@@ -36,11 +36,13 @@ according to the theory presented in Barrett & Ling (1992). However, multivariat
 turns out to be more interesting and complex than just the collection of diagnostics for
 the separate responses, as this example illustrates.
 
+### Load packages
 ```{r packages}
 library(tibble)
 library(ggplot2)
 library(car)
 library(mvinfluence)
+library(patchwork)
 ```
 
 
@@ -59,7 +61,8 @@ Toy <- tibble(
 ```
 
 A quick peek at the data indicates that `y1` and `y2` are nearly perfectly correlated.
-Both of these are linear with `x` and there is one extreme point (case 9).
+Both of these are linear with `x` and there is one extreme point (case 9). Looking at these
+pairwise plots doesn't suggest that anything is terribly wrong.
 
 ```{r scatmat}
 car::scatterplotMatrix(~y1 + y2 + x, data=Toy, cex=2,
@@ -77,13 +80,15 @@ Toy.lm2 <- lm(y2 ~ x, data=Toy)
 Toy.mlm <- lm(cbind(y1, y2) ~ x, data=Toy)
 ```
 
+### Cook's D
+
 First, let's examine the Cook's D statistics for the models. Note that the function `cooks.distance()`
 invokes `stats::cooks.distance.lm()` for the univariate response models, but
 invokes `mvinfluence::cooks.distance.mlm()` for the multivariate model.
 
 The only thing remarkable here is for case 9:  The univariate Cook's Ds, `D1` and `D2` are very small,
 yet the multivariate statistic, `D12` is over 10 times the next smallest value.
-```{r}
+```{r cooks-distance}
 df <- Toy
 df$D1  <- cooks.distance(Toy.lm1)
 df$D2  <- cooks.distance(Toy.lm2)
@@ -93,10 +98,57 @@ df
 ```
 
 We can see how case 9 stands out in the influence plots. It has an extreme hat value, but, because it's residual is
-very small, 
-```{r inflplots, fig.show='hold', out.width="49%"}
-car::influencePlot(Toy.lm1)
-car::influencePlot(Toy.lm2)
+very small, it does not have much influence on the fitted models for either `y1` or `y2`. Neither of these plots
+suggest that anything is terribly wrong with the univariate models.
+```{r inflplots, fig.show='hold', out.width="45%", out.height="50%", collapse=FALSE}
+ip1 <- car::influencePlot(Toy.lm1, id=list(cex=1.5))
+ip2 <- car::influencePlot(Toy.lm2, id=list(cex=1.5))
+```
+
+Contrast these results with what we get for the model for `y1` and `y2` jointly. 
+In the multivariate version, `influencePlot.mlm` plots the squared studentized residual (denoted `Q` in the output)
+against the hat value.  Case 9 stands out as wildly influential.
+
+```{r inflplot-mlm, fig.width=5, fig.height=4, fig.align='center'}
+par(mar = c(4,4,1,1)+.1)
+influencePlot(Toy.mlm, id.n=2)
+```
+
+An alternative form of the multivariate influence plot uses the leverage (`L`) and residual (`R`) components. 
+Because influence is the product of leverage and residual, a plot of $\log(L)$ versus $\log(R)$ has the attractive property
+that contours of constant Cook's distance fall on diagonal lines with slope = -1. 
+Adjacent reference lines represent constant _multiples_ of influence.
+
+```{r inflplot-mlm-lr, fig.width=5, fig.height=4, fig.align='center', results='hide'}
+par(mar = c(4,4,1,1)+.1)
+influencePlot(Toy.mlm, id.n=2, type = 'LR')
+```
+
+### DFBETAS
+
+The DFBETAS statistics give the estimated change in the regression coefficients when each case is deleted in turn.
+We can gain some insight as to why case 9 is unremarkable in the univariate regressions by plotting these.
+
+```{r dfbetas-plot, fig.width=9, fig.height=4.5}
+db1 <- as.data.frame(dfbetas(Toy.lm1))
+gg1 <- ggplot(data = db1, aes(x=`(Intercept)`, y=x, label=rownames(db1))) +
+  geom_point(size=1.5) +
+  geom_label(size=6, fill="pink") +
+  xlab(expression(paste("Deletion Intercept  ", b[0]))) +
+  ylab(expression(paste("Deletion Slope  ", b[1]))) +
+  ggtitle("dfbetas for y1") +
+  theme_bw(base_size = 16)
+
+db2 <- as.data.frame(dfbetas(Toy.lm2))
+gg2 <- ggplot(data = db2, aes(x=`(Intercept)`, y=x, label=rownames(db2))) +
+  geom_point(size=1.5) +
+  geom_label(size=6, fill="pink") +
+  xlab(expression(paste("Deletion Intercept  ", b[0]))) +
+  ylab(expression(paste("Deletion Slope  ", b[1]))) +
+  ggtitle("dfbetas for y2") +
+  theme_bw(base_size = 16)
+
+gg1 + gg2
 ```
 
 
@@ -109,9 +161,9 @@ General Classes of Influence Measures for Multivariate Regression.
 Barrett, B. E. (2003). Understanding Influence in Multivariate Regression.
 *Communications in Statistics -- Theory and Methods*, **32**, 3, 667-680.
 
-Belsley, D. A., Kuh, E. and Welsch, R. E. (1980). **Regression Diagnostics**. New York: Wiley.
+Belsley, D. A., Kuh, E. and Welsch, R. E. (1980). *Regression Diagnostics*. New York: Wiley.
 
-Cook, R. D. and Weisberg, S. (1982). **Residuals and Influence in Regression**. London: Chapman and Hall.
+Cook, R. D. and Weisberg, S. (1982). *Residuals and Influence in Regression*. London: Chapman and Hall.
 
 Lawrence, A. J. (1995). Deletion Influence and Masking in Regression.
 *Journal of the Royal Statistical Society. Series B (Methodological)* , **57**, No. 1, pp. 181-189. 

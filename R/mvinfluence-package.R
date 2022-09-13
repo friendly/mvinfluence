@@ -24,7 +24,8 @@
 #' far exceeding their individual effects, as well as other interesting phenomena described 
 #' by Lawrence (1995). Associated methods for the case \code{m>1} are still under development in this package.
 #' 
-#' @section Notation
+#' @section Notation:
+#' 
 #' Let \eqn{\mathbf{X}} be the model matrix in the multivariate linear model, 
 #' \eqn{\mathbf{Y}_{n \times p} = \mathbf{X} \mathbf{\beta} + \mathfb{E}}.
 #' The usual least squares estimate of \eqn{\mathbf{\beta}} is given by
@@ -38,7 +39,8 @@
 #'  
 #'  Matrices \eqn{\mathbf{Y}_I}, \eqn{\mathbf{Y}_(I)}, and \eqn{\mathbf{E}_I} are defined similarly.
 #'  
-#'  @section Measures
+#' @section Measures:
+#'  
 #'  The influence measures defined by Barrett & Ling (1992) are functions of two matrices \eqn{\mathbf{H}_I} and \eqn{\mathbf{Q}_I}
 #'  defined as follows
 #'    \itemize{
@@ -53,6 +55,7 @@
 #' 
 #' @docType package
 #' @name mvinfluence
+#' @aliases mvinfluence-package
 #' @references 
 #'    Barrett, B. E. and Ling, R. F. (1992).
 #'      General Classes of Influence Measures for Multivariate Regression.
@@ -84,5 +87,5 @@
 #'
 #' @method print inflmlm
 #' @method as.data.frame inflmlm
-
+NULL
 

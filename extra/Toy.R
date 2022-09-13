@@ -5,6 +5,7 @@ library(tibble)
 library(ggplot2)
 library(car)
 library(mvinfluence)
+library(patchwork)
 
 Toy <- tibble(
    case = 1:9,
@@ -36,8 +37,8 @@ df$D12 <- cooks.distance(Toy.mlm)
 
 df
 
-car::influencePlot(Toy.lm1)
-car::influencePlot(Toy.lm2)
+ip1 <- car::influencePlot(Toy.lm1, id=list(cex=1.5))
+ip2 <- car::influencePlot(Toy.lm2, id=list(cex=1.5))
 
 influencePlot(Toy.mlm, id.n=2)
 influencePlot(Toy.mlm, id.n=2, type="LR")
@@ -52,21 +53,47 @@ mvinfluence::hatvalues.mlm(Toy.mlm)
 # Figure 1: DFBETAs
 # use dfbetas instead
 db1 <- as.data.frame(dfbetas(Toy.lm1))
-ggplot(data = db1, aes(x=`(Intercept)`, y=x, label=rownames(db1))) +
+gg1 <- ggplot(data = db1, aes(x=`(Intercept)`, y=x, label=rownames(db1))) +
   geom_point(size=1.5) +
   geom_label(size=6, fill="pink") +
   xlab(expression(paste("Deletion Intercept  ", b[0]))) +
   ylab(expression(paste("Deletion Slope  ", b[1]))) +
+  ggtitle("dfbetas for y1") +
   theme_bw(base_size = 16)
 
 
 db2 <- as.data.frame(dfbetas(Toy.lm2))
-ggplot(data = db2, aes(x=`(Intercept)`, y=x, label=rownames(db2))) +
+gg2 <- ggplot(data = db2, aes(x=`(Intercept)`, y=x, label=rownames(db2))) +
   geom_point(size=1.5) +
   geom_label(size=6, fill="pink") +
   xlab(expression(paste("Deletion Intercept  ", b[0]))) +
   ylab(expression(paste("Deletion Slope  ", b[1]))) +
+  ggtitle("dfbetas for y2") +
   theme_bw(base_size = 16)
+
+gg1 + gg2
+
+# dfbetas for the mlm
+db12 <- dfbetas(Toy.mlm)
+db12.1 <- as.data.frame(db12[,"y1",])
+ggplot(data = db12.1, aes(x=`(Intercept)`, y=x, label=rownames(db1))) +
+  geom_point(size=1.5) +
+  geom_label(size=6, fill="pink") +
+  xlab(expression(paste("Deletion Intercept  ", b[0]))) +
+  ylab(expression(paste("Deletion Slope  ", b[1]))) +
+  ggtitle("dfbetas for y1") +
+  theme_bw(base_size = 16)
+
+
+db12 <- dfbetas(Toy.mlm)
+db12 <- as.data.frame.array(db12)
+colnames(db12) <- c("y1.b0", "y1.b1", "y2.b0", "y2.b1")
+#scatterplotMatrix(db12)
+
+ggplot(data = db12, aes(x=y1.b0, y=y2.b1, label=rownames(db12))) +
+  geom_point(size=1.5) +
+  geom_label(size=6, fill="pink") 
+  
 
 
 #car::dfbetasPlots(Toy.lm1)
