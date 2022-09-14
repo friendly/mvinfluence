@@ -1,7 +1,7 @@
 # influence index plot  written 9 Dec 09 by S. Weisberg
 # 21 Jan 10: added wrapper influenceIndexPlot(). J. Fox
 # 30 March 10: bug-fixes and changed arguments, S. Weisberg
-# 15 October 13:  Bug-fix on labelling x-axis
+# 15 October 13:  Bug-fix on labeling x-axis
 # 25 April 2016:  For compatibility with Rcmdr, change na.action=exclude to na.action=na.omit SW.
 # 8 Sep 2022: try setting xpd=TRUE; allow to suppress main title
 # modified for use in mvinfluence by MF

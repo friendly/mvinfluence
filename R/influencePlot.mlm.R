@@ -26,8 +26,8 @@
 #' @param FUN   For \code{m>1}, the function to be applied to the \eqn{H} and
 #'              \eqn{Q} matrices returning a scalar value.  \code{FUN=det} and \code{FUN=tr}
 #'              are possible choices, returning the \eqn{|H|} and \eqn{tr(H)} respectively.
-#' @param labels,id.method,id.n,id.cex,id.col settings for labelling points;
-#'               see \code{\link{showLabels}} for details. To omit point labelling, set
+#' @param labels,id.method,id.n,id.cex,id.col settings for labeling points;
+#'               see \code{\link{showLabels}} for details. To omit point labeling, set
 #'               \code{id.n=0}, the default.  The default \code{id.method="noteworthy"} is
 #'               used in this function to indicate setting labels for points with large
 #'               Studentized residuals, hat-values or Cook's distances. See Details below.

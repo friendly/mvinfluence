@@ -58,7 +58,7 @@ Then let
             \eqn{\mathbf{H} = \mathbf{X} (\mathbf{X}^{T} \mathbf{X})^{-1} \mathbf{X}^{T} },
       \item \eqn{\mathbf{H}_I} is \eqn{m \times m} the submatrix of \eqn{\mathbf{H}} corresponding to the index set,
             \eqn{\mathbf{H}_I = \mathbf{X} (\mathbf{X}_I^{T} \mathbf{X}_I)^{-1} \mathbf{X}^{T} },
-      \item \eqn{\mathbf{Q}} is the anlaog of \eqn{\mathbf{H}} defined for the residual matrix \eqn{\mathbf{E}},
+      \item \eqn{\mathbf{Q}} is the analog of \eqn{\mathbf{H}} defined for the residual matrix \eqn{\mathbf{E}},
             \eqn{\mathbf{Q} = \mathbf{E} (\mathbf{E}^{T} \mathbf{E})^{-1} \mathbf{E}^{T} }, with corresponding submatrix
             \eqn{\mathbf{Q}_I = \mathbf{E} (\mathbf{E}_I^{T} \mathbf{E}_I)^{-1} \mathbf{E}^{T} },
    }
