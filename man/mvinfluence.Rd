@@ -35,7 +35,7 @@ by Lawrence (1995). Associated methods for the case \code{m>1} are still under d
 
 
 Let \eqn{\mathbf{X}} be the model matrix in the multivariate linear model, 
-\eqn{\mathbf{Y}_{n \times p} = \mathbf{X} \mathbf{\beta} + \mathfb{E}}.
+\eqn{\mathbf{Y}_{n \times p} = \mathbf{X} \mathbf{\beta} + \mathbf{E}}.
 The usual least squares estimate of \eqn{\mathbf{\beta}} is given by
 \eqn{\mathbf{B} = (\mathbf{X}^{T} \mathbf{X})^{-1}  \mathbf{X}^{T} \mathbf{Y}}.
 

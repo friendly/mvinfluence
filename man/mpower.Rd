@@ -6,6 +6,8 @@
 \title{General Matrix Power}
 \usage{
 mpower(A, n)
+
+A \%^\% n
 }
 \arguments{
 \item{A}{A square matrix. Must also be symmetric for non-integer powers.}
@@ -43,10 +45,10 @@ all.equal(MM, Mhalf \%*\% Mhalf)
 
 }
 \references{
-\url{http://en.wikipedia.org/wiki/Exponentiation_by_squaring}
+\url{https://en.wikipedia.org/wiki/Exponentiation_by_squaring}
 }
 \seealso{
-Packages \code{corpcor} and \code{expm} define similar functions.
+Packages \pkg{corpcor} and \pkg{expm} define similar functions.
 }
 \author{
 Michael Friendly

@@ -1,6 +1,6 @@
 # compute A^n where A is a square matrix, allowing non-integer and negative powers
 # For integer values, see the technique in...
-#http://en.wikipedia.org/wiki/Exponentiation_by_squaring
+#https://en.wikipedia.org/wiki/Exponentiation_by_squaring
 
 
 
@@ -24,8 +24,8 @@
 #' @return    Returns the matrix \eqn{A^n} 
 #' 
 #' @author Michael Friendly
-#' @references \url{http://en.wikipedia.org/wiki/Exponentiation_by_squaring}
-#' @seealso Packages \code{corpcor} and \code{expm} define similar functions.
+#' @references \url{https://en.wikipedia.org/wiki/Exponentiation_by_squaring}
+#' @seealso Packages \pkg{corpcor} and \pkg{expm} define similar functions.
 #' @keywords array
 #' @examples
 #' 
@@ -74,5 +74,8 @@ mpower <- function(A,n){
 	return(result)
 }
 
+#' Shorthand operator for mpower
+#'
+#' @rdname mpower 
 #' @export
 "%^%" <- function(A,n) mpower(A,n)
