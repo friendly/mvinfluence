@@ -4,7 +4,7 @@
 \alias{mlm.influence}
 \title{Calculate Regression Deletion Diagnostics for Multivariate Linear Models}
 \usage{
-\method{influence}{mlm}(model, do.coef = TRUE, m = 1, ...)
+mlm.influence(model, do.coef = TRUE, m = 1, ...)
 }
 \arguments{
 \item{model}{An \code{mlm} object, as returned by \code{\link[stats]{lm}}}

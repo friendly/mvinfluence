@@ -70,10 +70,11 @@ proportional to generalized Cook's distances.
 }
 \details{
 \code{type="stres"} plots squared (internally) Studentized residuals against
-hat values; \code{type="cookd"} plots Cook's distance against hat values;
+hat values; 
+\code{type="cookd"} plots Cook's distance against hat values;
 \code{type="LR"} plots residual components against leverage components, with
-the property that contours of constant Cook's distance fall on diagonal
-lines with slope = -1.
+the attractive property that contours of constant Cook's distance fall on diagonal
+lines with slope = -1. Adjacent reference lines represent multiples of influence.
 
 The \code{id.method="noteworthy"} setting also requires setting
 \code{id.n>0} to have any effect. Using \code{id.method="noteworthy"}, and

@@ -18,6 +18,7 @@
 #' \code{influence.mlm} directly, rather than using the S3 generic
 #' \code{influence()}.
 #' 
+#' @name influence.mlm
 #' @aliases influence.mlm
 #' @method influence mlm
 #' @param model An \code{mlm} object, as returned by \code{\link[stats]{lm}}
@@ -48,18 +49,19 @@
 #' @examples
 #' 
 #' # Rohwer data
+#' data(Rohwer, package="heplots")
 #' Rohwer2 <- subset(Rohwer, subset=group==2)
 #' rownames(Rohwer2)<- 1:nrow(Rohwer2)
 #' Rohwer.mod <- lm(cbind(SAT, PPVT, Raven) ~ n+s+ns+na+ss, data=Rohwer2)
 #' 
 #' # m=1 diagnostics
-#' influence(Rohwer.mod)
+#' influence(Rohwer.mod) |> head()
 #' 
 #' # try an m=2 case
-#' res2 <- influence.mlm(Rohwer.mod, m=2, do.coef=FALSE)
-#' res2.df <- as.data.frame(res2)
-#' head(res2.df)
-#' scatterplotMatrix(log(res2.df))
+#' ## res2 <- influence.mlm(Rohwer.mod, m=2, do.coef=FALSE)
+#' ## res2.df <- as.data.frame(res2)
+#' ## head(res2.df)
+#' ## scatterplotMatrix(log(res2.df))
 #' 
 #' 
 #' influencePlot(Rohwer.mod, id.n=4, type="cookd")
@@ -72,7 +74,7 @@
 #' influencePlot(Sake.mod, id.n=3, type="cookd")
 #' 
 #' 
-#' @export influence.mlm
+#' @export
 influence.mlm <-
 function(model, do.coef=TRUE, m=1, ...)
 	mlm.influence(model, do.coef = do.coef, m=m,  ...)

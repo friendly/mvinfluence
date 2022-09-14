@@ -38,11 +38,13 @@ the separate responses, as this example illustrates.
 
 ### Load packages
 ```{r packages}
-library(tibble)
-library(ggplot2)
-library(car)
-library(mvinfluence)
-library(patchwork)
+library(tibble)      # Simple Data Frames
+library(ggplot2)     # Create Elegant Data Visualisations Using the Grammar of Graphics
+library(car)         # Companion to Applied Regression
+library(mvinfluence) # Influence Measures and Diagnostic Plots for Multivariate Linear Models
+library(patchwork)   # The Composer of Plots
+library(rgl)         # 3D Visualization Using OpenGL
+rgl::setupKnitr(autoprint = TRUE)
 ```
 
 
@@ -72,6 +74,22 @@ car::scatterplotMatrix(~y1 + y2 + x, data=Toy, cex=2,
         smooth = FALSE)
 ```
 
+We can view the data in 3D, using `car::scatter3d()`. The regression plane shown is that for the model `y1 ~ y2 + x`.
+The plot is interactive: you can rotate and zoom using the mouse to see the views shown in the scatterplots.
+If you rotate the plot so the regression plane becomes a line, you can see that the data ellipsoid is essentially flat.
+
+```{r}
+car::scatter3d(y1 ~ y2 + x, data=Toy,
+               ellipsoid = TRUE,              # show the data ellipsoid
+               radius = c(rep(1,8), 2),       # make case 9 larger
+               grid.col = "pink", grid.lines = 10, 
+               fill = FALSE,
+               id = list(n=1), offset=2
+               )
+rgl::rglwidget()
+```
+
+## Models
 We fit the univariate models with `y1` and `y2` separately and then the multivariate model.
 
 ```{r models}
@@ -170,5 +188,6 @@ Cook, R. D. and Weisberg, S. (1982). *Residuals and Influence in Regression*. Lo
 
 Lawrence, A. J. (1995). Deletion Influence and Masking in Regression.
 *Journal of the Royal Statistical Society. Series B (Methodological)* , **57**, No. 1, pp. 181-189. 
+
 
 

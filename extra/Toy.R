@@ -20,6 +20,15 @@ scatterplotMatrix(~y1 + y2 + x, data=Toy, cex=2,
                   regLine = list(lwd = 2, col="red"),
                   smooth = FALSE)
 
+#rgl::setupKnitr(autoprint = TRUE)
+car::scatter3d(y1 ~ y2 + x, data=Toy,
+               ellipsoid = TRUE,
+               radius = c(rep(1,8), 2),
+               grid.col = "pink", grid.lines = 10, fill = FALSE,
+               id = list(n=1), offset=2
+)
+# needs: rgl::rglwidget()
+
 # Table 1, p.670
 Toy.lm1 <- lm(y1 ~ x, data=Toy)
 Toy.lm2 <- lm(y2 ~ x, data=Toy)

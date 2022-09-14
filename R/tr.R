@@ -15,5 +15,5 @@
 #' M <- matrix(sample(1:9), 3,3)
 #' tr(M)
 #' 
-#' @export tr
+#' @export
 tr <- function(M) sum(diag(M))

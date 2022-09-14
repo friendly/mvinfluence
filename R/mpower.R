@@ -40,7 +40,7 @@
 #' all.equal(MM, Mhalf %*% Mhalf)
 #' 
 #' 
-#' @export mpower
+#' @export
 mpower <- function(A,n){
 
 	is.wholenumber <-

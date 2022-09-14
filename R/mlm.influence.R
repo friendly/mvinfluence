@@ -34,7 +34,6 @@
 #'     \item{Beta}{Deletion regression coefficients-- included if\code{do.coef=TRUE}} 
 #'
 #' @importFrom utils combn
-#' @method influence mlm
 #' @importFrom stats model.matrix model.frame model.response
 #' @author Michael Friendly
 #' @seealso \code{\link{influencePlot.mlm}}
