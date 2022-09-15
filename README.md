@@ -5,7 +5,7 @@
 [![](http://cranlogs.r-pkg.org/badges/grand-total/mvinfluence)](https://cran.r-project.org/package=mvinfluence)
 [![DOI](https://zenodo.org/badge/128774860.svg)](https://zenodo.org/badge/latestdoi/128774860)
 
-# mvinfluence <img src="man/figures/mvinfluence-logo.png" align="right" height="200px" />
+# mvinfluence <img src="man/figures/logo.png" align="right" height="200px" />
 
 **Influence Measures and Diagnostic Plots for Multivariate Linear
 Models**
@@ -139,9 +139,9 @@ citation("mvinfluence")
 #> 
 #> To cite package 'mvinfluence' in publications use:
 #> 
-#>   Michael Friendly (2022). mvinfluence: Influence Measures and
+#>   Michael Friendly (2018). mvinfluence: Influence Measures and
 #>   Diagnostic Plots for Multivariate Linear Models. R package version
-#>   0.8-4. https://github.com/friendly/mvinfluence
+#>   0.8-3. https://CRAN.R-project.org/package=mvinfluence
 #> 
 #> A BibTeX entry for LaTeX users is
 #> 
@@ -149,9 +149,9 @@ citation("mvinfluence")
 #>     title = {mvinfluence: Influence Measures and Diagnostic Plots for Multivariate Linear
 #> Models},
 #>     author = {Michael Friendly},
-#>     year = {2022},
-#>     note = {R package version 0.8-4},
-#>     url = {https://github.com/friendly/mvinfluence},
+#>     year = {2018},
+#>     note = {R package version 0.8-3},
+#>     url = {https://CRAN.R-project.org/package=mvinfluence},
 #>   }
 #> 
 #> ATTENTION: This citation information has been auto-generated from the

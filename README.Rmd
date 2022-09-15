@@ -30,7 +30,7 @@ library(mvinfluence)
 
 
 
-# mvinfluence <img src="man/figures/mvinfluence-logo.png" align="right" height="200px" />
+# mvinfluence <img src="man/figures/logo.png" align="right" height="200px" />
 
 **Influence Measures and Diagnostic Plots for Multivariate Linear Models**
 
