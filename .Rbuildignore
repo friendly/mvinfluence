@@ -8,3 +8,6 @@ cran-comments.md
 ^NAMESPACE-old$
 ^man-old/$
 ^extra$
+^_pkgdown\.yml$
+^docs$
+^pkgdown$
