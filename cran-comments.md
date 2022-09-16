@@ -1,16 +1,19 @@
 ## Test environments
-* local Windows 7 install, R 3.4.4
-* win-builder R Under development (unstable) (2018-05-15 r74727)
-* R version 3.5.0 (2018-04-23)
+* local Windows 10 install, R version 4.1.3
+* win-builder R Under development (unstable) (2022-09-13 r82849 ucrt)
+
 
 ## R CMD check results
 There were no ERRORs or WARNINGs or NOTEs
 
 ## Comments
-This is a minor since the last CRAN version, fixing infellicites related to the
-mvinfluence-package.Rd file
+This is a major release, replacing the old .Rd documentation with roxygen2.
+Added a vignette and other usage examples.
 
-### Version 0.8-3 (2018-05-16)
+### Version 0.9-0 (2020-09-10)
 
-o update mvinfluence-package.Rd using utils::promptPackage to conform to avoid hard-wired DESCRIPTION metadata
+o Complete overhaul, using `roxygen2` for documentation
+o Expand README
+o Added package `vignette("uni-vs-multi")`
+
 
