@@ -10,6 +10,8 @@
 **Influence Measures and Diagnostic Plots for Multivariate Linear
 Models**
 
+Version 0.9-0
+
 Functions in this package compute regression deletion diagnostics for
 multivariate linear models following methods proposed by Barrett & Ling
 (1992) and provide some associated diagnostic plots. The diagnostic
@@ -27,9 +29,12 @@ development in this package.
 
 ## Installation
 
-Get the released version from CRAN:
+Get the released CRAN version or this development version:
 
-     install.packages("mvinfluence")
+|                     |                                                   |
+|---------------------|---------------------------------------------------|
+| CRAN version        | `install.packages("mvinfluence")`                 |
+| Development version | `remotes::install_github("friendly/mvinfluence")` |
 
 ## Goals
 
@@ -51,17 +56,20 @@ As is done in comparable univariate functions in the `car` package,
 
 ## Examples
 
-Here, we fit a MLM to a subset of the Rohwer data (the Low SES group).
-The default influence plot (`type="stres"`) shows the squared
-standardized residual against the Hat value. The areas of the circles
-representing the observations are proportional to generalized Cook’s
-distances.
+The `Rohwer` data contains data on kindergarten children designed to
+examine how well performance on a set of paired-associate (PA) tasks can
+predict performance on some measures of aptitude and achievement (`SAT`,
+`PPVT` and `Raven`). Here, we fit a MLM to a subset of the Rohwer data
+(the Low SES group). The default influence plot (`type="stres"`) shows
+the squared standardized residual against the Hat value. The areas of
+the circles representing the observations are proportional to
+generalized Cook’s distances.
 
 ``` r
 data(Rohwer, package="heplots")
 Rohwer2 <- subset(Rohwer, subset=group==2)
 rownames(Rohwer2)<- 1:nrow(Rohwer2)
-Rohwer.mod <- lm(cbind(SAT, PPVT, Raven) ~ n+s+ns+na+ss, data=Rohwer2)
+Rohwer.mod <- lm(cbind(SAT, PPVT, Raven) ~ n + s + ns + na + ss, data=Rohwer2)
 
 (infl <-influencePlot(Rohwer.mod, id.n=4, type = "stres"))
 ```
@@ -98,9 +106,10 @@ infl |> dplyr::arrange(desc(H))
 
 An alternative (`type="LR"`) plots residual components against leverage
 components, both on log scales. Because influence is a product of
-residual \* Leverage, this plot had the property that contours of
-constant Cook’s distance fall on diagonal lines with slope = -1. This
-plot is often easier to read than the standard version.
+residual $\times$ Leverage, this plot had the property that contours of
+constant Cook’s distance fall on diagonal lines with slope = -1. Each
+successive dashed line represents a **multiple** of Cook’s D. This plot
+is often easier to read than the standard version.
 
 ``` r
 influencePlot(Rohwer.mod, id.n=4, type="LR")
@@ -128,7 +137,7 @@ infIndexPlot(Rohwer.mod, id.n=3, id.col = "red", id.cex=1.5)
 ![](man/figures/README-indexplot-1.png)<!-- -->
 
 In this example, note that while case 5 stands out as influential, it
-does not have an exceptionally large $D^2$.
+does not have an exceptionally large squared distance, $D^2$.
 
 ## Citation
 
