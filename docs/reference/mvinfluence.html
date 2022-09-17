@@ -72,6 +72,13 @@ of size <code>m&gt;1</code>. This case is theoretically interesting because some
 of influential observations can mask each other, sometimes they can have joint influence 
 far exceeding their individual effects, as well as other interesting phenomena described 
 by Lawrence (1995). Associated methods for the case <code>m&gt;1</code> are still under development in this package.</p>
+<p>The main function in the package is the S3 method, `influence.mlm()`, a simple wrapper for
+`mlm.influence()`, which does the actual computations.
+This design was dictated by that used in the `stats` package, which provides
+the generic method `stats::influence()` and methods
+`stats::influence.lm()` and `stats::influence.glm()`. The `car` package extends this to include
+`car::influence.lme()` for models fit by `nlme::lme()`.</p>
+<p>The following sections describe the notation and measures used in the calculations.</p>
     </div>
     <div class="section level2">
     <h2 id="notation">Notation<a class="anchor" aria-label="anchor" href="#notation"></a></h2>
@@ -83,8 +90,13 @@ by Lawrence (1995). Associated methods for the case <code>m&gt;1</code> are stil
 The usual least squares estimate of \(\mathbf{\beta}\) is given by
 \(\mathbf{B} = (\mathbf{X}^{T} \mathbf{X})^{-1}  \mathbf{X}^{T} \mathbf{Y}\).</p>
 <p>Then let</p><ul><li><p>\(\mathbf{X}_I\) be the submatrix of \(\mathbf{X}\) whose \(m\) rows are indexed by \(I\),</p></li>
-<li><p>\(\mathbf{X}_(I)\) is the complement, the submatrix of \(\mathbf{X}\) with the \(m\) rows in \(I\) deleted,</p></li>
-</ul><p>Matrices \(\mathbf{Y}_I\), \(\mathbf{Y}_(I)\), and \(\mathbf{E}_I\) are defined similarly.</p>
+<li><p>\(\mathbf{X}_{(I)}\) is the complement, the submatrix of \(\mathbf{X}\) with the \(m\) rows in \(I\) deleted,</p></li>
+</ul><p>Matrices \(\mathbf{Y}_I\), \(\mathbf{Y}_{(I)}\) are defined similarly.</p> 
+<p>In the calculation of regression coefficients,
+ \(\mathbf{B}_{(I)} = (\mathbf{X}_{(I)}^{T} \mathbf{X}_{(I)})^{-1} \mathbf{X}_{(I)}^{T} \mathbf{Y}_{I}\) are the estimated 
+ coefficients
+ when the cases indexed by \(I\) have been removed. The corresponding residuals are
+ \(\mathbf{E}_{(I)} = \mathbf{Y}_{(I)} - \mathbf{X}_{(I)} \mathbf{B}_{(I)}\).</p>
     </div>
     <div class="section level2">
     <h2 id="measures">Measures<a class="anchor" aria-label="anchor" href="#measures"></a></h2>
@@ -94,9 +106,9 @@ The usual least squares estimate of \(\mathbf{\beta}\) is given by
 <p>The influence measures defined by Barrett &amp; Ling (1992) are functions of two matrices \(\mathbf{H}_I\) and \(\mathbf{Q}_I\)
  defined as follows</p><ul><li><p>For the full data set, the “hat matrix”, \(\mathbf{H}\), is given by
             \(\mathbf{H} = \mathbf{X} (\mathbf{X}^{T} \mathbf{X})^{-1} \mathbf{X}^{T} \),</p></li>
-<li><p>\(\mathbf{H}_I\) is \(m \times m\) the submatrix of \(\mathbf{H}\) corresponding to the index set,
+<li><p>\(\mathbf{H}_I\) is \(m \times m\) the submatrix of \(\mathbf{H}\) corresponding to the index set \(I\),
             \(\mathbf{H}_I = \mathbf{X} (\mathbf{X}_I^{T} \mathbf{X}_I)^{-1} \mathbf{X}^{T} \),</p></li>
-<li><p>\(\mathbf{Q}\) is the analog of \(\mathbf{H}\) defined for the residual matrix \(\mathbf{E}\),
+<li><p>\(\mathbf{Q}\) is the analog of \(\mathbf{H}\) defined for the residual matrix \(\mathbf{E}\), that is,
             \(\mathbf{Q} = \mathbf{E} (\mathbf{E}^{T} \mathbf{E})^{-1} \mathbf{E}^{T} \), with corresponding submatrix
             \(\mathbf{Q}_I = \mathbf{E} (\mathbf{E}_I^{T} \mathbf{E}_I)^{-1} \mathbf{E}^{T} \),</p></li>
 </ul></div>

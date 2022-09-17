@@ -123,30 +123,25 @@ American Statistical Association</em>, <b>87</b>(417), 184-191.</p>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/colnames.html" class="external-link">rownames</a></span><span class="op">(</span><span class="va">Rohwer2</span><span class="op">)</span><span class="op">&lt;-</span> <span class="fl">1</span><span class="op">:</span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html" class="external-link">nrow</a></span><span class="op">(</span><span class="va">Rohwer2</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">Rohwer.mod</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">cbind</a></span><span class="op">(</span><span class="va">SAT</span>, <span class="va">PPVT</span>, <span class="va">Raven</span><span class="op">)</span> <span class="op">~</span> <span class="va">n</span><span class="op">+</span><span class="va">s</span><span class="op">+</span><span class="va">ns</span><span class="op">+</span><span class="va">na</span><span class="op">+</span><span class="va">ss</span>, data<span class="op">=</span><span class="va">Rohwer2</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/options.html" class="external-link">options</a></span><span class="op">(</span>digits<span class="op">=</span><span class="fl">4</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/stats/influence.measures.html" class="external-link">hatvalues</a></span><span class="op">(</span><span class="va">Rohwer.mod</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>          1          2          3          4          5          6          7 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 0.16700926 0.21845327 0.14173469 0.07314341 0.56821462 0.15432157 0.04530969 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>          8          9         10         11         12         13         14 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 0.17661104 0.05131298 0.45161152 0.14542776 0.17050399 0.10374592 0.12649927 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>         15         16         17         18         19         20         21 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 0.33246744 0.33183461 0.17320579 0.26353864 0.29835817 0.07880597 0.14023750 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>         22         23         24         25         26         27         28 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 0.19380286 0.04455330 0.20641708 0.15712604 0.15333879 0.36726467 0.11189754 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>         29         30         31         32 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 0.30426999 0.08655434 0.08921878 0.07320950 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       1       2       3       4       5       6       7       8       9      10 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 0.16701 0.21845 0.14173 0.07314 0.56821 0.15432 0.04531 0.17661 0.05131 0.45161 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      11      12      13      14      15      16      17      18      19      20 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 0.14543 0.17050 0.10375 0.12650 0.33247 0.33183 0.17321 0.26354 0.29836 0.07881 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      21      22      23      24      25      26      27      28      29      30 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 0.14024 0.19380 0.04455 0.20642 0.15713 0.15334 0.36726 0.11190 0.30427 0.08655 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      31      32 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 0.08922 0.07321 </span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/stats/influence.measures.html" class="external-link">cooks.distance</a></span><span class="op">(</span><span class="va">Rohwer.mod</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>           1           2           3           4           5           6 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 0.110668789 0.035758983 0.074110633 0.006454502 0.846717339 0.014584590 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>           7           8           9          10          11          12 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 0.025295531 0.147676200 0.040403408 0.063391985 0.045680183 0.116293594 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>          13          14          15          16          17          18 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 0.042671229 0.164273594 0.015190817 0.118323491 0.144482540 0.056707069 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>          19          20          21          22          23          24 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 0.173206386 0.037332773 0.151642786 0.040245143 0.030356681 0.072943655 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>          25          26          27          28          29          30 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 0.260083518 0.042608984 0.338661595 0.034223968 0.302596343 0.045051960 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>          31          32 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 0.097583942 0.055032090 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>        1        2        3        4        5        6        7        8 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 0.110669 0.035759 0.074111 0.006455 0.846717 0.014585 0.025296 0.147676 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>        9       10       11       12       13       14       15       16 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 0.040403 0.063392 0.045680 0.116294 0.042671 0.164274 0.015191 0.118323 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       17       18       19       20       21       22       23       24 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 0.144483 0.056707 0.173206 0.037333 0.151643 0.040245 0.030357 0.072944 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       25       26       27       28       29       30       31       32 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 0.260084 0.042609 0.338662 0.034224 0.302596 0.045052 0.097584 0.055032 </span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>

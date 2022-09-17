@@ -170,19 +170,19 @@ American Statistical Association</em>, <b>87</b>(417), 184-191.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     data = Rohwer2)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Coefficients:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>              SAT        PPVT       Raven    </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> (Intercept)  -28.46747   39.69709   13.24384</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> n              3.25713    0.06728    0.05935</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> s              2.99658    0.36998    0.49244</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ns            -5.85906   -0.37438   -0.16402</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> na             5.66622    1.52301    0.11898</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ss            -0.62265    0.41016   -0.12116</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>              SAT       PPVT      Raven   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> (Intercept)  -28.4675   39.6971   13.2438</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> n              3.2571    0.0673    0.0593</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> s              2.9966    0.3700    0.4924</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ns            -5.8591   -0.3744   -0.1640</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> na             5.6662    1.5230    0.1190</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ss            -0.6227    0.4102   -0.1212</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/stats/lm.influence.html" class="external-link">influence</a></span><span class="op">(</span><span class="va">Rohwer.mod</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Multivariate influence statistics for model:</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  lm(formula = cbind(SAT, PPVT, Raven) ~ n + s + ns + na + ss, </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     data = Rohwer2) </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  m=  1 case deletion diagnostics </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  m= 1 case deletion diagnostics </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>         H      Q   CookD      L      R</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1  0.1670 0.1529 0.11067 0.2005 0.1836</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2  0.2185 0.0378 0.03576 0.2795 0.0483</span>
@@ -222,7 +222,7 @@ American Statistical Association</em>, <b>87</b>(417), 184-191.</p>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/stats/lm.influence.html" class="external-link">influence</a></span><span class="op">(</span><span class="va">Sake.mod</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Multivariate influence statistics for model:</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  lm(formula = cbind(taste, smell) ~ ., data = Sake) </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  m=  1 case deletion diagnostics </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  m= 1 case deletion diagnostics </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>         H      Q   CookD      L      R</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1  0.8116 0.5757 1.09033 4.3086 3.0564</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2  0.2975 0.0500 0.03472 0.4234 0.0712</span>
