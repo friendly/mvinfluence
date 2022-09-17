@@ -30,6 +30,15 @@ of size \code{m>1}. This case is theoretically interesting because sometimes pai
 of influential observations can mask each other, sometimes they can have joint influence 
 far exceeding their individual effects, as well as other interesting phenomena described 
 by Lawrence (1995). Associated methods for the case \code{m>1} are still under development in this package.
+
+The main function in the package is the S3 method, `influence.mlm()`, a simple wrapper for
+`mlm.influence()`, which does the actual computations.
+This design was dictated by that used in the `stats` package, which provides
+the generic method `stats::influence()` and methods
+`stats::influence.lm()` and `stats::influence.glm()`. The `car` package extends this to include
+`car::influence.lme()` for models fit by `nlme::lme()`.
+
+The following sections describe the notation and measures used in the calculations.
 }
 \section{Notation}{
 
@@ -42,10 +51,16 @@ The usual least squares estimate of \eqn{\mathbf{\beta}} is given by
 Then let 
   \itemize{
      \item \eqn{\mathbf{X}_I} be the submatrix of \eqn{\mathbf{X}} whose \eqn{m} rows are indexed by \eqn{I},
-     \item \eqn{\mathbf{X}_(I)} is the complement, the submatrix of \eqn{\mathbf{X}} with the \eqn{m} rows in \eqn{I} deleted,
+     \item \eqn{\mathbf{X}_{(I)}} is the complement, the submatrix of \eqn{\mathbf{X}} with the \eqn{m} rows in \eqn{I} deleted,
   }
  
- Matrices \eqn{\mathbf{Y}_I}, \eqn{\mathbf{Y}_(I)}, and \eqn{\mathbf{E}_I} are defined similarly.
+ Matrices \eqn{\mathbf{Y}_I}, \eqn{\mathbf{Y}_{(I)}} are defined similarly. 
+ 
+ In the calculation of regression coefficients,
+ \eqn{\mathbf{B}_{(I)} = (\mathbf{X}_{(I)}^{T} \mathbf{X}_{(I)})^{-1} \mathbf{X}_{(I)}^{T} \mathbf{Y}_{I}} are the estimated 
+ coefficients
+ when the cases indexed by \eqn{I} have been removed. The corresponding residuals are
+ \eqn{\mathbf{E}_{(I)} = \mathbf{Y}_{(I)} - \mathbf{X}_{(I)} \mathbf{B}_{(I)}}.
 }
 
 \section{Measures}{
@@ -56,9 +71,9 @@ Then let
    \itemize{
       \item For the full data set, the \dQuote{hat matrix}, \eqn{\mathbf{H}}, is given by
             \eqn{\mathbf{H} = \mathbf{X} (\mathbf{X}^{T} \mathbf{X})^{-1} \mathbf{X}^{T} },
-      \item \eqn{\mathbf{H}_I} is \eqn{m \times m} the submatrix of \eqn{\mathbf{H}} corresponding to the index set,
+      \item \eqn{\mathbf{H}_I} is \eqn{m \times m} the submatrix of \eqn{\mathbf{H}} corresponding to the index set \eqn{I},
             \eqn{\mathbf{H}_I = \mathbf{X} (\mathbf{X}_I^{T} \mathbf{X}_I)^{-1} \mathbf{X}^{T} },
-      \item \eqn{\mathbf{Q}} is the analog of \eqn{\mathbf{H}} defined for the residual matrix \eqn{\mathbf{E}},
+      \item \eqn{\mathbf{Q}} is the analog of \eqn{\mathbf{H}} defined for the residual matrix \eqn{\mathbf{E}}, that is,
             \eqn{\mathbf{Q} = \mathbf{E} (\mathbf{E}^{T} \mathbf{E})^{-1} \mathbf{E}^{T} }, with corresponding submatrix
             \eqn{\mathbf{Q}_I = \mathbf{E} (\mathbf{E}_I^{T} \mathbf{E}_I)^{-1} \mathbf{E}^{T} },
    }
