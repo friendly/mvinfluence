@@ -27,6 +27,11 @@ individual effects, as well as other interesting phenomena described by
 Lawrence (1995). Associated methods for the case `m>1` are still under
 development in this package.
 
+## Documentation
+
+Documentation for the package is now available at
+<https://friendly.github.io/mvinfluence/>.
+
 ## Installation
 
 Get the released CRAN version or this development version:
@@ -148,24 +153,19 @@ citation("mvinfluence")
 #> 
 #> To cite package 'mvinfluence' in publications use:
 #> 
-#>   Michael Friendly (2018). mvinfluence: Influence Measures and
-#>   Diagnostic Plots for Multivariate Linear Models. R package version
-#>   0.8-3. https://CRAN.R-project.org/package=mvinfluence
+#>   Friendly M (2022). _mvinfluence: Influence Measures and Diagnostic
+#>   Plots for Multivariate Linear Models_. R package version 0.9.0,
+#>   <https://github.com/friendly/mvinfluence>.
 #> 
 #> A BibTeX entry for LaTeX users is
 #> 
 #>   @Manual{,
-#>     title = {mvinfluence: Influence Measures and Diagnostic Plots for Multivariate Linear
-#> Models},
+#>     title = {mvinfluence: Influence Measures and Diagnostic Plots for Multivariate Linear Models},
 #>     author = {Michael Friendly},
-#>     year = {2018},
-#>     note = {R package version 0.8-3},
-#>     url = {https://CRAN.R-project.org/package=mvinfluence},
+#>     year = {2022},
+#>     note = {R package version 0.9.0},
+#>     url = {https://github.com/friendly/mvinfluence},
 #>   }
-#> 
-#> ATTENTION: This citation information has been auto-generated from the
-#> package DESCRIPTION file and may need manual editing, see
-#> 'help("citation")'.
 ```
 
 ## References

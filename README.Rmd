@@ -51,6 +51,10 @@ as well as other interesting phenomena described by Lawrence (1995).
 Associated methods for the case
 `m>1` are still under development in this package.
 
+## Documentation
+Documentation for the package is now available at [https://friendly.github.io/mvinfluence/](https://friendly.github.io/mvinfluence/).
+
+
 ## Installation
 
 Get the released CRAN version or this development version:
