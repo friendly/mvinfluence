@@ -24,12 +24,12 @@
 #' far exceeding their individual effects, as well as other interesting phenomena described 
 #' by Lawrence (1995). Associated methods for the case \code{m>1} are still under development in this package.
 #' 
-#' The main function in the package is the S3 method, `influence.mlm()`, a simple wrapper for
-#' `mlm.influence()`, which does the actual computations.
-#' This design was dictated by that used in the `stats` package, which provides
-#' the generic method `stats::influence()` and methods
-#' `stats::influence.lm()` and `stats::influence.glm()`. The `car` package extends this to include
-#' `car::influence.lme()` for models fit by `nlme::lme()`.
+#' The main function in the package is the S3 method, \code{\link{influence.mlm}}, a simple wrapper for
+#' \code{\link{mlm.influence}}, which does the actual computations.
+#' This design was dictated by that used in the \pkg{stats} package, which provides
+#' the generic method \code{\link[stats]{influence}} and methods
+#' \code{\link[stats]{influence.lm}} and \code{\link[stats]{influence.glm}}. The \pkg{car} package extends this to include
+#' \code{\link[car]{influence.lme}} for models fit by \code{\link[nlme]{lme}}`.
 #' 
 #' The following sections describe the notation and measures used in the calculations.
 #' 
