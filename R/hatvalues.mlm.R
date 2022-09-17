@@ -52,6 +52,7 @@
 #' rownames(Rohwer2)<- 1:nrow(Rohwer2)
 #' Rohwer.mod <- lm(cbind(SAT, PPVT, Raven) ~ n+s+ns+na+ss, data=Rohwer2)
 #' 
+#' options(digits=4)
 #' hatvalues(Rohwer.mod)
 #' cooks.distance(Rohwer.mod)
 

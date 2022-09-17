@@ -24,10 +24,14 @@
 #' data(Fertilizer)
 #' 
 #' # simple plots
-#' plot(Fertilizer, col=c('red', rep("blue",7)), cex=c(2,rep(1.2,7)), pch=as.character(1:8))
+#' plot(Fertilizer, col=c('red', rep("blue",7)), 
+#'      cex=c(2,rep(1.2,7)), 
+#'      pch=as.character(1:8))
+#'
+#' # A biplot shows the data in 2D. It gives another view of how case 1 stands out in data space
 #' biplot(prcomp(Fertilizer))
 #' 
-#' #fit mlm
+#' # fit the mlm
 #' mod <- lm(cbind(grain, straw) ~ fertilizer, data=Fertilizer)
 #' Anova(mod)
 #' 
