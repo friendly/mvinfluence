@@ -34,10 +34,10 @@
 #' Then let 
 #'   \itemize{
 #'      \item \eqn{\mathbf{X}_I} be the submatrix of \eqn{\mathbf{X}} whose \eqn{m} rows are indexed by \eqn{I},
-#'      \item \eqn{\mathbf{X}_(I)} is the complement, the submatrix of \eqn{\mathbf{X}} with the \eqn{m} rows in \eqn{I} deleted,
+#'      \item \eqn{\mathbf{X}_{(I)} is the complement, the submatrix of \eqn{\mathbf{X}} with the \eqn{m} rows in \eqn{I} deleted,
 #'   }
 #'  
-#'  Matrices \eqn{\mathbf{Y}_I}, \eqn{\mathbf{Y}_(I)}, and \eqn{\mathbf{E}_I} are defined similarly.
+#'  Matrices \eqn{\mathbf{Y}_I}, \eqn{\mathbf{Y}_{(I)}, and \eqn{\mathbf{E}_I} are defined similarly.
 #'  
 #' @section Measures:
 #'  
