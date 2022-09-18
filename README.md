@@ -113,7 +113,7 @@ distances.
     #> 27 0.367 0.2128 0.3387 0.580 0.3363
     #> 29 0.304 0.2295 0.3026 0.437 0.3299
 
-The function returns (and prints) a data frame of the influence
+As you can see above, the function returns a data frame of the influence
 statistics for the identified points. “Noteworthy” points are those that
 are unusual on *either* Hat value (H) or the squared studentized
 residual (Q), so more points will be shown than the `id.n` value. It is
@@ -163,17 +163,18 @@ with leverage.
 ### Index plots
 
 If you wish to see how the observations fare on each of the the measures
-(as well as Mahalanobis $D^2$), the `inflIndexPlot()` function gives you
-index plots.
+(as well as Mahalanobis $D^2$ of the residuals from the origin), the
+`inflIndexPlot()` function gives you index plots.
 
 ``` r
-infIndexPlot(Rohwer.mod, id.n=3, id.col = "red", id.cex=1.5)
+infIndexPlot(Rohwer.mod, id.n=3, id.col = "red", id.cex=1.5, id.location="ab")
 ```
 
 ![](man/figures/README-indexplot-1.png)<!-- -->
 
 In this example, note that while case 5 stands out as influential, it
-does not have an exceptionally large squared distance, $D^2$.
+does not have an exceptionally large Mahalanobis squared distance, $D^2$
+of the residuals.
 
 # Robust MLMs
 
@@ -189,8 +190,8 @@ distances of the current residuals from the origin, and a scaling
 Rohwer.rmod <- heplots::robmlm(cbind(SAT, PPVT, Raven) ~ n + s + ns + na + ss, data=Rohwer2)
 ```
 
-The returned object has a weights component, the weight for each case in
-the final iteration. Which are less than 0.9?
+The returned object has a `weights` component, the weight for each case
+in the final iteration. Which ones are less than 0.9 here?
 
 ``` r
 which(Rohwer.rmod$weights < .9)
@@ -208,7 +209,9 @@ plot(wts, type="h",
      xlab = "Case index", 
      ylab = "Robust mlm weight",
      cex.lab = 1.25)
-rect(0, .9, 33, 1.1, col=scales::alpha("gray", .25), border=NA)
+rect(0, .9, 33, 1.1, 
+     col=scales::alpha("gray", .25), 
+     border=NA)
 points(wts, pch = 16, 
        cex = ifelse(wts < .9, 1.5, 1),
        col = ifelse(wts < .9, "red", "black"))
