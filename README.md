@@ -62,13 +62,15 @@ As is done in comparable univariate functions in the `car` package,
 ## Examples
 
 The `Rohwer` data contains data on kindergarten children designed to
-examine how well performance on a set of paired-associate (PA) tasks can
-predict performance on some measures of aptitude and achievement (`SAT`,
-`PPVT` and `Raven`). Here, we fit a MLM to a subset of the Rohwer data
-(the Low SES group). The default influence plot (`type="stres"`) shows
-the squared standardized residual against the Hat value. The areas of
-the circles representing the observations are proportional to
-generalized Cook’s distances.
+examine how well performance on a set of paired-associate (PA) learning
+tasks can predict performance on some measures of aptitude and
+achievement— `SAT` (a scholastic aptitude test), `PPVT` (Peabody Picture
+Vocabulary Test), and `Raven` ( Raven Progressive Matrices Test). The PA
+tasks differ in how the stimulus item was presented: `n` (named), `s`
+(still), `ns` (named still), `na` (named action) and `ss` (sentence
+still).
+
+Here, we fit a MLM to a subset of the Rohwer data (the Low SES group).
 
 ``` r
 data(Rohwer, package="heplots")
@@ -76,19 +78,40 @@ Rohwer2 <- subset(Rohwer, subset=group==2)
 rownames(Rohwer2)<- 1:nrow(Rohwer2)
 Rohwer.mod <- lm(cbind(SAT, PPVT, Raven) ~ n + s + ns + na + ss, data=Rohwer2)
 
+car::Anova(Rohwer.mod)
+#> 
+#> Type II MANOVA Tests: Pillai test statistic
+#>    Df test stat approx F num Df den Df Pr(>F)   
+#> n   1     0.202     2.02      3     24 0.1376   
+#> s   1     0.310     3.59      3     24 0.0284 * 
+#> ns  1     0.358     4.46      3     24 0.0126 * 
+#> na  1     0.465     6.96      3     24 0.0016 **
+#> ss  1     0.089     0.78      3     24 0.5173   
+#> ---
+#> Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+```
+
+### Influence plots
+
+The default influence plot (`type="stres"`) shows the squared
+standardized residual against the Hat value. The areas of the circles
+representing the observations are proportional to generalized Cook’s
+distances.
+
+``` r
 (infl <-influencePlot(Rohwer.mod, id.n=4, type = "stres"))
 ```
 
-![](man/figures/README-rohwer1-1.png)<!-- -->
+![](man/figures/README-rohwer2-1.png)<!-- -->
 
-    #>         H       Q   CookD      L       R
-    #> 5  0.5682 0.34388 0.84672 1.3160 0.79641
-    #> 10 0.4516 0.03239 0.06339 0.8235 0.05907
-    #> 14 0.1265 0.29968 0.16427 0.1448 0.34308
-    #> 15 0.3325 0.01054 0.01519 0.4981 0.01580
-    #> 25 0.1571 0.38198 0.26008 0.1864 0.45319
-    #> 27 0.3673 0.21280 0.33866 0.5804 0.33631
-    #> 29 0.3043 0.22950 0.30260 0.4373 0.32987
+    #>        H      Q  CookD     L      R
+    #> 5  0.568 0.3439 0.8467 1.316 0.7964
+    #> 10 0.452 0.0324 0.0634 0.824 0.0591
+    #> 14 0.126 0.2997 0.1643 0.145 0.3431
+    #> 15 0.332 0.0105 0.0152 0.498 0.0158
+    #> 25 0.157 0.3820 0.2601 0.186 0.4532
+    #> 27 0.367 0.2128 0.3387 0.580 0.3363
+    #> 29 0.304 0.2295 0.3026 0.437 0.3299
 
 The function returns (and prints) a data frame of the influence
 statistics for the identified points. “Noteworthy” points are those that
@@ -99,14 +122,14 @@ influence measures.
 
 ``` r
 infl |> dplyr::arrange(desc(H))
-#>         H       Q   CookD      L       R
-#> 5  0.5682 0.34388 0.84672 1.3160 0.79641
-#> 10 0.4516 0.03239 0.06339 0.8235 0.05907
-#> 27 0.3673 0.21280 0.33866 0.5804 0.33631
-#> 15 0.3325 0.01054 0.01519 0.4981 0.01580
-#> 29 0.3043 0.22950 0.30260 0.4373 0.32987
-#> 25 0.1571 0.38198 0.26008 0.1864 0.45319
-#> 14 0.1265 0.29968 0.16427 0.1448 0.34308
+#>        H      Q  CookD     L      R
+#> 5  0.568 0.3439 0.8467 1.316 0.7964
+#> 10 0.452 0.0324 0.0634 0.824 0.0591
+#> 27 0.367 0.2128 0.3387 0.580 0.3363
+#> 15 0.332 0.0105 0.0152 0.498 0.0158
+#> 29 0.304 0.2295 0.3026 0.437 0.3299
+#> 25 0.157 0.3820 0.2601 0.186 0.4532
+#> 14 0.126 0.2997 0.1643 0.145 0.3431
 ```
 
 An alternative (`type="LR"`) plots residual components against leverage
@@ -120,22 +143,24 @@ is often easier to read than the standard version.
 influencePlot(Rohwer.mod, id.n=4, type="LR")
 ```
 
-![](man/figures/README-rohwer2-1.png)<!-- -->
+![](man/figures/README-rohwer3-1.png)<!-- -->
 
-    #>         H       Q   CookD      L       R
-    #> 5  0.5682 0.34388 0.84672 1.3160 0.79641
-    #> 10 0.4516 0.03239 0.06339 0.8235 0.05907
-    #> 14 0.1265 0.29968 0.16427 0.1448 0.34308
-    #> 15 0.3325 0.01054 0.01519 0.4981 0.01580
-    #> 25 0.1571 0.38198 0.26008 0.1864 0.45319
-    #> 27 0.3673 0.21280 0.33866 0.5804 0.33631
-    #> 29 0.3043 0.22950 0.30260 0.4373 0.32987
+    #>        H      Q  CookD     L      R
+    #> 5  0.568 0.3439 0.8467 1.316 0.7964
+    #> 10 0.452 0.0324 0.0634 0.824 0.0591
+    #> 14 0.126 0.2997 0.1643 0.145 0.3431
+    #> 15 0.332 0.0105 0.0152 0.498 0.0158
+    #> 25 0.157 0.3820 0.2601 0.186 0.4532
+    #> 27 0.367 0.2128 0.3387 0.580 0.3363
+    #> 29 0.304 0.2295 0.3026 0.437 0.3299
 
-We observe that case 5 has the largest leverage and residual components,
-so it is highly influential. Case 25 has the largest residual component
-and middling leverage, so it is moderately influential. Cases 14, 29, 27
-have nearly identical residuals, and their influence increases from left
-to right with leverage.
+We observe that case 5 has the largest leverage and it is highly
+influential. Case 25 has the largest residual component and middling
+leverage, so it is moderately influential. Cases 14, 29, 27 have nearly
+identical residuals, and their influence increases from left to right
+with leverage.
+
+### Index plots
 
 If you wish to see how the observations fare on each of the the measures
 (as well as Mahalanobis $D^2$), the `inflIndexPlot()` function gives you
@@ -149,6 +174,69 @@ infIndexPlot(Rohwer.mod, id.n=3, id.col = "red", id.cex=1.5)
 
 In this example, note that while case 5 stands out as influential, it
 does not have an exceptionally large squared distance, $D^2$.
+
+# Robust MLMs
+
+Influential cases and those with large residuals can sometimes be dealt
+with by fitting a **robust** version of the multivariate model. The
+function `heplots::robmlm()` uses a simple M-estimator that down-weights
+cases with large residuals. Fitting is done by iterated re-weighted
+least squares (IWLS), using weights based on the Mahalanobis squared
+distances of the current residuals from the origin, and a scaling
+(covariance) matrix calculated by `MASS:cov.trob()`.
+
+``` r
+Rohwer.rmod <- heplots::robmlm(cbind(SAT, PPVT, Raven) ~ n + s + ns + na + ss, data=Rohwer2)
+```
+
+The returned object has a weights component, the weight for each case in
+the final iteration. Which are less than 0.9?
+
+``` r
+which(Rohwer.rmod$weights < .9)
+#> [1] 14 21 25 31
+```
+
+A simple index plot makes the down-weighted observations stand out. Case
+5 is not among them, but I label it anyway.
+
+``` r
+par(mar = c(4,4,1,1)+.1)
+wts <- Rohwer.rmod$weights
+idx <- c(5, which(wts < .9))
+plot(wts, type="h",
+     xlab = "Case index", 
+     ylab = "Robust mlm weight",
+     cex.lab = 1.25)
+rect(0, .9, 33, 1.1, col=scales::alpha("gray", .25), border=NA)
+points(wts, pch = 16, 
+       cex = ifelse(wts < .9, 1.5, 1),
+       col = ifelse(wts < .9, "red", "black"))
+text(idx, wts[idx], label=idx, pos=3, cex=1.2, xpd=NA )
+```
+
+![](man/figures/README-rob-index-plot-1.png)<!-- -->
+
+What’s up with case 5? It had the largest leverage, but it’s Mahalanobis
+$D^2$ was not large. Thus, it was not down-weighted, even though it is
+an influential observation.
+
+What difference do these observations make in the fitted regression?
+This calculates the percentage relative difference between the
+coefficients in the standard `lm()` and the robust version. The largest
+changes are for the coefficients of the `ss` task, but there is an even
+greater one for `PPVT` on the `n` task.
+
+``` r
+100 * abs(coef(Rohwer.mod) - coef(Rohwer.rmod)) / abs(coef(Rohwer.mod))
+#>                SAT  PPVT  Raven
+#> (Intercept)  1.001  1.27  0.755
+#> n            4.001 36.32  3.874
+#> s            1.195 13.01  0.401
+#> ns           0.152 15.68 14.771
+#> na           1.560  2.26  6.913
+#> ss          15.173 26.55 21.288
+```
 
 ## Citation
 

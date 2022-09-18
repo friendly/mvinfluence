@@ -17,7 +17,7 @@ knitr::opts_chunk$set(
 )
 
 par(mar=c(3,3,1,1)+.1)
-options(digits=4)
+options(digits=3)
 ```
 
 ```{r, echo=FALSE}
@@ -59,7 +59,6 @@ Documentation for the package is now available at [https://friendly.github.io/mv
 
 Get the released CRAN version or this development version:
 
-
 |                     |                                                   |
 |---------------------|---------------------------------------------------|
 | CRAN version        | `install.packages("mvinfluence")`                 |
@@ -83,9 +82,18 @@ As is done in comparable univariate functions in the `car` package, *noteworthy*
 
 ## Examples
 
-The `Rohwer` data contains data on kindergarten children designed to examine how well performance on a set of paired-associate (PA) tasks can predict performance on some measures of aptitude and achievement
-(`SAT`, `PPVT` and `Raven`).
-Here, we fit a MLM to a subset of the Rohwer data (the Low SES group). The default influence plot (`type="stres"`) shows the squared standardized residual against the Hat value. The areas of the circles representing the observations are proportional to generalized Cook's distances.
+The `Rohwer` data contains data on kindergarten children designed to examine how well performance on a set of paired-associate (PA) 
+learning tasks can predict performance on some measures of aptitude and achievement---
+`SAT` (a scholastic aptitude test),
+`PPVT` (Peabody Picture Vocabulary Test), and 
+`Raven` ( Raven Progressive Matrices Test). The PA tasks differ in how the stimulus item was presented:
+`n` (named), 
+`s` (still), 
+`ns` (named still), 
+`na` (named action) and 
+`ss` (sentence still).
+
+Here, we fit a MLM to a subset of the Rohwer data (the Low SES group). 
 
 ```{r rohwer1}
 data(Rohwer, package="heplots")
@@ -93,10 +101,19 @@ Rohwer2 <- subset(Rohwer, subset=group==2)
 rownames(Rohwer2)<- 1:nrow(Rohwer2)
 Rohwer.mod <- lm(cbind(SAT, PPVT, Raven) ~ n + s + ns + na + ss, data=Rohwer2)
 
+car::Anova(Rohwer.mod)
+```
+
+### Influence plots
+
+The default influence plot (`type="stres"`) shows the squared standardized residual against the Hat value. The areas of the circles representing the observations are proportional to generalized Cook's distances.
+
+```{r rohwer2}
 (infl <-influencePlot(Rohwer.mod, id.n=4, type = "stres"))
 ```
 
-The function returns (and prints) a data frame of the influence statistics for the identified points. "Noteworthy" points are those that are unusual on *either* Hat value (H) or the squared studentized residual (Q), so more points will be shown than the `id.n` value. It is often more useful to sort these in descending order by one of the influence measures.
+As you can see above,
+the function returns a data frame of the influence statistics for the identified points. "Noteworthy" points are those that are unusual on *either* Hat value (H) or the squared studentized residual (Q), so more points will be shown than the `id.n` value. It is often more useful to sort these in descending order by one of the influence measures.
 
 ```{r infl}
 infl |> dplyr::arrange(desc(H))
@@ -106,15 +123,16 @@ An alternative (`type="LR"`) plots residual components against leverage componen
 a **multiple** of Cook's D.
 This plot is often easier to read than the standard version. 
 
-```{r rohwer2}
+```{r rohwer3}
 influencePlot(Rohwer.mod, id.n=4, type="LR")
 ```
 
-We observe that case 5 has the largest leverage and residual components, so it is highly influential.
+We observe that case 5 has the largest leverage and it is highly influential.
 Case 25 has the largest residual component and middling leverage, so it is moderately influential.
 Cases 14, 29, 27 have nearly identical residuals, and their influence increases from left to right
 with leverage.
 
+### Index plots
 If you wish to see how the observations fare on each of the the measures (as well as Mahalanobis $D^2$), the `inflIndexPlot()` function gives you index plots.
 
 ```{r indexplot, fig.width=9}
@@ -123,6 +141,47 @@ infIndexPlot(Rohwer.mod, id.n=3, id.col = "red", id.cex=1.5)
 
 In this example, note that while case 5 stands out as influential, it does not have an exceptionally large
 squared distance, $D^2$.
+
+# Robust MLMs
+
+Influential cases and those with large residuals can sometimes be dealt with by fitting a **robust** version of
+the multivariate model.  The function `heplots::robmlm()` uses a simple M-estimator that down-weights cases
+with large residuals. Fitting is done by iterated re-weighted least squares (IWLS), using weights based on the Mahalanobis squared distances of the current residuals from the origin, and a scaling (covariance) matrix calculated by `MASS:cov.trob()`.
+
+```{r robmlm1}
+Rohwer.rmod <- heplots::robmlm(cbind(SAT, PPVT, Raven) ~ n + s + ns + na + ss, data=Rohwer2)
+```
+
+The returned object has a weights component, the weight for each case in the final iteration. Which are less than 0.9?
+```{r rob-weights}
+which(Rohwer.rmod$weights < .9)
+```
+
+A simple index plot makes the down-weighted observations stand out. Case 5 is not among them, but I label it anyway.
+```{r rob-index-plot, fig.width=8, fig.height=4}
+par(mar = c(4,4,1,1)+.1)
+wts <- Rohwer.rmod$weights
+idx <- c(5, which(wts < .9))
+plot(wts, type="h",
+     xlab = "Case index", 
+     ylab = "Robust mlm weight",
+     cex.lab = 1.25)
+rect(0, .9, 33, 1.1, col=scales::alpha("gray", .25), border=NA)
+points(wts, pch = 16, 
+       cex = ifelse(wts < .9, 1.5, 1),
+       col = ifelse(wts < .9, "red", "black"))
+text(idx, wts[idx], label=idx, pos=3, cex=1.2, xpd=NA )
+```
+
+What's up with case 5? It had the largest leverage, but it's Mahalanobis $D^2$ was not large.
+Thus, it was not down-weighted, even though it is an influential observation.
+
+What difference do these observations make in the fitted regression? This calculates the percentage relative difference
+between the coefficients in the standard `lm()` and the robust version.  The largest changes are for the coefficients
+of the `ss` task, but there is an even greater one for `PPVT` on the `n` task.
+```{r}
+100 * abs(coef(Rohwer.mod) - coef(Rohwer.rmod)) / abs(coef(Rohwer.mod))
+```
 
 ## Citation
 To cite `mvinfluence` in publications, use:
