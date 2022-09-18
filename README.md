@@ -131,6 +131,12 @@ influencePlot(Rohwer.mod, id.n=4, type="LR")
     #> 27 0.3673 0.21280 0.33866 0.5804 0.33631
     #> 29 0.3043 0.22950 0.30260 0.4373 0.32987
 
+We observe that case 5 has the largest leverage and residual components,
+so it is highly influential. Case 25 has the largest residual component
+and middling leverage, so it is moderately influential. Cases 14, 29, 27
+have nearly identical residuals, and their influence increases from left
+to right with leverage.
+
 If you wish to see how the observations fare on each of the the measures
 (as well as Mahalanobis $D^2$), the `inflIndexPlot()` function gives you
 index plots.

@@ -8,7 +8,7 @@
 #' as are the computations for the \code{m>1} case.  Associated methods for
 #' \code{m>1} are still under development.
 #' 
-#' @param model      An \code{mlm} object, as returned by \code{\link[stats]{lm}}
+#' @param model      An \code{mlm} object, as returned by \code{\link[stats]{lm}} with a multivariate response.
 #' @param do.coef    logical. Should the coefficients be returned in the
 #'                   \code{inflmlm} object?
 #' @param m          Size of the subsets for deletion diagnostics
@@ -54,9 +54,17 @@
 #' Rohwer.mod
 #' influence(Rohwer.mod)
 #' 
+#' # extract the most influential cases
+#' influence(Rohwer.mod) |> 
+#'     as.data.frame() |> 
+#'     dplyr::arrange(dplyr::desc(CookD)) |> 
+#'     head()
+#' 
 #' # Sake data
 #' Sake.mod <- lm(cbind(taste,smell) ~ ., data=Sake)
-#' influence(Sake.mod)
+#' influence(Sake.mod) |>
+#'     as.data.frame() |> 
+#'     dplyr::arrange(dplyr::desc(CookD)) |> head()
 #' 
 #' 
 #' @export

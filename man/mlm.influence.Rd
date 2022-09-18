@@ -7,7 +7,7 @@
 mlm.influence(model, do.coef = TRUE, m = 1, ...)
 }
 \arguments{
-\item{model}{An \code{mlm} object, as returned by \code{\link[stats]{lm}}}
+\item{model}{An \code{mlm} object, as returned by \code{\link[stats]{lm}} with a multivariate response.}
 
 \item{do.coef}{logical. Should the coefficients be returned in the
 \code{inflmlm} object?}
@@ -54,9 +54,17 @@ Rohwer.mod <- lm(cbind(SAT, PPVT, Raven) ~ n+s+ns+na+ss, data=Rohwer2)
 Rohwer.mod
 influence(Rohwer.mod)
 
+# extract the most influential cases
+influence(Rohwer.mod) |> 
+    as.data.frame() |> 
+    dplyr::arrange(dplyr::desc(CookD)) |> 
+    head()
+
 # Sake data
 Sake.mod <- lm(cbind(taste,smell) ~ ., data=Sake)
-influence(Sake.mod)
+influence(Sake.mod) |>
+    as.data.frame() |> 
+    dplyr::arrange(dplyr::desc(CookD)) |> head()
 
 
 }
