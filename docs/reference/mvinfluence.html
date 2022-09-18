@@ -72,12 +72,12 @@ of size <code>m&gt;1</code>. This case is theoretically interesting because some
 of influential observations can mask each other, sometimes they can have joint influence 
 far exceeding their individual effects, as well as other interesting phenomena described 
 by Lawrence (1995). Associated methods for the case <code>m&gt;1</code> are still under development in this package.</p>
-<p>The main function in the package is the S3 method, `influence.mlm()`, a simple wrapper for
-`mlm.influence()`, which does the actual computations.
-This design was dictated by that used in the `stats` package, which provides
-the generic method `stats::influence()` and methods
-`stats::influence.lm()` and `stats::influence.glm()`. The `car` package extends this to include
-`car::influence.lme()` for models fit by `nlme::lme()`.</p>
+<p>The main function in the package is the S3 method, <code><a href="influence.mlm.html">influence.mlm</a></code>, a simple wrapper for
+<code><a href="mlm.influence.html">mlm.influence</a></code>, which does the actual computations.
+This design was dictated by that used in the <span class="pkg">stats</span> package, which provides
+the generic method <code><a href="https://rdrr.io/r/stats/lm.influence.html" class="external-link">influence</a></code> and methods
+<code><a href="https://rdrr.io/r/stats/lm.influence.html" class="external-link">influence.lm</a></code> and <code><a href="https://rdrr.io/r/stats/lm.influence.html" class="external-link">influence.glm</a></code>. The <span class="pkg">car</span> package extends this to include
+<code><a href="https://rdrr.io/pkg/car/man/influence-mixed-models.html" class="external-link">influence.lme</a></code> for models fit by <code><a href="https://rdrr.io/pkg/nlme/man/lme.html" class="external-link">lme</a></code>`.</p>
 <p>The following sections describe the notation and measures used in the calculations.</p>
     </div>
     <div class="section level2">

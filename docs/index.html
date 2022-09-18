@@ -87,6 +87,11 @@
 <p>Functions in this package compute regression deletion diagnostics for multivariate linear models following methods proposed by Barrett &amp; Ling (1992) and provide some associated diagnostic plots. The diagnostic measures include hat-values (leverages), generalized Cook’s distance, and generalized squared ‘studentized’ residuals. Several types of plots to detect influential observations are provided.</p>
 <p>In addition, the functions provide diagnostics for deletion of subsets of observations of size <code>m&gt;1</code>. This case is theoretically interesting because sometimes pairs (<code>m=2</code>) of influential observations can mask each other, sometimes they can have joint influence far exceeding their individual effects, as well as other interesting phenomena described by Lawrence (1995). Associated methods for the case <code>m&gt;1</code> are still under development in this package.</p>
 <div class="section level2">
+<h2 id="documentation">Documentation<a class="anchor" aria-label="anchor" href="#documentation"></a>
+</h2>
+<p>Documentation for the package is now available at <a href="https://friendly.github.io/mvinfluence/" class="external-link uri">https://friendly.github.io/mvinfluence/</a>.</p>
+</div>
+<div class="section level2">
 <h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
 </h2>
 <p>Get the released CRAN version or this development version:</p>
@@ -162,6 +167,7 @@
 <span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 25 0.1571 0.38198 0.26008 0.1864 0.45319</span></span>
 <span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 27 0.3673 0.21280 0.33866 0.5804 0.33631</span></span>
 <span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 29 0.3043 0.22950 0.30260 0.4373 0.32987</span></span></code></pre></div>
+<p>We observe that case 5 has the largest leverage and residual components, so it is highly influential. Case 25 has the largest residual component and middling leverage, so it is moderately influential. Cases 14, 29, 27 have nearly identical residuals, and their influence increases from left to right with leverage.</p>
 <p>If you wish to see how the observations fare on each of the the measures (as well as Mahalanobis <span class="math inline"><em>D</em><sup>2</sup></span>), the <code>inflIndexPlot()</code> function gives you index plots.</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">infIndexPlot</span><span class="op">(</span><span class="va">Rohwer.mod</span>, id.n<span class="op">=</span><span class="fl">3</span>, id.col <span class="op">=</span> <span class="st">"red"</span>, id.cex<span class="op">=</span><span class="fl">1.5</span><span class="op">)</span></span></code></pre></div>
@@ -177,24 +183,19 @@
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; To cite package 'mvinfluence' in publications use:</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt;   Michael Friendly (2018). mvinfluence: Influence Measures and</span></span>
-<span><span class="co">#&gt;   Diagnostic Plots for Multivariate Linear Models. R package version</span></span>
-<span><span class="co">#&gt;   0.8-3. https://CRAN.R-project.org/package=mvinfluence</span></span>
+<span><span class="co">#&gt;   Friendly M (2022). _mvinfluence: Influence Measures and Diagnostic</span></span>
+<span><span class="co">#&gt;   Plots for Multivariate Linear Models_. R package version 0.9.0,</span></span>
+<span><span class="co">#&gt;   &lt;https://github.com/friendly/mvinfluence&gt;.</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; A BibTeX entry for LaTeX users is</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt;   @Manual{,</span></span>
-<span><span class="co">#&gt;     title = {mvinfluence: Influence Measures and Diagnostic Plots for Multivariate Linear</span></span>
-<span><span class="co">#&gt; Models},</span></span>
+<span><span class="co">#&gt;     title = {mvinfluence: Influence Measures and Diagnostic Plots for Multivariate Linear Models},</span></span>
 <span><span class="co">#&gt;     author = {Michael Friendly},</span></span>
-<span><span class="co">#&gt;     year = {2018},</span></span>
-<span><span class="co">#&gt;     note = {R package version 0.8-3},</span></span>
-<span><span class="co">#&gt;     url = {https://CRAN.R-project.org/package=mvinfluence},</span></span>
-<span><span class="co">#&gt;   }</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; ATTENTION: This citation information has been auto-generated from the</span></span>
-<span><span class="co">#&gt; package DESCRIPTION file and may need manual editing, see</span></span>
-<span><span class="co">#&gt; 'help("citation")'.</span></span></code></pre></div>
+<span><span class="co">#&gt;     year = {2022},</span></span>
+<span><span class="co">#&gt;     note = {R package version 0.9.0},</span></span>
+<span><span class="co">#&gt;     url = {https://github.com/friendly/mvinfluence},</span></span>
+<span><span class="co">#&gt;   }</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="references">References<a class="anchor" aria-label="anchor" href="#references"></a>

@@ -3,5 +3,6 @@
 .RData
 .Ruserdata
 mvinfluence.Rproj
-
+NAMESPACE-old
+man-old/
 inst/doc
