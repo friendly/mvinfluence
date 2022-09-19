@@ -10,8 +10,15 @@
 #' multivariate regression models defined in Barrett and Ling (1992), Eqn 2.3,
 #' 2.4, as shown in their Table 1.
 #' 
+#' There are two classes of functions, denoted \eqn{J_I^{det}} and \eqn{J_I^{tr}},
+#' with parameters \eqn{n, p, q} of the data, \eqn{m} of the subset size
+#' and \eqn{a} and \eqn{b} which define powers of terms in the formulas, typically
+#' in the set \code{-2, -1, 0}.
+#' 
 #' They are defined in terms of the submatrices for a deleted index subset
-#' \eqn{I} \deqn{H_I = X_I (X^T X)^{-1} X_I} \deqn{Q_I = E_I (E^T E)^{-1} E_I}
+#' \eqn{I},
+#' \deqn{H_I = X_I (X^T X)^{-1} X_I} 
+#' \deqn{Q_I = E_I (E^T E)^{-1} E_I}
 #' corresponding to the hat and residual matrices in univariate models.
 #' 
 #' For subset size \eqn{m = 1} these evaluate to scalar equivalents of hat
@@ -24,11 +31,8 @@
 #' The functions \code{COOKD}, \code{COVRATIO}, and \code{DFFITS} implement
 #' some of the standard influence measures in these terms for the general cases
 #' of multivariate linear models and deletion of subsets of size \code{m>1},
-#' but they are only included here for experimental purposes.
-#' 
-#' These functions are purely experimental and not intended to be used
-#' directly. However, they may be useful to define other influence measures
-#' than are currently implemented here.
+#' but they have not yet been incorporated into our main functions
+#' \code{\link{mlm.influence}} and \code{\link{influence.mlm}}.
 #' 
 #' @aliases Jdet Jtr COOKD COVRATIO DFFITS
 #' @param H a scalar or \eqn{m \times m} matrix giving the hat values for subset \eqn{I}

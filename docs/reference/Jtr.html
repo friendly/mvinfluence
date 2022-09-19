@@ -117,8 +117,14 @@ multivariate regression models defined in Barrett and Ling (1992), Eqn 2.3,
     </div>
     <div class="section level2">
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
-    <p>They are defined in terms of the submatrices for a deleted index subset
-\(I\) $$H_I = X_I (X^T X)^{-1} X_I$$ $$Q_I = E_I (E^T E)^{-1} E_I$$
+    <p>There are two classes of functions, denoted \(J_I^{det}\) and \(J_I^{tr}\),
+with parameters \(n, p, q\) of the data, \(m\) of the subset size
+and \(a\) and \(b\) which define powers of terms in the formulas, typically
+in the set <code>-2, -1, 0</code>.</p>
+<p>They are defined in terms of the submatrices for a deleted index subset
+\(I\),
+$$H_I = X_I (X^T X)^{-1} X_I$$ 
+$$Q_I = E_I (E^T E)^{-1} E_I$$
 corresponding to the hat and residual matrices in univariate models.</p>
 <p>For subset size \(m = 1\) these evaluate to scalar equivalents of hat
 values and studentized residuals.</p>
@@ -128,10 +134,8 @@ those in the \(J^{tr}\) class use \(tr(H_I)\) and \(tr(Q_I)\).</p>
 <p>The functions <code>COOKD</code>, <code>COVRATIO</code>, and <code>DFFITS</code> implement
 some of the standard influence measures in these terms for the general cases
 of multivariate linear models and deletion of subsets of size <code>m&gt;1</code>,
-but they are only included here for experimental purposes.</p>
-<p>These functions are purely experimental and not intended to be used
-directly. However, they may be useful to define other influence measures
-than are currently implemented here.</p>
+but they have not yet been incorporated into our main functions
+<code><a href="mlm.influence.html">mlm.influence</a></code> and <code><a href="influence.mlm.html">influence.mlm</a></code>.</p>
     </div>
     <div class="section level2">
     <h2 id="references">References<a class="anchor" aria-label="anchor" href="#references"></a></h2>

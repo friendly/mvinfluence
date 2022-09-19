@@ -21,7 +21,8 @@ Suggests:
     ggplot2,
     tibble,
     patchwork,
-    rgl
+    rgl,
+    dplyr
 LazyData: TRUE
 VignetteBuilder: knitr
 Encoding: UTF-8

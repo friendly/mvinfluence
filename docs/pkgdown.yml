@@ -3,7 +3,7 @@ pkgdown: 2.0.6
 pkgdown_sha: ~
 articles:
   uni-vs-multi: uni-vs-multi.html
-last_built: 2022-09-19T17:30Z
+last_built: 2022-09-19T20:02Z
 urls:
   reference: http://friendly.github.io/mvinfluence/reference
   article: http://friendly.github.io/mvinfluence/articles

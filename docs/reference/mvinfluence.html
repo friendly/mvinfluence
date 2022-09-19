@@ -62,7 +62,7 @@ models following methods proposed by Barrett &amp; Ling (1992) and provide some 
 <span>  <span class="va">mymlm</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm</a></span><span class="op">(</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">cbind</a></span><span class="op">(</span><span class="va">y1</span>, <span class="va">y2</span>, <span class="va">y3</span><span class="op">)</span> <span class="op">~</span> <span class="va">x1</span> <span class="op">+</span> <span class="va">x2</span> <span class="op">+</span> <span class="va">x3</span>, data<span class="op">=</span><span class="va">mydata</span><span class="op">)</span></span></code></pre></div><p>and then get useful diagnostics and plots with</p><div class="sourceCode"><pre><code><span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/stats/lm.influence.html" class="external-link">influence</a></span><span class="op">(</span><span class="va">mymlm</span><span class="op">)</span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/stats/influence.measures.html" class="external-link">hatvalues</a></span><span class="op">(</span><span class="va">mymlm</span><span class="op">)</span></span>
-<span>  <span class="fu"><a href="https://rdrr.io/pkg/car/man/influencePlot.html" class="external-link">influencePlot</a></span><span class="op">(</span><span class="va">mymlm</span>, <span class="va">...</span><span class="op">)</span>  </span></code></pre></div>
+<span>  <span class="fu">influencePlot</span><span class="op">(</span><span class="va">mymlm</span>, <span class="va">...</span><span class="op">)</span>  </span></code></pre></div>
 
 <p>The diagnostic measures include hat-values (leverages), generalized Cook's distance and
 generalized squared 'studentized' residuals.  Several types of plots to detect 
@@ -77,7 +77,7 @@ by Lawrence (1995). Associated methods for the case <code>m&gt;1</code> are stil
 This design was dictated by that used in the <span class="pkg">stats</span> package, which provides
 the generic method <code><a href="https://rdrr.io/r/stats/lm.influence.html" class="external-link">influence</a></code> and methods
 <code><a href="https://rdrr.io/r/stats/lm.influence.html" class="external-link">influence.lm</a></code> and <code><a href="https://rdrr.io/r/stats/lm.influence.html" class="external-link">influence.glm</a></code>. The <span class="pkg">car</span> package extends this to include
-<code><a href="https://rdrr.io/pkg/car/man/influence-mixed-models.html" class="external-link">influence.lme</a></code> for models fit by <code><a href="https://rdrr.io/pkg/nlme/man/lme.html" class="external-link">lme</a></code>`.</p>
+<code><a href="https://rdrr.io/pkg/car/man/influence-mixed-models.html" class="external-link">influence.lme</a></code> for models fit by <code><a href="https://rdrr.io/pkg/nlme/man/lme.html" class="external-link">lme</a></code>.</p>
 <p>The following sections describe the notation and measures used in the calculations.</p>
     </div>
     <div class="section level2">
@@ -86,7 +86,7 @@ the generic method <code><a href="https://rdrr.io/r/stats/lm.influence.html" cla
 
 
 <p>Let \(\mathbf{X}\) be the model matrix in the multivariate linear model, 
-\(\mathbf{Y}_{n \times p} = \mathbf{X}_{n \times q} \mathbf{\beta}_{q \times p} + \mathbf{E}_{n \times p}\).
+\(\mathbf{Y}_{n \times p} = \mathbf{X}_{n \times r} \mathbf{\beta}_{r \times p} + \mathbf{E}_{n \times p}\).
 The usual least squares estimate of \(\mathbf{\beta}\) is given by
 \(\mathbf{B} = (\mathbf{X}^{T} \mathbf{X})^{-1}  \mathbf{X}^{T} \mathbf{Y}\).</p>
 <p>Then let</p><ul><li><p>\(\mathbf{X}_I\) be the submatrix of \(\mathbf{X}\) whose \(m\) rows are indexed by \(I\),</p></li>
@@ -111,23 +111,43 @@ The usual least squares estimate of \(\mathbf{\beta}\) is given by
 <li><p>\(\mathbf{Q}\) is the analog of \(\mathbf{H}\) defined for the residual matrix \(\mathbf{E}\), that is,
             \(\mathbf{Q} = \mathbf{E} (\mathbf{E}^{T} \mathbf{E})^{-1} \mathbf{E}^{T} \), with corresponding submatrix
             \(\mathbf{Q}_I = \mathbf{E} (\mathbf{E}_I^{T} \mathbf{E}_I)^{-1} \mathbf{E}^{T} \),</p></li>
-</ul><p>### Cook's distance</p> 
+</ul></div>
+    <div class="section level2">
+    <h2 id="cook-s-distance">Cook's distance<a class="anchor" aria-label="anchor" href="#cook-s-distance"></a></h2>
+    
+
+ 
 <p>In these terms, Cook's distance is defined for a univariate response by
  $$D_I = (\mathbf{b} - \mathbf{b}_{(I)})^T (\mathbf{X}^T \mathbf{X}) (\mathbf{b} - \mathbf{b}_{(I)}) / p s^2 \; ,$$ 
- a measure of the squared distance between the coefficients \(\mathbf{b}\) for the full data set and that
- obtained when the cases in \(I\) are deleted.  In the multivariate case, Cook's distance is obtained
+ a measure of the squared distance between the coefficients \(\mathbf{b}\) for the full data set and those
+ \(\mathbf{b}_{(I)}\) 
+ obtained when the cases in \(I\) are deleted.</p> 
+<p>In the multivariate case, Cook's distance is obtained
  by replacing the vector of coefficients \(\mathbf{b}\) by \(\mathrm{vec} (\mathbf{B})\), the result of stringing out
- the coefficients for all responses in a single vector.
- $$D_I = 1/p [\mathrm{vec} (\mathbf{B} - \mathbf{B}_{(I)})]^T (S_{-1} \otimes \mathbf{X}^T \mathbf{X}) \mathrm{vec} (\mathbf{B} - \mathbf{B}_{(I)})  \; ,$$ 
- where \(\otimes\) is the Krnoecker product and
- \(\mathbf{S} = \mathbf{E}^T \mathbf{E} / (n-p)\) is the covariance matrix of the residuals.</p> 
-<p>### Leverage and residual components</p> 
-<p>For a univariate response, and when <code>m=1</code>, Cook's distance can be re-written as a product of leverage and residual components as
- $$D_i = \left(\frac{n-p}{p} \right) \frac{h_{ii}}{(1 - h_ii)^2 q_{ii}.}$$</p> 
+ the coefficients for all responses in a single \(n \times p\)-length vector.
+ $$D_I = \frac{1}{p} [\mathrm{vec} (\mathbf{B} - \mathbf{B}_{(I)})]^T (S_{-1} \otimes \mathbf{X}^T \mathbf{X}) \mathrm{vec} (\mathbf{B} - \mathbf{B}_{(I)})  \; ,$$ 
+ where \(\otimes\) is the Kronecker (direct) product and
+ \(\mathbf{S} = \mathbf{E}^T \mathbf{E} / (n-p)\) is the covariance matrix of the residuals.</p>
+    </div>
+    <div class="section level2">
+    <h2 id="leverage-and-residual-components">Leverage and residual components<a class="anchor" aria-label="anchor" href="#leverage-and-residual-components"></a></h2>
+    
+
+ 
+<p>For a univariate response, and when <code>m = 1</code>, Cook's distance can be re-written as a product of leverage and residual components as
+ $$D_i = \left(\frac{n-p}{p} \right) \frac{h_{ii}}{(1 - h_{ii})^2 q_{ii} } \;.$$</p> 
 <p>Then we can define a leverage component \(L_i\) and residual component \(R_i\) as</p> 
-<p>$$L_i = \frac{h_{ii}}{1 - h_{ii}} \quad\quad R_i = \frac{q_{ii}}{1 - h_{ii}}$$ 
- \(R_i\) is the studentized residual.</p> 
-<p>In the general, multivariate case there are analogous matrix expressions.</p>
+<p>$$L_i = \frac{h_{ii}}{1 - h_{ii}} \quad\quad R_i = \frac{q_{ii}}{1 - h_{ii}} \;.$$ 
+ \(R_i\) is the studentized residual, and \(D_i \propto L_i \times R_i\).</p> 
+<p>In the general, multivariate case there are analogous matrix expressions for \(\mathbf{L}\) and \(\mathbf{R}\).
+ When <code>m &gt; 1</code>, the quantities \(\mathbf{H}_I\), \(\mathbf{Q}_I\), \(\mathbf{L}_I\), and
+ \(\mathbf{R}_I\) are \(m \times m\) matrices.  Where scalar quantities are needed, the package functions apply
+ a function, <code>FUN</code>, either <code><a href="https://rdrr.io/r/base/det.html" class="external-link">det()</a></code> or <code><a href="tr.html">tr()</a></code> to calculate a measure of “size”, as in</p><div class="sourceCode"><pre><code><span></span>
+<span>  <span class="va">H</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">sapply</a></span><span class="op">(</span><span class="va">x</span><span class="op">$</span><span class="va">H</span>, <span class="va">FUN</span><span class="op">)</span></span>
+<span>  <span class="va">Q</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">sapply</a></span><span class="op">(</span><span class="va">x</span><span class="op">$</span><span class="va">Q</span>, <span class="va">FUN</span><span class="op">)</span></span>
+<span>  <span class="va">L</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">sapply</a></span><span class="op">(</span><span class="va">x</span><span class="op">$</span><span class="va">L</span>, <span class="va">FUN</span><span class="op">)</span></span>
+<span>  <span class="va">R</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">sapply</a></span><span class="op">(</span><span class="va">x</span><span class="op">$</span><span class="va">R</span>, <span class="va">FUN</span><span class="op">)</span></span></code></pre></div>
+
     </div>
     <div class="section level2">
     <h2 id="references">References<a class="anchor" aria-label="anchor" href="#references"></a></h2>

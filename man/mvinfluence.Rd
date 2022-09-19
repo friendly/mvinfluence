@@ -36,7 +36,7 @@ The main function in the package is the S3 method, \code{\link{influence.mlm}}, 
 This design was dictated by that used in the \pkg{stats} package, which provides
 the generic method \code{\link[stats]{influence}} and methods
 \code{\link[stats]{influence.lm}} and \code{\link[stats]{influence.glm}}. The \pkg{car} package extends this to include
-\code{\link[car]{influence.lme}} for models fit by \code{\link[nlme]{lme}}`.
+\code{\link[car]{influence.lme}} for models fit by \code{\link[nlme]{lme}}.
 
 The following sections describe the notation and measures used in the calculations.
 }
@@ -44,7 +44,7 @@ The following sections describe the notation and measures used in the calculatio
 
 
 Let \eqn{\mathbf{X}} be the model matrix in the multivariate linear model, 
-\eqn{\mathbf{Y}_{n \times p} = \mathbf{X}_{n \times q} \mathbf{\beta}_{q \times p} + \mathbf{E}_{n \times p}}.
+\eqn{\mathbf{Y}_{n \times p} = \mathbf{X}_{n \times r} \mathbf{\beta}_{r \times p} + \mathbf{E}_{n \times p}}.
 The usual least squares estimate of \eqn{\mathbf{\beta}} is given by
 \eqn{\mathbf{B} = (\mathbf{X}^{T} \mathbf{X})^{-1}  \mathbf{X}^{T} \mathbf{Y}}.
 
@@ -77,30 +77,46 @@ Then let
             \eqn{\mathbf{Q} = \mathbf{E} (\mathbf{E}^{T} \mathbf{E})^{-1} \mathbf{E}^{T} }, with corresponding submatrix
             \eqn{\mathbf{Q}_I = \mathbf{E} (\mathbf{E}_I^{T} \mathbf{E}_I)^{-1} \mathbf{E}^{T} },
    }
-   
- ### Cook's distance
+}
+
+\section{Cook's distance}{
+
  
  In these terms, Cook's distance is defined for a univariate response by
  \deqn{D_I = (\mathbf{b} - \mathbf{b}_{(I)})^T (\mathbf{X}^T \mathbf{X}) (\mathbf{b} - \mathbf{b}_{(I)}) / p s^2 \; ,} 
- a measure of the squared distance between the coefficients \eqn{\mathbf{b}} for the full data set and that
- obtained when the cases in \eqn{I} are deleted.  In the multivariate case, Cook's distance is obtained
+ a measure of the squared distance between the coefficients \eqn{\mathbf{b}} for the full data set and those
+ \eqn{\mathbf{b}_{(I)}} 
+ obtained when the cases in \eqn{I} are deleted.  
+ 
+ In the multivariate case, Cook's distance is obtained
  by replacing the vector of coefficients \eqn{\mathbf{b}} by \eqn{\mathrm{vec} (\mathbf{B})}, the result of stringing out
- the coefficients for all responses in a single vector.
- \deqn{D_I = 1/p [\mathrm{vec} (\mathbf{B} - \mathbf{B}_{(I)})]^T (S_{-1} \otimes \mathbf{X}^T \mathbf{X}) \mathrm{vec} (\mathbf{B} - \mathbf{B}_{(I)})  \; ,} 
- where \eqn{\otimes} is the Krnoecker product and
+ the coefficients for all responses in a single \eqn{n \times p}-length vector.
+ \deqn{D_I = \frac{1}{p} [\mathrm{vec} (\mathbf{B} - \mathbf{B}_{(I)})]^T (S_{-1} \otimes \mathbf{X}^T \mathbf{X}) \mathrm{vec} (\mathbf{B} - \mathbf{B}_{(I)})  \; ,} 
+ where \eqn{\otimes} is the Kronecker (direct) product and
  \eqn{\mathbf{S} = \mathbf{E}^T \mathbf{E} / (n-p)} is the covariance matrix of the residuals.
+}
+
+\section{Leverage and residual components}{
+
  
- ### Leverage and residual components
- 
- For a univariate response, and when \code{m=1}, Cook's distance can be re-written as a product of leverage and residual components as
- \deqn{D_i = \left(\frac{n-p}{p} \right) \frac{h_{ii}}{(1 - h_ii)^2 q_{ii}.}}
+ For a univariate response, and when \code{m = 1}, Cook's distance can be re-written as a product of leverage and residual components as
+ \deqn{D_i = \left(\frac{n-p}{p} \right) \frac{h_{ii}}{(1 - h_{ii})^2 q_{ii} } \;.}
  
  Then we can define a leverage component \eqn{L_i} and residual component \eqn{R_i} as
  
- \deqn{L_i = \frac{h_{ii}}{1 - h_{ii}} \quad\quad R_i = \frac{q_{ii}}{1 - h_{ii}}} 
- \eqn{R_i} is the studentized residual.
+ \deqn{L_i = \frac{h_{ii}}{1 - h_{ii}} \quad\quad R_i = \frac{q_{ii}}{1 - h_{ii}} \;.} 
+ \eqn{R_i} is the studentized residual, and \eqn{D_i \propto L_i \times R_i}.
  
- In the general, multivariate case there are analogous matrix expressions.
+ In the general, multivariate case there are analogous matrix expressions for \eqn{\mathbf{L}} and \eqn{\mathbf{R}}.
+ When \code{m > 1}, the quantities \eqn{\mathbf{H}_I}, \eqn{\mathbf{Q}_I}, \eqn{\mathbf{L}_I}, and
+ \eqn{\mathbf{R}_I} are \eqn{m \times m} matrices.  Where scalar quantities are needed, the package functions apply
+ a function, \code{FUN}, either \code{det()} or \code{tr()} to calculate a measure of \dQuote{size}, as in
+\preformatted{
+  H <- sapply(x$H, FUN)
+  Q <- sapply(x$Q, FUN)
+  L <- sapply(x$L, FUN)
+  R <- sapply(x$R, FUN)
+}
 }
 
 \references{
