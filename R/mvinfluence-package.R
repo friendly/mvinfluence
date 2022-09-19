@@ -36,7 +36,7 @@
 #' @section Notation:
 #' 
 #' Let \eqn{\mathbf{X}} be the model matrix in the multivariate linear model, 
-#' \eqn{\mathbf{Y}_{n \times p} = \mathbf{X} \mathbf{\beta} + \mathbf{E}}.
+#' \eqn{\mathbf{Y}_{n \times p} = \mathbf{X}_{n \times q} \mathbf{\beta}_{q \times p} + \mathbf{E}_{n \times p}}.
 #' The usual least squares estimate of \eqn{\mathbf{\beta}} is given by
 #' \eqn{\mathbf{B} = (\mathbf{X}^{T} \mathbf{X})^{-1}  \mathbf{X}^{T} \mathbf{Y}}.
 #' 
@@ -57,7 +57,7 @@
 #' @section Measures:
 #'  
 #'  The influence measures defined by Barrett & Ling (1992) are functions of two matrices \eqn{\mathbf{H}_I} and \eqn{\mathbf{Q}_I}
-#'  defined as follows
+#'  defined as follows:
 #'    \itemize{
 #'       \item For the full data set, the \dQuote{hat matrix}, \eqn{\mathbf{H}}, is given by
 #'             \eqn{\mathbf{H} = \mathbf{X} (\mathbf{X}^{T} \mathbf{X})^{-1} \mathbf{X}^{T} },
@@ -66,8 +66,32 @@
 #'       \item \eqn{\mathbf{Q}} is the analog of \eqn{\mathbf{H}} defined for the residual matrix \eqn{\mathbf{E}}, that is,
 #'             \eqn{\mathbf{Q} = \mathbf{E} (\mathbf{E}^{T} \mathbf{E})^{-1} \mathbf{E}^{T} }, with corresponding submatrix
 #'             \eqn{\mathbf{Q}_I = \mathbf{E} (\mathbf{E}_I^{T} \mathbf{E}_I)^{-1} \mathbf{E}^{T} },
-#'    } 
-#' 
+#'    }
+#'    
+#'  ### Cook's distance
+#'  
+#'  In these terms, Cook's distance is defined for a univariate response by
+#'  \deqn{D_I = (\mathbf{b} - \mathbf{b}_{(I)})^T (\mathbf{X}^T \mathbf{X}) (\mathbf{b} - \mathbf{b}_{(I)}) / p s^2 \; ,} 
+#'  a measure of the squared distance between the coefficients \eqn{\mathbf{b}} for the full data set and that
+#'  obtained when the cases in \eqn{I} are deleted.  In the multivariate case, Cook's distance is obtained
+#'  by replacing the vector of coefficients \eqn{\mathbf{b}} by \eqn{\mathrm{vec} (\mathbf{B})}, the result of stringing out
+#'  the coefficients for all responses in a single vector.
+#'  \deqn{D_I = 1/p [\mathrm{vec} (\mathbf{B} - \mathbf{B}_{(I)})]^T (S_{-1} \otimes \mathbf{X}^T \mathbf{X}) \mathrm{vec} (\mathbf{B} - \mathbf{B}_{(I)})  \; ,} 
+#'  where \eqn{\otimes} is the Krnoecker product and
+#'  \eqn{\mathbf{S} = \mathbf{E}^T \mathbf{E} / (n-p)} is the covariance matrix of the residuals.
+#'  
+#'  ### Leverage and residual components
+#'  
+#'  For a univariate response, and when \code{m=1}, Cook's distance can be re-written as a product of leverage and residual components as
+#'  \deqn{D_i = \left(\frac{n-p}{p} \right) \frac{h_{ii}}{(1 - h_ii)^2 q_{ii}.}}
+#'  
+#'  Then we can define a leverage component \eqn{L_i} and residual component \eqn{R_i} as
+#'  
+#'  \deqn{L_i = \frac{h_{ii}}{1 - h_{ii}} \quad\quad R_i = \frac{q_{ii}}{1 - h_{ii}}} 
+#'  \eqn{R_i} is the studentized residual.
+#'  
+#'  In the general, multivariate case there are analogous matrix expressions.
+#'  
 #' @docType package
 #' @name mvinfluence
 #' @aliases mvinfluence-package

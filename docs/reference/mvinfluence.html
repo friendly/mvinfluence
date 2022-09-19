@@ -86,7 +86,7 @@ the generic method <code><a href="https://rdrr.io/r/stats/lm.influence.html" cla
 
 
 <p>Let \(\mathbf{X}\) be the model matrix in the multivariate linear model, 
-\(\mathbf{Y}_{n \times p} = \mathbf{X} \mathbf{\beta} + \mathbf{E}\).
+\(\mathbf{Y}_{n \times p} = \mathbf{X}_{n \times q} \mathbf{\beta}_{q \times p} + \mathbf{E}_{n \times p}\).
 The usual least squares estimate of \(\mathbf{\beta}\) is given by
 \(\mathbf{B} = (\mathbf{X}^{T} \mathbf{X})^{-1}  \mathbf{X}^{T} \mathbf{Y}\).</p>
 <p>Then let</p><ul><li><p>\(\mathbf{X}_I\) be the submatrix of \(\mathbf{X}\) whose \(m\) rows are indexed by \(I\),</p></li>
@@ -104,14 +104,31 @@ The usual least squares estimate of \(\mathbf{\beta}\) is given by
 
  
 <p>The influence measures defined by Barrett &amp; Ling (1992) are functions of two matrices \(\mathbf{H}_I\) and \(\mathbf{Q}_I\)
- defined as follows</p><ul><li><p>For the full data set, the “hat matrix”, \(\mathbf{H}\), is given by
+ defined as follows:</p><ul><li><p>For the full data set, the “hat matrix”, \(\mathbf{H}\), is given by
             \(\mathbf{H} = \mathbf{X} (\mathbf{X}^{T} \mathbf{X})^{-1} \mathbf{X}^{T} \),</p></li>
 <li><p>\(\mathbf{H}_I\) is \(m \times m\) the submatrix of \(\mathbf{H}\) corresponding to the index set \(I\),
             \(\mathbf{H}_I = \mathbf{X} (\mathbf{X}_I^{T} \mathbf{X}_I)^{-1} \mathbf{X}^{T} \),</p></li>
 <li><p>\(\mathbf{Q}\) is the analog of \(\mathbf{H}\) defined for the residual matrix \(\mathbf{E}\), that is,
             \(\mathbf{Q} = \mathbf{E} (\mathbf{E}^{T} \mathbf{E})^{-1} \mathbf{E}^{T} \), with corresponding submatrix
             \(\mathbf{Q}_I = \mathbf{E} (\mathbf{E}_I^{T} \mathbf{E}_I)^{-1} \mathbf{E}^{T} \),</p></li>
-</ul></div>
+</ul><p>### Cook's distance</p> 
+<p>In these terms, Cook's distance is defined for a univariate response by
+ $$D_I = (\mathbf{b} - \mathbf{b}_{(I)})^T (\mathbf{X}^T \mathbf{X}) (\mathbf{b} - \mathbf{b}_{(I)}) / p s^2 \; ,$$ 
+ a measure of the squared distance between the coefficients \(\mathbf{b}\) for the full data set and that
+ obtained when the cases in \(I\) are deleted.  In the multivariate case, Cook's distance is obtained
+ by replacing the vector of coefficients \(\mathbf{b}\) by \(\mathrm{vec} (\mathbf{B})\), the result of stringing out
+ the coefficients for all responses in a single vector.
+ $$D_I = 1/p [\mathrm{vec} (\mathbf{B} - \mathbf{B}_{(I)})]^T (S_{-1} \otimes \mathbf{X}^T \mathbf{X}) \mathrm{vec} (\mathbf{B} - \mathbf{B}_{(I)})  \; ,$$ 
+ where \(\otimes\) is the Krnoecker product and
+ \(\mathbf{S} = \mathbf{E}^T \mathbf{E} / (n-p)\) is the covariance matrix of the residuals.</p> 
+<p>### Leverage and residual components</p> 
+<p>For a univariate response, and when <code>m=1</code>, Cook's distance can be re-written as a product of leverage and residual components as
+ $$D_i = \left(\frac{n-p}{p} \right) \frac{h_{ii}}{(1 - h_ii)^2 q_{ii}.}$$</p> 
+<p>Then we can define a leverage component \(L_i\) and residual component \(R_i\) as</p> 
+<p>$$L_i = \frac{h_{ii}}{1 - h_{ii}} \quad\quad R_i = \frac{q_{ii}}{1 - h_{ii}}$$ 
+ \(R_i\) is the studentized residual.</p> 
+<p>In the general, multivariate case there are analogous matrix expressions.</p>
+    </div>
     <div class="section level2">
     <h2 id="references">References<a class="anchor" aria-label="anchor" href="#references"></a></h2>
     <p>Barrett, B. E. and Ling, R. F. (1992).

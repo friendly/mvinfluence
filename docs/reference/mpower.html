@@ -109,22 +109,22 @@ requiring a symmetric matrix.</p>
 <span class="r-in"><span><span class="va">M</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/sample.html" class="external-link">sample</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">9</span><span class="op">)</span>, <span class="fl">3</span>,<span class="fl">3</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu">mpower</span><span class="op">(</span><span class="va">M</span>,<span class="fl">2</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>      [,1] [,2] [,3]</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1,]   75  118   50</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [2,]   70  101   64</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [3,]   62   90   47</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1,]   91   95  114</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [2,]   57   70  109</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [3,]   38   29   40</span>
 <span class="r-in"><span><span class="fu">mpower</span><span class="op">(</span><span class="va">M</span>,<span class="fl">4</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>       [,1]  [,2]  [,3]</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1,] 16985 25268 13652</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [2,] 16288 24221 12972</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [3,] 13864 20636 11069</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1,] 18028 18601 25289</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [2,] 13319 13476 18488</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [3,]  6631  6800  9093</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># make a symmetric matrix</span></span></span>
 <span class="r-in"><span><span class="va">MM</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/crossprod.html" class="external-link">crossprod</a></span><span class="op">(</span><span class="va">M</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu">mpower</span><span class="op">(</span><span class="va">MM</span>, <span class="op">-</span><span class="fl">1</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>        [,1]   [,2]    [,3]</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1,]  1.245 -0.857  0.0740</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [2,] -0.857  0.601 -0.0600</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [3,]  0.074 -0.060  0.0231</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>          [,1]    [,2]     [,3]</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1,]  0.03704 -0.0390  0.00975</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [2,] -0.03899  0.1537 -0.09983</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [3,]  0.00975 -0.0998  0.08197</span>
 <span class="r-in"><span><span class="va">Mhalf</span> <span class="op">&lt;-</span> <span class="fu">mpower</span><span class="op">(</span><span class="va">MM</span>, <span class="fl">1</span><span class="op">/</span><span class="fl">2</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/all.equal.html" class="external-link">all.equal</a></span><span class="op">(</span><span class="va">MM</span>, <span class="va">Mhalf</span> <span class="op"><a href="https://rdrr.io/r/base/matmult.html" class="external-link">%*%</a></span> <span class="va">Mhalf</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] TRUE</span>

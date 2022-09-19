@@ -33,7 +33,7 @@ The usual
 case considers observations one at a time (\code{m=1}), where the hatvalue is 
 proportional to the squared Mahalanobis distance, \eqn{D^2} of each observation
 from the centroid of all observations. This function extends that definition
-to calculates a comparable quantity for subsets of size \code{m>1}.
+to calculate a comparable quantity for subsets of size \code{m>1}.
 }
 \examples{
 
