@@ -116,6 +116,13 @@ ggplot(data = db12, aes(x=y1.b0, y=y2.b1, label=rownames(db12))) +
   geom_label(size=6, fill="pink") 
   
 
+# other stats:: measures
+rstandard(Toy.mlm)
+rstudent(Toy.mlm)
+dffits(Toy.mlm)
+covratio(Toy.mlm)
+
+
 
 #car::dfbetasPlots(Toy.lm1)
 

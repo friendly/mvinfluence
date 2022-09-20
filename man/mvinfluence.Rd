@@ -119,6 +119,19 @@ Then let
 }
 }
 
+\section{Other measures}{
+
+The \code{\link[stats]{stats-package}} provides a collection of other leave-one-out deletion diagnostics that work with
+multivariate response models.
+
+\describe{
+   \item{\code{\link[stats]{rstandard}}}{Standardized residuals, re-scaling the residuals to have unit variance}
+   \item{\code{\link[stats]{rstudent}}}{Studentized residuals, re-scaling the residuals to have leave-one-out variance}
+   \item{\code{\link[stats]{dfits}}}{a scaled measure of the change in the predicted value for the \emph{i}th observation}
+   \item{\code{\link[stats]{covratio}}}{the change in the determinant of the covariance matrix of the estimates by deleting the \emph{i}th observation}
+}
+}
+
 \references{
 Barrett, B. E. and Ling, R. F. (1992).
      General Classes of Influence Measures for Multivariate Regression.

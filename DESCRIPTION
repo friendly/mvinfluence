@@ -1,8 +1,8 @@
 Package: mvinfluence
 Type: Package
 Title: Influence Measures and Diagnostic Plots for Multivariate Linear Models
-Version: 0.9.0
-Date: 2022-09-10
+Version: 0.9.1
+Date: 2022-09-20
 Authors@R: 
     person(given ="Michael", 
            family = "Friendly",
