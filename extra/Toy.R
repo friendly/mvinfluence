@@ -38,7 +38,19 @@ coef(Toy.lm1)
 coef(Toy.lm2)
 coef(Toy.mlm)
 
+# or, using broom::tidy
+broom::tidy(Toy.lm1)
+broom::tidy(Toy.lm2)
+broom::tidy(Toy.mlm)
 
+broom::glance(Toy.lm1)
+broom::glance(Toy.lm2)
+# But there is no glance method for an mlm
+# broom::glance(Toy.mlm)
+
+
+
+# Cook's distance
 df <- Toy
 df$D1  <- cooks.distance(Toy.lm1)
 df$D2  <- cooks.distance(Toy.lm2)

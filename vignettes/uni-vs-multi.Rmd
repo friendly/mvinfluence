@@ -98,6 +98,25 @@ Toy.lm2 <- lm(y2 ~ x, data=Toy)
 Toy.mlm <- lm(cbind(y1, y2) ~ x, data=Toy)
 ```
 
+Note that the coefficients in the multivariate model `Toy.mlm` are identical to those in the separate
+univariate models for `y1` and `y2`. That is, 
+$\mathbf{B} = [ \mathbf{b_{y1}} , \mathbf{b_{y2}} ]$, as if the univariate models were fit individually.
+
+```{r coefs}
+coef(Toy.lm1)
+coef(Toy.lm2)
+coef(Toy.mlm)
+```
+
+However, the test for predictors differ, because the multivariate tests take the correlation between `y1` and `y2` into account.
+
+```{r anovas}
+car::Anova(Toy.lm1)
+car::Anova(Toy.lm2)
+car::Anova(Toy.mlm)
+```
+
+
 ### Cook's D
 
 First, let's examine the Cook's D statistics for the models. Note that the function `cooks.distance()`
