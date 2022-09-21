@@ -13,7 +13,7 @@
 # 2017-02-12: consolidated id argument. J. Fox
 # 2017-11-30: substitute carPalette() for palette(). J. Fox
 # 2019-01-02: added lmerMod method. J. Fox
-# 2022-09-15: added ability to fill the bubble points
+# 2022-09-15: try to add ability to fill the bubble points
 
 # moved from Rcmdr 5 December 2006
 

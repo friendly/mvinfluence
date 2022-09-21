@@ -58,8 +58,8 @@ df$D12 <- cooks.distance(Toy.mlm)
 
 df
 
-ip1 <- car::influencePlot(Toy.lm1, id=list(cex=1.5))
-ip2 <- car::influencePlot(Toy.lm2, id=list(cex=1.5))
+ip1 <- car::influencePlot(Toy.lm1, id=list(cex=1.5), cex.lab=1.5)
+ip2 <- car::influencePlot(Toy.lm2, id=list(cex=1.5), cex.lab=1.5)
 
 influencePlot(Toy.mlm, id.n=2)
 influencePlot(Toy.mlm, id.n=2, type="LR")
@@ -122,6 +122,29 @@ rstudent(Toy.mlm)
 dffits(Toy.mlm)
 covratio(Toy.mlm)
 
+# John: ill-conditioning
+
+with(Toy, cor(y1, y2))
+
+(corr <- cov2cor(vcov(Toy.mlm)))
+
+car::confidenceEllipse(Toy.mlm, which=c(1,2), levels = 0.68,
+                       xlab = row.names(corr)[1], 
+                       ylab=row.names(corr)[2],
+                       fill = TRUE, fill.alpha = 0.2)
+
+car::confidenceEllipse(Toy.mlm, which=c(1,3), levels = 0.68,
+                       xlab = row.names(corr)[1], 
+                       ylab=row.names(corr)[3],
+                       fill = TRUE, fill.alpha = 0.2,
+                       cex.lab = 1.5)
+
+car::confidenceEllipse(Toy.mlm, which=c(2,4), levels = 0.68,
+                       xlab = row.names(corr)[2], 
+                       ylab=row.names(corr)[4],
+                       fill = TRUE, fill.alpha = 0.2,
+                       cex.lab = 1.5)
+
 
 
 #car::dfbetasPlots(Toy.lm1)
@@ -130,4 +153,6 @@ covratio(Toy.mlm)
 #influence.measures(Toy.mlm)
 
 mlm.influence(Toy.mlm)
+
+
 
