@@ -11,7 +11,7 @@ influencePlot(lm(prestige ~ income + education, data=Duncan), cex=2)
 # this works
 influencePlot(lm(prestige ~ income + education, data=Duncan), id=list(cex=2))
 
-# test my modification to use fill
+# test my modification to use fill ~ CookD
 applyDefaults <- car:::applyDefaults
 source("C:/R/Rprojects/mvinfluence/extra/influencePlot.R")
 influencePlot(lm(prestige ~ income + education, data=Duncan), id=list(cex=2))

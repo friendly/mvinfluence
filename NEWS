@@ -1,6 +1,7 @@
 Version 0.9-1 (2022-09-20)
 
 o Some additions to the `mvinfluence-package.R` documentation and `README.Rmd`
+o Add further explanation of the Toy example in the vignette
 
 
 Version 0.9-0 (2022-09-10)

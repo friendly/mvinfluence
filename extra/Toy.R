@@ -130,12 +130,12 @@ with(Toy, cor(y1, y2))
 
 car::confidenceEllipse(Toy.mlm, which=c(1,2), levels = 0.68,
                        xlab = row.names(corr)[1], 
-                       ylab=row.names(corr)[2],
+                       ylab = row.names(corr)[2],
                        fill = TRUE, fill.alpha = 0.2)
 
 car::confidenceEllipse(Toy.mlm, which=c(1,3), levels = 0.68,
                        xlab = row.names(corr)[1], 
-                       ylab=row.names(corr)[3],
+                       ylab = row.names(corr)[3],
                        fill = TRUE, fill.alpha = 0.2,
                        cex.lab = 1.5)
 
