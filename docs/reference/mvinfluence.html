@@ -12,7 +12,7 @@ models following methods proposed by Barrett &amp;amp; Ling (1992) and provide s
     
     <a class="navbar-brand me-2" href="../index.html">mvinfluence</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.9.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.9.1</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -149,6 +149,26 @@ The usual least squares estimate of \(\mathbf{\beta}\) is given by
 <span>  <span class="va">R</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">sapply</a></span><span class="op">(</span><span class="va">x</span><span class="op">$</span><span class="va">R</span>, <span class="va">FUN</span><span class="op">)</span></span></code></pre></div>
 
     </div>
+    <div class="section level2">
+    <h2 id="other-measures">Other measures<a class="anchor" aria-label="anchor" href="#other-measures"></a></h2>
+    
+
+<p>The <code><a href="https://rdrr.io/r/stats/stats-package.html" class="external-link">stats-package</a></code> provides a collection of other leave-one-out deletion diagnostics that work with
+multivariate response models.</p>
+<dl><dt><code><a href="https://rdrr.io/r/stats/influence.measures.html" class="external-link">rstandard</a></code></dt>
+<dd><p>Standardized residuals, re-scaling the residuals to have unit variance</p></dd>
+
+   <dt><code><a href="https://rdrr.io/r/stats/influence.measures.html" class="external-link">rstudent</a></code></dt>
+<dd><p>Studentized residuals, re-scaling the residuals to have leave-one-out variance</p></dd>
+
+   <dt><code>dfits</code></dt>
+<dd><p>a scaled measure of the change in the predicted value for the <em>i</em>th observation</p></dd>
+
+   <dt><code><a href="https://rdrr.io/r/stats/influence.measures.html" class="external-link">covratio</a></code></dt>
+<dd><p>the change in the determinant of the covariance matrix of the estimates by deleting the <em>i</em>th observation</p></dd>
+
+
+</dl></div>
     <div class="section level2">
     <h2 id="references">References<a class="anchor" aria-label="anchor" href="#references"></a></h2>
     <p>Barrett, B. E. and Ling, R. F. (1992).

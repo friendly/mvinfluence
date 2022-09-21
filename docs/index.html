@@ -39,7 +39,7 @@
     
     <a class="navbar-brand me-2" href="index.html">mvinfluence</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.9.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.9.1</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -83,7 +83,7 @@
 </h1>
 </div>
 <p><strong>Influence Measures and Diagnostic Plots for Multivariate Linear Models</strong></p>
-<p>Version 0.9-0</p>
+<p>Version 0.9-1</p>
 <p>Functions in this package compute regression deletion diagnostics for multivariate linear models following methods proposed by Barrett &amp; Ling (1992) and provide some associated diagnostic plots. The diagnostic measures include hat-values (leverages), generalized Cook’s distance, and generalized squared ‘studentized’ residuals. Several types of plots to detect influential observations are provided.</p>
 <p>In addition, the functions provide diagnostics for deletion of subsets of observations of size <code>m&gt;1</code>. This case is theoretically interesting because sometimes pairs (<code>m=2</code>) of influential observations can mask each other, sometimes they can have joint influence far exceeding their individual effects, as well as other interesting phenomena described by Lawrence (1995). Associated methods for the case <code>m&gt;1</code> are still under development in this package.</p>
 <div class="section level2">
@@ -190,8 +190,10 @@
 <h3 id="index-plots">Index plots<a class="anchor" aria-label="anchor" href="#index-plots"></a>
 </h3>
 <p>If you wish to see how the observations fare on each of the the measures (as well as Mahalanobis <span class="math inline"><em>D</em><sup>2</sup></span> of the residuals from the origin), the <code>inflIndexPlot()</code> function gives you index plots.</p>
+<p>There are extensive options for identifying and labeling “noteworthy” observations, with various methods. These rely on <code><a href="https://rdrr.io/pkg/car/man/showLabels.html" class="external-link">car::showLabels()</a></code>, where the default <code>id.method = "y"</code> label points whose Y coordinate is very large.</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu">infIndexPlot</span><span class="op">(</span><span class="va">Rohwer.mod</span>, id.n<span class="op">=</span><span class="fl">3</span>, id.col <span class="op">=</span> <span class="st">"red"</span>, id.cex<span class="op">=</span><span class="fl">1.5</span>, id.location<span class="op">=</span><span class="st">"ab"</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu">infIndexPlot</span><span class="op">(</span><span class="va">Rohwer.mod</span>, </span>
+<span>             id.n<span class="op">=</span><span class="fl">3</span>, id.col <span class="op">=</span> <span class="st">"red"</span>, id.cex<span class="op">=</span><span class="fl">1.5</span>, id.location<span class="op">=</span><span class="st">"ab"</span><span class="op">)</span></span></code></pre></div>
 <p><img src="reference/figures/README-indexplot-1.png"><!-- --></p>
 <p>In this example, note that while case 5 stands out as influential, it does not have an exceptionally large Mahalanobis squared distance, <span class="math inline"><em>D</em><sup>2</sup></span> of the residuals.</p>
 </div>
@@ -200,9 +202,10 @@
 <div class="section level1">
 <h1 id="robust-mlms">Robust MLMs<a class="anchor" aria-label="anchor" href="#robust-mlms"></a>
 </h1>
-<p>Influential cases and those with large residuals can sometimes be dealt with by fitting a <strong>robust</strong> version of the multivariate model. The function <code><a href="http://friendly.github.io/heplots/reference/robmlm.html" class="external-link">heplots::robmlm()</a></code> uses a simple M-estimator that down-weights cases with large residuals. Fitting is done by iterated re-weighted least squares (IWLS), using weights based on the Mahalanobis squared distances of the current residuals from the origin, and a scaling (covariance) matrix calculated by <code>MASS:cov.trob()</code>.</p>
+<p>Influential cases and those with large residuals can sometimes be dealt with by fitting a <strong>robust</strong> version of the multivariate model. The function <code><a href="http://friendly.github.io/heplots/reference/robmlm.html" class="external-link">heplots::robmlm()</a></code> uses a simple M-estimator that down-weights cases with large residuals. Fitting is done by iterated re-weighted least squares (IWLS), using weights based on the Mahalanobis squared distances of the current residuals from the origin, and a scaling (covariance) matrix calculated by <code><a href="https://rdrr.io/pkg/MASS/man/cov.trob.html" class="external-link">MASS::cov.trob()</a></code>.</p>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">Rohwer.rmod</span> <span class="op">&lt;-</span> <span class="fu">heplots</span><span class="fu">::</span><span class="fu"><a href="http://friendly.github.io/heplots/reference/robmlm.html" class="external-link">robmlm</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">cbind</a></span><span class="op">(</span><span class="va">SAT</span>, <span class="va">PPVT</span>, <span class="va">Raven</span><span class="op">)</span> <span class="op">~</span> <span class="va">n</span> <span class="op">+</span> <span class="va">s</span> <span class="op">+</span> <span class="va">ns</span> <span class="op">+</span> <span class="va">na</span> <span class="op">+</span> <span class="va">ss</span>, data<span class="op">=</span><span class="va">Rohwer2</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">Rohwer.rmod</span> <span class="op">&lt;-</span> <span class="fu">heplots</span><span class="fu">::</span><span class="fu"><a href="http://friendly.github.io/heplots/reference/robmlm.html" class="external-link">robmlm</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">cbind</a></span><span class="op">(</span><span class="va">SAT</span>, <span class="va">PPVT</span>, <span class="va">Raven</span><span class="op">)</span> <span class="op">~</span> <span class="va">n</span> <span class="op">+</span> <span class="va">s</span> <span class="op">+</span> <span class="va">ns</span> <span class="op">+</span> <span class="va">na</span> <span class="op">+</span> <span class="va">ss</span>, </span>
+<span>                               data<span class="op">=</span><span class="va">Rohwer2</span><span class="op">)</span></span></code></pre></div>
 <p>The returned object has a <code>weights</code> component, the weight for each case in the final iteration. Which ones are less than 0.9 here?</p>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/which.html" class="external-link">which</a></span><span class="op">(</span><span class="va">Rohwer.rmod</span><span class="op">$</span><span class="va">weights</span> <span class="op">&lt;</span> <span class="fl">.9</span><span class="op">)</span></span>

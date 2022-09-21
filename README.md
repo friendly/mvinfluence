@@ -10,7 +10,7 @@
 **Influence Measures and Diagnostic Plots for Multivariate Linear
 Models**
 
-Version 0.9-0
+Version 0.9-1
 
 Functions in this package compute regression deletion diagnostics for
 multivariate linear models following methods proposed by Barrett & Ling
@@ -166,8 +166,14 @@ If you wish to see how the observations fare on each of the the measures
 (as well as Mahalanobis $D^2$ of the residuals from the origin), the
 `inflIndexPlot()` function gives you index plots.
 
+There are extensive options for identifying and labeling “noteworthy”
+observations, with various methods. These rely on `car::showLabels()`,
+where the default `id.method = "y"` label points whose Y coordinate is
+very large.
+
 ``` r
-infIndexPlot(Rohwer.mod, id.n=3, id.col = "red", id.cex=1.5, id.location="ab")
+infIndexPlot(Rohwer.mod, 
+             id.n=3, id.col = "red", id.cex=1.5, id.location="ab")
 ```
 
 ![](man/figures/README-indexplot-1.png)<!-- -->
@@ -184,10 +190,11 @@ function `heplots::robmlm()` uses a simple M-estimator that down-weights
 cases with large residuals. Fitting is done by iterated re-weighted
 least squares (IWLS), using weights based on the Mahalanobis squared
 distances of the current residuals from the origin, and a scaling
-(covariance) matrix calculated by `MASS:cov.trob()`.
+(covariance) matrix calculated by `MASS::cov.trob()`.
 
 ``` r
-Rohwer.rmod <- heplots::robmlm(cbind(SAT, PPVT, Raven) ~ n + s + ns + na + ss, data=Rohwer2)
+Rohwer.rmod <- heplots::robmlm(cbind(SAT, PPVT, Raven) ~ n + s + ns + na + ss, 
+                               data=Rohwer2)
 ```
 
 The returned object has a `weights` component, the weight for each case
