@@ -13,11 +13,9 @@
 # 2017-02-12: consolidated id argument. J. Fox
 # 2017-11-30: substitute carPalette() for palette(). J. Fox
 # 2019-01-02: added lmerMod method. J. Fox
-# 2022-09-21: Fill the bubble points by default. M. Friendly & J. Fox
+# 2022-09-15: try to add ability to fill the bubble points
 
 # moved from Rcmdr 5 December 2006
-
-applyDefaults <- car:::applyDefaults ## temporary
 
 influencePlot <- function(model, ...){
     UseMethod("influencePlot")
@@ -25,9 +23,8 @@ influencePlot <- function(model, ...){
 
 influencePlot.lm <- function(model, scale=10,  
                              xlab="Hat-Values", ylab="Studentized Residuals",
-                             id=TRUE, 
-                             fill=TRUE, fill.col=carPalette()[2], fill.alpha=0.5,          #MF
-                             ...){
+                             fill=TRUE, fill.col="red", fill.alpha=0.5,          #MF
+                             id=TRUE, ...){
     id <- applyDefaults(id, defaults=list(method="noteworthy", n=2, cex=1, col=carPalette()[1], location="lr"), type="id")
     if (isFALSE(id)){
         id.n <- 0
@@ -51,14 +48,11 @@ influencePlot.lm <- function(model, scale=10,
     scale <- scale/max(cook, na.rm=TRUE)
     p <- length(coef(model))
     n <- sum(!is.na(rstud))
-    plot(hatval, rstud, xlab=xlab, ylab=ylab, type="n", ...)      #MF remove: type='n',
+    if (fill) cols <- scales::alpha(fill.col, alpha=fill.alpha * scale)          #MF
+    plot(hatval, rstud, xlab=xlab, ylab=ylab, pch=21, cex=scale*cook, ...)      #MF remove: type='n',
     abline(v=c(2, 3)*p/n, lty=2)
     abline(h=c(-2, 0, 2), lty=2)
-    points(hatval, rstud, cex=scale*cook, ...) 
-    if (fill) {
-      cols <- scales::alpha(fill.col, alpha=fill.alpha*(cook/max(cook)))          #MF
-      points(hatval, rstud, cex=scale*cook, col=cols, pch=16)  
-      }#MF
+    points(hatval, rstud, cex=scale*cook, col=cols, ...)                         #MF
     if(id.method == "noteworthy"){
         which.rstud <- order(abs(rstud), decreasing=TRUE)[1:id.n]
         which.cook <- order(cook, decreasing=TRUE)[1:id.n]
