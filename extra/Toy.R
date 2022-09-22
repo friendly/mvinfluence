@@ -145,6 +145,20 @@ car::confidenceEllipse(Toy.mlm, which=c(2,4), levels = 0.68,
                        fill = TRUE, fill.alpha = 0.2,
                        cex.lab = 1.5)
 
+heplots::coefplot(Toy.mlm)
+# FIXME
+# Error in coefplot.mlm(Toy.mlm) : There are only 0 response variables.
+
+# try JF's new version
+source(here("extra", "confidenceEllipses.R"))
+
+data(Duncan, package="carData")
+m <- lm(prestige ~ income + education + type, data=Duncan)
+confidenceEllipses(m)
+confidenceEllipses(m, fill=TRUE)
+
+confidenceEllipses(Toy.mlm, fill=TRUE)
+
 
 
 #car::dfbetasPlots(Toy.lm1)
