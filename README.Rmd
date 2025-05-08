@@ -192,7 +192,7 @@ What difference do these observations make in the fitted regression? This calcul
 between the coefficients in the standard `lm()` and the robust version.  The largest changes are for the coefficients
 of the `ss` task, but there is an even greater one for `PPVT` on the `n` task.
 ```{r}
-100 * abs(coef(Rohwer.mod) - coef(Rohwer.rmod)) / abs(coef(Rohwer.mod))
+100 * abs(coef(Rohwer.mod) - coef(Rohwer.rmod)) / coef(Rohwer.mod)
 ```
 
 ## Citation

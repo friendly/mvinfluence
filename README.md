@@ -243,14 +243,14 @@ changes are for the coefficients of the `ss` task, but there is an even
 greater one for `PPVT` on the `n` task.
 
 ``` r
-100 * abs(coef(Rohwer.mod) - coef(Rohwer.rmod)) / abs(coef(Rohwer.mod))
-#>                SAT  PPVT  Raven
-#> (Intercept)  1.001  1.27  0.755
-#> n            4.001 36.32  3.874
-#> s            1.195 13.01  0.401
-#> ns           0.152 15.68 14.771
-#> na           1.560  2.26  6.913
-#> ss          15.173 26.55 21.288
+100 * abs(coef(Rohwer.mod) - coef(Rohwer.rmod)) / coef(Rohwer.mod)
+#>                 SAT   PPVT   Raven
+#> (Intercept)  -1.001   1.27   0.755
+#> n             4.001  36.32   3.874
+#> s             1.195  13.01   0.401
+#> ns           -0.152 -15.68 -14.771
+#> na            1.560   2.26   6.913
+#> ss          -15.173  26.55 -21.288
 ```
 
 ## Citation
@@ -262,18 +262,17 @@ citation("mvinfluence")
 #> To cite package 'mvinfluence' in publications use:
 #> 
 #>   Friendly M (2022). _mvinfluence: Influence Measures and Diagnostic
-#>   Plots for Multivariate Linear Models_. R package version 0.9.0,
-#>   <https://CRAN.R-project.org/package=mvinfluence>.
+#>   Plots for Multivariate Linear Models_. R package version 0.9.1,
+#>   <https://github.com/friendly/mvinfluence>.
 #> 
 #> A BibTeX entry for LaTeX users is
 #> 
 #>   @Manual{,
-#>     title = {mvinfluence: Influence Measures and Diagnostic Plots for Multivariate Linear
-#> Models},
+#>     title = {mvinfluence: Influence Measures and Diagnostic Plots for Multivariate Linear Models},
 #>     author = {Michael Friendly},
 #>     year = {2022},
-#>     note = {R package version 0.9.0},
-#>     url = {https://CRAN.R-project.org/package=mvinfluence},
+#>     note = {R package version 0.9.1},
+#>     url = {https://github.com/friendly/mvinfluence},
 #>   }
 ```
 
