@@ -44,23 +44,23 @@ The following sections describe the notation and measures used in the calculatio
 
 
 Let \eqn{\mathbf{X}} be the model matrix in the multivariate linear model, 
-\eqn{\mathbf{Y}_{n \times p} = \mathbf{X}_{n \times r} \mathbf{\beta}_{r \times p} + \mathbf{E}_{n \times p}}.
-The usual least squares estimate of \eqn{\mathbf{\beta}} is given by
+\eqn{\mathbf{Y}_{n \times p} = \mathbf{X}_{n \times r} \boldsymbol{\beta}_{r \times p} + \mathbf{E}_{n \times p}}.
+The usual least squares estimate of \eqn{\boldsymbol{\beta}} is given by
 \eqn{\mathbf{B} = (\mathbf{X}^{T} \mathbf{X})^{-1}  \mathbf{X}^{T} \mathbf{Y}}.
 
 Then let 
   \itemize{
      \item \eqn{\mathbf{X}_I} be the submatrix of \eqn{\mathbf{X}} whose \eqn{m} rows are indexed by \eqn{I},
-     \item \eqn{\mathbf{X}_{(I)}} is the complement, the submatrix of \eqn{\mathbf{X}} with the \eqn{m} rows in \eqn{I} deleted,
+     \item \eqn{\mathbf{X}_{(-I)}} is the complement, the submatrix of \eqn{\mathbf{X}} with the \eqn{m} rows in \eqn{I} deleted,
   }
  
- Matrices \eqn{\mathbf{Y}_I}, \eqn{\mathbf{Y}_{(I)}} are defined similarly. 
+ Matrices \eqn{\mathbf{Y}_I}, \eqn{\mathbf{Y}_{(-I)}} are defined similarly. 
  
  In the calculation of regression coefficients,
- \eqn{\mathbf{B}_{(I)} = (\mathbf{X}_{(I)}^{T} \mathbf{X}_{(I)})^{-1} \mathbf{X}_{(I)}^{T} \mathbf{Y}_{I}} are the estimated 
+ \eqn{\mathbf{B}_{(-I)} = (\mathbf{X}_{(-I)}^{T} \mathbf{X}_{(-I)})^{-1} \mathbf{X}_{(-I)}^{T} \mathbf{Y}_{I}} are the estimated 
  coefficients
  when the cases indexed by \eqn{I} have been removed. The corresponding residuals are
- \eqn{\mathbf{E}_{(I)} = \mathbf{Y}_{(I)} - \mathbf{X}_{(I)} \mathbf{B}_{(I)}}.
+ \eqn{\mathbf{E}_{(-I)} = \mathbf{Y}_{(-I)} - \mathbf{X}_{(-I)} \mathbf{B}_{(-I)}}.
 }
 
 \section{Measures}{
@@ -83,15 +83,15 @@ Then let
 
  
  In these terms, Cook's distance is defined for a univariate response by
- \deqn{D_I = (\mathbf{b} - \mathbf{b}_{(I)})^T (\mathbf{X}^T \mathbf{X}) (\mathbf{b} - \mathbf{b}_{(I)}) / p s^2 \; ,} 
+ \deqn{D_I = (\mathbf{b} - \mathbf{b}_{(-I)})^T (\mathbf{X}^T \mathbf{X}) (\mathbf{b} - \mathbf{b}_{(-I)}) / p s^2 \; ,} 
  a measure of the squared distance between the coefficients \eqn{\mathbf{b}} for the full data set and those
- \eqn{\mathbf{b}_{(I)}} 
+ \eqn{\mathbf{b}_{(-I)}} 
  obtained when the cases in \eqn{I} are deleted.  
  
  In the multivariate case, Cook's distance is obtained
  by replacing the vector of coefficients \eqn{\mathbf{b}} by \eqn{\mathrm{vec} (\mathbf{B})}, the result of stringing out
  the coefficients for all responses in a single \eqn{n \times p}-length vector.
- \deqn{D_I = \frac{1}{p} [\mathrm{vec} (\mathbf{B} - \mathbf{B}_{(I)})]^T (S_{-1} \otimes \mathbf{X}^T \mathbf{X}) \mathrm{vec} (\mathbf{B} - \mathbf{B}_{(I)})  \; ,} 
+ \deqn{D_I = \frac{1}{p} [\mathrm{vec} (\mathbf{B} - \mathbf{B}_{(-I)})]^T (S_{-1} \otimes \mathbf{X}^T \mathbf{X}) \mathrm{vec} (\mathbf{B} - \mathbf{B}_{(-I)})  \; ,} 
  where \eqn{\otimes} is the Kronecker (direct) product and
  \eqn{\mathbf{S} = \mathbf{E}^T \mathbf{E} / (n-p)} is the covariance matrix of the residuals.
 }
@@ -132,6 +132,15 @@ multivariate response models.
 }
 }
 
+\examples{
+
+data(Rohwer, package="heplots")
+Rohwer2 <- subset(Rohwer, subset=group==2)
+rownames(Rohwer2)<- 1:nrow(Rohwer2)
+Rohwer.mod <- lm(cbind(SAT, PPVT, Raven) ~ n+s+ns+na+ss, data=Rohwer2)
+
+influencePlot(Rohwer.mod, id.n = 3)
+}
 \references{
 Barrett, B. E. and Ling, R. F. (1992).
      General Classes of Influence Measures for Multivariate Regression.
@@ -143,4 +152,17 @@ Barrett, B. E. and Ling, R. F. (1992).
    A. J. Lawrence (1995).
      Deletion Influence and Masking in Regression.
      \emph{Journal of the Royal Statistical Society. Series B (Methodological)} , \bold{57}, 1, 181-189.
+}
+\seealso{
+Useful links:
+\itemize{
+  \item \url{https://github.com/friendly/mvinfluence}
+  \item \url{https://friendly.github.io/mvinfluence/}
+  \item Report bugs at \url{https://github.com/friendly/mvinfluence/issues}
+}
+
+}
+\author{
+\strong{Maintainer}: Michael Friendly \email{friendly@yorku.ca} (\href{https://orcid.org/0000-0002-3237-0941}{ORCID})
+
 }

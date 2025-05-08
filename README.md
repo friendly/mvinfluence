@@ -2,6 +2,9 @@
 <!-- README.md is generated from README.Rmd. Please edit that file and knit again -->
 
 [![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/mvinfluence)](https://cran.r-project.org/package=mvinfluence)
+[![R_Universe](https://friendly.r-universe.dev/badges/mvinfluence)](https://friendly.r-universe.dev)
+[![Last
+Commit](https://img.shields.io/github/last-commit/friendly/mvinfluence)](https://github.com/friendly/mvinfluence/)
 [![](http://cranlogs.r-pkg.org/badges/grand-total/mvinfluence)](https://cran.r-project.org/package=mvinfluence)
 [![DOI](https://zenodo.org/badge/128774860.svg)](https://zenodo.org/badge/latestdoi/128774860)
 
@@ -10,7 +13,7 @@
 **Influence Measures and Diagnostic Plots for Multivariate Linear
 Models**
 
-Version 0.9-1
+Version 0.9.1
 
 Functions in this package compute regression deletion diagnostics for
 multivariate linear models following methods proposed by Barrett & Ling
@@ -34,11 +37,13 @@ Documentation for the package is now available at
 
 ## Installation
 
-Get the released CRAN version or this development version:
+Get the released CRAN version or the development version, here or
+[R-universe](https://friendly.r-universe.dev)
 
-|                     |                                                   |
-|---------------------|---------------------------------------------------|
-| CRAN version        | `install.packages("mvinfluence")`                 |
+|  |  |
+|----|----|
+| CRAN version | `install.packages("mvinfluence")` |
+| R-universe | `install.packages("mvinfluence", repos = c('https://friendly.r-universe.dev')` |
 | Development version | `remotes::install_github("friendly/mvinfluence")` |
 
 ## Goals
@@ -254,21 +259,21 @@ To cite `mvinfluence` in publications, use:
 
 ``` r
 citation("mvinfluence")
-#> 
 #> To cite package 'mvinfluence' in publications use:
 #> 
 #>   Friendly M (2022). _mvinfluence: Influence Measures and Diagnostic
 #>   Plots for Multivariate Linear Models_. R package version 0.9.0,
-#>   <https://github.com/friendly/mvinfluence>.
+#>   <https://CRAN.R-project.org/package=mvinfluence>.
 #> 
 #> A BibTeX entry for LaTeX users is
 #> 
 #>   @Manual{,
-#>     title = {mvinfluence: Influence Measures and Diagnostic Plots for Multivariate Linear Models},
+#>     title = {mvinfluence: Influence Measures and Diagnostic Plots for Multivariate Linear
+#> Models},
 #>     author = {Michael Friendly},
 #>     year = {2022},
 #>     note = {R package version 0.9.0},
-#>     url = {https://github.com/friendly/mvinfluence},
+#>     url = {https://CRAN.R-project.org/package=mvinfluence},
 #>   }
 ```
 
