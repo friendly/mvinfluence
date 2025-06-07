@@ -71,6 +71,8 @@
 #' influencePlot(dmod, id.n=3)
 #' lrPlot(dmod, id.n=3)
 #' 
+#' # NLSY data
+#' 
 #' @export
 lrPlot <- function(model, ...){
     UseMethod("lrPlot")

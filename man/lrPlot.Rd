@@ -112,6 +112,8 @@ dmod <- lm(prestige ~ income + education, data = Duncan)
 influencePlot(dmod, id.n=3)
 lrPlot(dmod, id.n=3)
 
+# NLSY data
+
 }
 \references{
 A. J. Lawrence (1995). Deletion Influence and Masking in

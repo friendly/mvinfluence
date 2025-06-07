@@ -91,7 +91,7 @@ Then let
  In the multivariate case, Cook's distance is obtained
  by replacing the vector of coefficients \eqn{\mathbf{b}} by \eqn{\mathrm{vec} (\mathbf{B})}, the result of stringing out
  the coefficients for all responses in a single \eqn{n \times p}-length vector.
- \deqn{D_I = \frac{1}{p} [\mathrm{vec} (\mathbf{B} - \mathbf{B}_{(-I)})]^T (S_{-1} \otimes \mathbf{X}^T \mathbf{X}) \mathrm{vec} (\mathbf{B} - \mathbf{B}_{(-I)})  \; ,} 
+ \deqn{D_I = \frac{1}{p} [\mathrm{vec} (\mathbf{B} - \mathbf{B}_{(-I)})]^T (S^{-1} \otimes \mathbf{X}^T \mathbf{X}) \mathrm{vec} (\mathbf{B} - \mathbf{B}_{(-I)})  \; ,} 
  where \eqn{\otimes} is the Kronecker (direct) product and
  \eqn{\mathbf{S} = \mathbf{E}^T \mathbf{E} / (n-p)} is the covariance matrix of the residuals.
 }
