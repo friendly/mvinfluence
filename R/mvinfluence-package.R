@@ -54,7 +54,7 @@
 #'  when the cases indexed by \eqn{I} have been removed. The corresponding residuals are
 #'  \eqn{\mathbf{E}_{(-I)} = \mathbf{Y}_{(-I)} - \mathbf{X}_{(-I)} \mathbf{B}_{(-I)}}.
 #'  
-#' @section Measures:
+#' @section Hat values and Residuals:
 #'  
 #'  The influence measures defined by Barrett & Ling (1992) are functions of two matrices \eqn{\mathbf{H}_I} and \eqn{\mathbf{Q}_I}
 #'  defined as follows:
@@ -155,9 +155,14 @@
 #' 
 #' data(Rohwer, package="heplots")
 #' Rohwer2 <- subset(Rohwer, subset=group==2)
-#' rownames(Rohwer2)<- 1:nrow(Rohwer2)
+#' rownames(Rohwer2) <- 1:nrow(Rohwer2)
 #' Rohwer.mod <- lm(cbind(SAT, PPVT, Raven) ~ n+s+ns+na+ss, data=Rohwer2)
 #' 
 #' influencePlot(Rohwer.mod, id.n = 3)
+#' # LR plot
+#' influencePlot(Rohwer.mod, id.n = 3, type = "LR")
+#' # 'cookd' plot
+#' influencePlot(Rohwer.mod, id.n = 3, type = "cookd")
+#' 
 "_PACKAGE"
 
