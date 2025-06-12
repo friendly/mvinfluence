@@ -100,7 +100,7 @@ Then let
 
  
  For a univariate response, and when \code{m = 1}, Cook's distance can be re-written as a product of leverage and residual components as
- \deqn{D_i = \left(\frac{n-p}{p} \right) \frac{h_{ii}}{(1 - h_{ii})^2 q_{ii} } \;.}
+ \deqn{D_i = \left(\frac{n-p}{p} \right) \frac{h_{ii} q_{ii}}{(1 - h_{ii})^2  } \;.}
  
  Then we can define a leverage component \eqn{L_i} and residual component \eqn{R_i} as
  
