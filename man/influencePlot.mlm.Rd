@@ -46,7 +46,7 @@ the base fill color to which transparency specified by \code{fill.alpha.max}
 is applied.}
 
 \item{labels, id.method, id.n, id.cex, id.col}{settings for labeling points;
-see \code{\link{showLabels}} for details. To omit point labeling, set
+see \code{\link[car]{showLabels}} for details. To omit point labeling, set
 \code{id.n=0}, the default.  The default \code{id.method="noteworthy"} is
 used in this function to indicate setting labels for points with large
 Studentized residuals, hat-values or Cook's distances. See Details below.

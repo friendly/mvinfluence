@@ -34,6 +34,7 @@
 #' but they have not yet been incorporated into our main functions
 #' \code{\link{mlm.influence}} and \code{\link{influence.mlm}}.
 #' 
+#' @name Jfuns
 #' @aliases Jdet Jtr COOKD COVRATIO DFFITS
 #' @param H a scalar or \eqn{m \times m} matrix giving the hat values for subset \eqn{I}
 #' @param Q a scalar or \eqn{m \times m} matrix giving the residual values for subset \eqn{I}
@@ -48,6 +49,7 @@
 #' @keywords array
 
 #' J trace function
+#' @rdname Jfuns
 Jtr <- function (H, Q, a, b, f) {
 		I <- diag(nrow(H))
 		res <- H %*% Q %*% mpower(I-H-Q, a) %*% mpower(I-H, b)
@@ -56,7 +58,7 @@ Jtr <- function (H, Q, a, b, f) {
 
 #' J det function
 #' 
-#' @rdname Jtr
+#' @rdname Jfuns
 Jdet <- function (H, Q, a, b, f) {
 		I <- diag(nrow(H))
 		res <- H %*% Q %*% mpower(I-H-Q, a) %*% mpower(I-H, b)
@@ -69,7 +71,7 @@ Jdet <- function (H, Q, a, b, f) {
 #' @param p number of predictor variables
 #' @param r number of response variables
 #' @param m deletion subset size
-#' @rdname Jtr
+#' @rdname Jfuns
 
 COOKD <- function(H, Q, n, p, r, m) {
  		f <- (n-p)/p
@@ -78,14 +80,14 @@ COOKD <- function(H, Q, n, p, r, m) {
 
 #' DFFITS^2, in terms of Jtr()
 #' 
-#' @rdname Jtr
+#' @rdname Jfuns
 DFFITS <- function(H, Q, n, p, r, m) {
  		f <- (n-p-m)/p
  		Jtr(H, Q, -1, 0, f)
  }
  
 #' COVRATIO, in terms of Jdet()
-#' @rdname Jtr
+#' @rdname Jfuns
 
 COVRATIO <- function(H, Q, n, p, r, m) {
  		f <- ((n-p)/(n-p-m))^r*p

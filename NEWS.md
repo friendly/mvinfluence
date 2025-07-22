@@ -3,6 +3,8 @@
 o Revise notation in mvinfluence-package
 o Point to R-universe dev version
 o Add schooldata examples
+o Now depends: R (>= 4.1.0)
+o Corrected duplicate aliases and missing/incorrect links in Rd files
 
 ## Version 0.9.1 (2022-09-20)
 
