@@ -127,7 +127,7 @@ multivariate response models.
 \describe{
    \item{\code{\link[stats]{rstandard}}}{Standardized residuals, re-scaling the residuals to have unit variance}
    \item{\code{\link[stats]{rstudent}}}{Studentized residuals, re-scaling the residuals to have leave-one-out variance}
-   \item{\code{\link[stats]{dfits}}}{a scaled measure of the change in the predicted value for the \emph{i}th observation}
+   \item{\code{\link[stats]{dffits}}}{a scaled measure of the change in the predicted value for the \emph{i}th observation}
    \item{\code{\link[stats]{covratio}}}{the change in the determinant of the covariance matrix of the estimates by deleting the \emph{i}th observation}
 }
 }
