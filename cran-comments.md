@@ -6,6 +6,13 @@
 ## R CMD check results
 There were no ERRORs or WARNINGs or NOTEs
 
+## Reverse dependencies
+
+> revdep()
+[1] "heplots"
+
+revdepcheck() - OK
+
 ## Comments
 This is a major maintenance release, largely fixing aliases and missing/incorrect links in Rd files.
 Added more usage examples.
