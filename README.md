@@ -2,7 +2,7 @@
 <!-- README.md is generated from README.Rmd. Please edit that file and knit again -->
 
 [![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/mvinfluence)](https://cran.r-project.org/package=mvinfluence)
-[![R_Universe](https://friendly.r-universe.dev/badges/mvinfluence)](https://friendly.r-universe.dev)
+[![R_Universe](https://friendly.r-universe.dev/badges/mvinfluence)](https://friendly.r-universe.dev/mvinfluence)
 [![Last
 Commit](https://img.shields.io/github/last-commit/friendly/mvinfluence)](https://github.com/friendly/mvinfluence/)
 [![](http://cranlogs.r-pkg.org/badges/grand-total/mvinfluence)](https://cran.r-project.org/package=mvinfluence)
@@ -262,17 +262,21 @@ citation("mvinfluence")
 #> To cite package 'mvinfluence' in publications use:
 #> 
 #>   Friendly M (2022). _mvinfluence: Influence Measures and Diagnostic
-#>   Plots for Multivariate Linear Models_. R package version 0.9.1,
-#>   <https://github.com/friendly/mvinfluence>.
+#>   Plots for Multivariate Linear Models_.
+#>   doi:10.32614/CRAN.package.mvinfluence
+#>   <https://doi.org/10.32614/CRAN.package.mvinfluence>, R package
+#>   version 0.9.0, <https://CRAN.R-project.org/package=mvinfluence>.
 #> 
 #> A BibTeX entry for LaTeX users is
 #> 
 #>   @Manual{,
-#>     title = {mvinfluence: Influence Measures and Diagnostic Plots for Multivariate Linear Models},
+#>     title = {mvinfluence: Influence Measures and Diagnostic Plots for Multivariate Linear
+#> Models},
 #>     author = {Michael Friendly},
 #>     year = {2022},
-#>     note = {R package version 0.9.1},
-#>     url = {https://github.com/friendly/mvinfluence},
+#>     note = {R package version 0.9.0},
+#>     url = {https://CRAN.R-project.org/package=mvinfluence},
+#>     doi = {10.32614/CRAN.package.mvinfluence},
 #>   }
 ```
 

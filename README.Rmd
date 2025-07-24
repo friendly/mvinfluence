@@ -25,7 +25,7 @@ library(mvinfluence)
 ```
 
 [![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/mvinfluence)](https://cran.r-project.org/package=mvinfluence)
-[![R_Universe](https://friendly.r-universe.dev/badges/mvinfluence)](https://friendly.r-universe.dev)
+[![R_Universe](https://friendly.r-universe.dev/badges/mvinfluence)](https://friendly.r-universe.dev/mvinfluence)
 [![Last Commit](https://img.shields.io/github/last-commit/friendly/mvinfluence)](https://github.com/friendly/mvinfluence/)
 [![](http://cranlogs.r-pkg.org/badges/grand-total/mvinfluence)](https://cran.r-project.org/package=mvinfluence)
 [![DOI](https://zenodo.org/badge/128774860.svg)](https://zenodo.org/badge/latestdoi/128774860)
