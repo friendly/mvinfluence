@@ -142,7 +142,7 @@ We can see how case 9 stands out in the influence plots. It has an extreme hat v
 very small, it does not have much influence on the fitted models for either `y1` or `y2`. Neither of these plots
 suggest that anything is terribly wrong with the univariate models.
 ```{r inflplots, fig.show='hold', out.width="45%", out.height="50%", collapse=FALSE, echo=-1}
-par(mar = c(4, 4, 1, 1)+.1)
+par(mar = c(4, 4, 3, 1)+.1)
 ip1 <- car::influencePlot(Toy.lm1, id = list(cex=1.5), cex.lab = 1.5)
 ip2 <- car::influencePlot(Toy.lm2, id = list(cex=1.5), cex.lab = 1.5)
 ```
