@@ -1,8 +1,8 @@
 Package: mvinfluence
 Type: Package
 Title: Influence Measures and Diagnostic Plots for Multivariate Linear Models
-Version: 0.9.1
-Date: 2022-09-20
+Version: 0.9.2
+Date: 2025-07-22
 Authors@R: 
     person(given ="Michael", 
            family = "Friendly",
@@ -14,7 +14,7 @@ Description: Computes regression deletion diagnostics for multivariate linear mo
 	diagnostic plots.  The diagnostic measures include hat-values (leverages), generalized Cook's distance, and
 	generalized squared 'studentized' residuals.  Several types of plots to detect influential observations are
 	provided.
-Depends: car, heplots
+Depends: car, heplots, R (>= 4.1.0)
 Suggests:
     knitr,
     rmarkdown,
@@ -28,7 +28,7 @@ VignetteBuilder: knitr
 Encoding: UTF-8
 License: GPL-2
 Language: en-US
-URL: https://github.com/friendly/mvinfluence
+URL: https://github.com/friendly/mvinfluence, https://friendly.github.io/mvinfluence/
 BugReports: https://github.com/friendly/mvinfluence/issues
 Packaged: 2012-03-18 21:51:10 UTC; Michael
-RoxygenNote: 7.2.1
+RoxygenNote: 7.3.2

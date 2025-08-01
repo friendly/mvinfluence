@@ -2,6 +2,9 @@
 <!-- README.md is generated from README.Rmd. Please edit that file and knit again -->
 
 [![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/mvinfluence)](https://cran.r-project.org/package=mvinfluence)
+[![R_Universe](https://friendly.r-universe.dev/badges/mvinfluence)](https://friendly.r-universe.dev/mvinfluence)
+[![Last
+Commit](https://img.shields.io/github/last-commit/friendly/mvinfluence)](https://github.com/friendly/mvinfluence/)
 [![](http://cranlogs.r-pkg.org/badges/grand-total/mvinfluence)](https://cran.r-project.org/package=mvinfluence)
 [![DOI](https://zenodo.org/badge/128774860.svg)](https://zenodo.org/badge/latestdoi/128774860)
 
@@ -10,7 +13,7 @@
 **Influence Measures and Diagnostic Plots for Multivariate Linear
 Models**
 
-Version 0.9-1
+Version 0.9.1
 
 Functions in this package compute regression deletion diagnostics for
 multivariate linear models following methods proposed by Barrett & Ling
@@ -34,11 +37,13 @@ Documentation for the package is now available at
 
 ## Installation
 
-Get the released CRAN version or this development version:
+Get the released CRAN version or the development version, here or
+[R-universe](https://friendly.r-universe.dev)
 
-|                     |                                                   |
-|---------------------|---------------------------------------------------|
-| CRAN version        | `install.packages("mvinfluence")`                 |
+|  |  |
+|----|----|
+| CRAN version | `install.packages("mvinfluence")` |
+| R-universe | `install.packages("mvinfluence", repos = c('https://friendly.r-universe.dev')` |
 | Development version | `remotes::install_github("friendly/mvinfluence")` |
 
 ## Goals
@@ -238,14 +243,14 @@ changes are for the coefficients of the `ss` task, but there is an even
 greater one for `PPVT` on the `n` task.
 
 ``` r
-100 * abs(coef(Rohwer.mod) - coef(Rohwer.rmod)) / abs(coef(Rohwer.mod))
-#>                SAT  PPVT  Raven
-#> (Intercept)  1.001  1.27  0.755
-#> n            4.001 36.32  3.874
-#> s            1.195 13.01  0.401
-#> ns           0.152 15.68 14.771
-#> na           1.560  2.26  6.913
-#> ss          15.173 26.55 21.288
+100 * abs(coef(Rohwer.mod) - coef(Rohwer.rmod)) / coef(Rohwer.mod)
+#>                 SAT   PPVT   Raven
+#> (Intercept)  -1.001   1.27   0.755
+#> n             4.001  36.32   3.874
+#> s             1.195  13.01   0.401
+#> ns           -0.152 -15.68 -14.771
+#> na            1.560   2.26   6.913
+#> ss          -15.173  26.55 -21.288
 ```
 
 ## Citation
@@ -254,21 +259,24 @@ To cite `mvinfluence` in publications, use:
 
 ``` r
 citation("mvinfluence")
-#> 
 #> To cite package 'mvinfluence' in publications use:
 #> 
 #>   Friendly M (2022). _mvinfluence: Influence Measures and Diagnostic
-#>   Plots for Multivariate Linear Models_. R package version 0.9.0,
-#>   <https://github.com/friendly/mvinfluence>.
+#>   Plots for Multivariate Linear Models_.
+#>   doi:10.32614/CRAN.package.mvinfluence
+#>   <https://doi.org/10.32614/CRAN.package.mvinfluence>, R package
+#>   version 0.9.0, <https://CRAN.R-project.org/package=mvinfluence>.
 #> 
 #> A BibTeX entry for LaTeX users is
 #> 
 #>   @Manual{,
-#>     title = {mvinfluence: Influence Measures and Diagnostic Plots for Multivariate Linear Models},
+#>     title = {mvinfluence: Influence Measures and Diagnostic Plots for Multivariate Linear
+#> Models},
 #>     author = {Michael Friendly},
 #>     year = {2022},
 #>     note = {R package version 0.9.0},
-#>     url = {https://github.com/friendly/mvinfluence},
+#>     url = {https://CRAN.R-project.org/package=mvinfluence},
+#>     doi = {10.32614/CRAN.package.mvinfluence},
 #>   }
 ```
 

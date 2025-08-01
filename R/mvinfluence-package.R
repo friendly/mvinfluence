@@ -36,25 +36,25 @@
 #' @section Notation:
 #' 
 #' Let \eqn{\mathbf{X}} be the model matrix in the multivariate linear model, 
-#' \eqn{\mathbf{Y}_{n \times p} = \mathbf{X}_{n \times r} \mathbf{\beta}_{r \times p} + \mathbf{E}_{n \times p}}.
-#' The usual least squares estimate of \eqn{\mathbf{\beta}} is given by
+#' \eqn{\mathbf{Y}_{n \times p} = \mathbf{X}_{n \times r} \boldsymbol{\beta}_{r \times p} + \mathbf{E}_{n \times p}}.
+#' The usual least squares estimate of \eqn{\boldsymbol{\beta}} is given by
 #' \eqn{\mathbf{B} = (\mathbf{X}^{T} \mathbf{X})^{-1}  \mathbf{X}^{T} \mathbf{Y}}.
 #' 
 #' Then let 
 #'   \itemize{
 #'      \item \eqn{\mathbf{X}_I} be the submatrix of \eqn{\mathbf{X}} whose \eqn{m} rows are indexed by \eqn{I},
-#'      \item \eqn{\mathbf{X}_{(I)}} is the complement, the submatrix of \eqn{\mathbf{X}} with the \eqn{m} rows in \eqn{I} deleted,
+#'      \item \eqn{\mathbf{X}_{(-I)}} is the complement, the submatrix of \eqn{\mathbf{X}} with the \eqn{m} rows in \eqn{I} deleted,
 #'   }
 #'  
-#'  Matrices \eqn{\mathbf{Y}_I}, \eqn{\mathbf{Y}_{(I)}} are defined similarly. 
+#'  Matrices \eqn{\mathbf{Y}_I}, \eqn{\mathbf{Y}_{(-I)}} are defined similarly. 
 #'  
 #'  In the calculation of regression coefficients,
-#'  \eqn{\mathbf{B}_{(I)} = (\mathbf{X}_{(I)}^{T} \mathbf{X}_{(I)})^{-1} \mathbf{X}_{(I)}^{T} \mathbf{Y}_{I}} are the estimated 
+#'  \eqn{\mathbf{B}_{(-I)} = (\mathbf{X}_{(-I)}^{T} \mathbf{X}_{(-I)})^{-1} \mathbf{X}_{(-I)}^{T} \mathbf{Y}_{I}} are the estimated 
 #'  coefficients
 #'  when the cases indexed by \eqn{I} have been removed. The corresponding residuals are
-#'  \eqn{\mathbf{E}_{(I)} = \mathbf{Y}_{(I)} - \mathbf{X}_{(I)} \mathbf{B}_{(I)}}.
+#'  \eqn{\mathbf{E}_{(-I)} = \mathbf{Y}_{(-I)} - \mathbf{X}_{(-I)} \mathbf{B}_{(-I)}}.
 #'  
-#' @section Measures:
+#' @section Hat values and Residuals:
 #'  
 #'  The influence measures defined by Barrett & Ling (1992) are functions of two matrices \eqn{\mathbf{H}_I} and \eqn{\mathbf{Q}_I}
 #'  defined as follows:
@@ -71,22 +71,22 @@
 #' @section Cook's distance:
 #'  
 #'  In these terms, Cook's distance is defined for a univariate response by
-#'  \deqn{D_I = (\mathbf{b} - \mathbf{b}_{(I)})^T (\mathbf{X}^T \mathbf{X}) (\mathbf{b} - \mathbf{b}_{(I)}) / p s^2 \; ,} 
+#'  \deqn{D_I = (\mathbf{b} - \mathbf{b}_{(-I)})^T (\mathbf{X}^T \mathbf{X}) (\mathbf{b} - \mathbf{b}_{(-I)}) / p s^2 \; ,} 
 #'  a measure of the squared distance between the coefficients \eqn{\mathbf{b}} for the full data set and those
-#'  \eqn{\mathbf{b}_{(I)}} 
+#'  \eqn{\mathbf{b}_{(-I)}} 
 #'  obtained when the cases in \eqn{I} are deleted.  
 #'  
 #'  In the multivariate case, Cook's distance is obtained
 #'  by replacing the vector of coefficients \eqn{\mathbf{b}} by \eqn{\mathrm{vec} (\mathbf{B})}, the result of stringing out
 #'  the coefficients for all responses in a single \eqn{n \times p}-length vector.
-#'  \deqn{D_I = \frac{1}{p} [\mathrm{vec} (\mathbf{B} - \mathbf{B}_{(I)})]^T (S_{-1} \otimes \mathbf{X}^T \mathbf{X}) \mathrm{vec} (\mathbf{B} - \mathbf{B}_{(I)})  \; ,} 
+#'  \deqn{D_I = \frac{1}{p} [\mathrm{vec} (\mathbf{B} - \mathbf{B}_{(-I)})]^T (S^{-1} \otimes \mathbf{X}^T \mathbf{X}) \mathrm{vec} (\mathbf{B} - \mathbf{B}_{(-I)})  \; ,} 
 #'  where \eqn{\otimes} is the Kronecker (direct) product and
 #'  \eqn{\mathbf{S} = \mathbf{E}^T \mathbf{E} / (n-p)} is the covariance matrix of the residuals.
 #'
 #' @section Leverage and residual components:
 #'  
 #'  For a univariate response, and when \code{m = 1}, Cook's distance can be re-written as a product of leverage and residual components as
-#'  \deqn{D_i = \left(\frac{n-p}{p} \right) \frac{h_{ii}}{(1 - h_{ii})^2 q_{ii} } \;.}
+#'  \deqn{D_i = \left(\frac{n-p}{p} \right) \frac{h_{ii} q_{ii}}{(1 - h_{ii})^2  } \;.}
 #'  
 #'  Then we can define a leverage component \eqn{L_i} and residual component \eqn{R_i} as
 #'  
@@ -111,14 +111,14 @@
 #' \describe{
 #'    \item{\code{\link[stats]{rstandard}}}{Standardized residuals, re-scaling the residuals to have unit variance}
 #'    \item{\code{\link[stats]{rstudent}}}{Studentized residuals, re-scaling the residuals to have leave-one-out variance}
-#'    \item{\code{\link[stats]{dfits}}}{a scaled measure of the change in the predicted value for the \emph{i}th observation}
+#'    \item{\code{\link[stats]{dffits}}}{a scaled measure of the change in the predicted value for the \emph{i}th observation}
 #'    \item{\code{\link[stats]{covratio}}}{the change in the determinant of the covariance matrix of the estimates by deleting the \emph{i}th observation}
 #' }
 
 
 #' 
 #' @docType package
-#' @name mvinfluence
+#' @name mvinfluence-package
 #' @aliases mvinfluence-package
 #' @references 
 #'    Barrett, B. E. and Ling, R. F. (1992).
@@ -151,5 +151,18 @@
 #'
 #' @method print inflmlm
 #' @method as.data.frame inflmlm
-NULL
+#' @examples
+#' 
+#' data(Rohwer, package="heplots")
+#' Rohwer2 <- subset(Rohwer, subset=group==2)
+#' rownames(Rohwer2) <- 1:nrow(Rohwer2)
+#' Rohwer.mod <- lm(cbind(SAT, PPVT, Raven) ~ n+s+ns+na+ss, data=Rohwer2)
+#' 
+#' influencePlot(Rohwer.mod, id.n = 3)
+#' # LR plot
+#' influencePlot(Rohwer.mod, id.n = 3, type = "LR")
+#' # 'cookd' plot
+#' influencePlot(Rohwer.mod, id.n = 3, type = "cookd")
+#' 
+"_PACKAGE"
 

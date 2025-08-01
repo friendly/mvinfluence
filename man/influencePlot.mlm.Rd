@@ -46,7 +46,7 @@ the base fill color to which transparency specified by \code{fill.alpha.max}
 is applied.}
 
 \item{labels, id.method, id.n, id.cex, id.col}{settings for labeling points;
-see \code{\link{showLabels}} for details. To omit point labeling, set
+see \code{\link[car]{showLabels}} for details. To omit point labeling, set
 \code{id.n=0}, the default.  The default \code{id.method="noteworthy"} is
 used in this function to indicate setting labels for points with large
 Studentized residuals, hat-values or Cook's distances. See Details below.
@@ -87,23 +87,39 @@ data(Rohwer, package="heplots")
 Rohwer2 <- subset(Rohwer, subset=group==2)
 Rohwer.mod <- lm(cbind(SAT, PPVT, Raven) ~ n+s+ns+na+ss, data=Rohwer2)
 
+# Types of influence plots
 influencePlot(Rohwer.mod, id.n=4, type="stres")
+
 influencePlot(Rohwer.mod, id.n=4, type="LR")
+
 influencePlot(Rohwer.mod, id.n=4, type="cookd")
 
 # Sake data
 data(Sake, package="heplots")
 	Sake.mod <- lm(cbind(taste,smell) ~ ., data=Sake)
+	
 	influencePlot(Sake.mod, id.n=3, type="stres")
+	
 	influencePlot(Sake.mod, id.n=3, type="LR")
+	
 	influencePlot(Sake.mod, id.n=3, type="cookd")
 
 # Adopted data	
 data(Adopted, package="heplots")
 Adopted.mod <- lm(cbind(Age2IQ, Age4IQ, Age8IQ, Age13IQ) ~ AMED + BMIQ, data=Adopted)
+
 influencePlot(Adopted.mod, id.n=3)
+
 influencePlot(Adopted.mod, id.n=3, type="LR", ylim=c(-4,-1.5))
 
+# schooldata 
+data(schooldata, package = "heplots")
+school.mod <- lm(cbind(reading, mathematics, selfesteem) ~ ., 
+                 data=schooldata)
+
+influencePlot(school.mod, id.n=4, type="stres")
+
+influencePlot(school.mod, id.n=4, type="LR")
 
 }
 \references{
