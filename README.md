@@ -7,13 +7,16 @@
 Commit](https://img.shields.io/github/last-commit/friendly/mvinfluence)](https://github.com/friendly/mvinfluence/)
 [![](http://cranlogs.r-pkg.org/badges/grand-total/mvinfluence)](https://cran.r-project.org/package=mvinfluence)
 [![DOI](https://zenodo.org/badge/128774860.svg)](https://zenodo.org/badge/latestdoi/128774860)
+[![pkgdown](https://img.shields.io/badge/pkgdown%20site-blue)](https://friendly.github.io/mvinfluence/)
 
 # mvinfluence <img src="man/figures/logo.png" align="right" height="200px" />
 
 **Influence Measures and Diagnostic Plots for Multivariate Linear
 Models**
 
-Version 0.9.1
+<!-- Version 0.9.3 -->
+
+Version 0.9.3
 
 Functions in this package compute regression deletion diagnostics for
 multivariate linear models following methods proposed by Barrett & Ling
@@ -261,22 +264,18 @@ To cite `mvinfluence` in publications, use:
 citation("mvinfluence")
 #> To cite package 'mvinfluence' in publications use:
 #> 
-#>   Friendly M (2022). _mvinfluence: Influence Measures and Diagnostic
-#>   Plots for Multivariate Linear Models_.
-#>   doi:10.32614/CRAN.package.mvinfluence
-#>   <https://doi.org/10.32614/CRAN.package.mvinfluence>, R package
-#>   version 0.9.0, <https://CRAN.R-project.org/package=mvinfluence>.
+#>   Friendly M (2025). _mvinfluence: Influence Measures and Diagnostic
+#>   Plots for Multivariate Linear Models_. R package version 0.9.3,
+#>   <https://github.com/friendly/mvinfluence>.
 #> 
 #> A BibTeX entry for LaTeX users is
 #> 
 #>   @Manual{,
-#>     title = {mvinfluence: Influence Measures and Diagnostic Plots for Multivariate Linear
-#> Models},
+#>     title = {mvinfluence: Influence Measures and Diagnostic Plots for Multivariate Linear Models},
 #>     author = {Michael Friendly},
-#>     year = {2022},
-#>     note = {R package version 0.9.0},
-#>     url = {https://CRAN.R-project.org/package=mvinfluence},
-#>     doi = {10.32614/CRAN.package.mvinfluence},
+#>     year = {2025},
+#>     note = {R package version 0.9.3},
+#>     url = {https://github.com/friendly/mvinfluence},
 #>   }
 ```
 

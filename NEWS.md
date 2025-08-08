@@ -1,3 +1,7 @@
+## Version 0.9.3
+
+o Add warning for weights in influence diagnostics
+
 ## Version 0.9.2
 
 o Revise notation in mvinfluence-package

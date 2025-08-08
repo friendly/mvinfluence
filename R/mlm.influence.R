@@ -44,6 +44,7 @@
 #' @keywords models regression multivariate
 #' @examples
 #' 
+#' data(Rohwer, package = "heplots")
 #' Rohwer2 <- subset(Rohwer, subset=group==2)
 #' rownames(Rohwer2)<- 1:nrow(Rohwer2)
 #' Rohwer.mod <- lm(cbind(SAT, PPVT, Raven) ~ n+s+ns+na+ss, data=Rohwer2)
@@ -57,6 +58,7 @@
 #'     head()
 #' 
 #' # Sake data
+#' data(Sake, package = "heplots")
 #' Sake.mod <- lm(cbind(taste,smell) ~ ., data=Sake)
 #' influence(Sake.mod) |>
 #'     as.data.frame() |> 
@@ -86,6 +88,9 @@ function (model, do.coef = TRUE, m=1, ...)
   	R
   	}
 
+  if ("weights" %in% names(model) & length(unique(model$weights)) != 1)
+    warning("mvinfluence does not yet handle observation weights. These are ignored in the computation.")
+  
 	X <- model.matrix(model)
 	data <- model.frame(model)
 	Y <- as.matrix(model.response(data))

@@ -22,7 +22,7 @@ function(x,
 	cat("Multivariate influence statistics for model:\n", 
 	    paste(deparse(x$call), sep = "\n", collapse = "\n"), 
 	    "\n m= ", x$m, "case deletion diagnostics",
-	    ifelse(x$m>1, paste(", using", deparse(substitute(FUN)), "for matrix values\n\n"), "\n"))
+	    ifelse(x$m>1, paste(", using", deparse(substitute(FUN)), "for matrix values\n\n"), "\n\n"))
 	print(df, digits=digits, ...)
 	invisible(x)
 }
