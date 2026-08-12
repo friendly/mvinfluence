@@ -13,3 +13,5 @@ cran-comments.md
 ^pkgdown$
 ^\.build-steps.R$
 ^CRAN-SUBMISSION$
+^\.positai$
+^\.claude$
