@@ -44,6 +44,7 @@ as are the computations for the \code{m>1} case.  Associated methods for
 }
 \examples{
 
+data(Rohwer, package = "heplots")
 Rohwer2 <- subset(Rohwer, subset=group==2)
 rownames(Rohwer2)<- 1:nrow(Rohwer2)
 Rohwer.mod <- lm(cbind(SAT, PPVT, Raven) ~ n+s+ns+na+ss, data=Rohwer2)
@@ -57,6 +58,7 @@ influence(Rohwer.mod) |>
     head()
 
 # Sake data
+data(Sake, package = "heplots")
 Sake.mod <- lm(cbind(taste,smell) ~ ., data=Sake)
 influence(Sake.mod) |>
     as.data.frame() |> 

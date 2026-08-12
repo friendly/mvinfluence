@@ -13,30 +13,38 @@ export(lrPlot)
 export(mlm.influence)
 export(mpower)
 export(tr)
-importFrom(car,infIndexPlot)
-importFrom(car,influenceIndexPlot)
-importFrom(car,influencePlot)
-importFrom(car,showLabels)
+importFrom(car,
+  infIndexPlot,
+  influenceIndexPlot,
+  influencePlot,
+  showLabels
+)
 importFrom(grDevices,palette)
-importFrom(graphics,abline)
-importFrom(graphics,axis)
-importFrom(graphics,box)
-importFrom(graphics,mtext)
-importFrom(graphics,par)
-importFrom(graphics,plot)
-importFrom(graphics,points)
-importFrom(graphics,text)
-importFrom(heplots,Mahalanobis)
-importFrom(heplots,trans.colors)
-importFrom(stats,coef)
-importFrom(stats,cooks.distance)
-importFrom(stats,hatvalues)
-importFrom(stats,influence)
-importFrom(stats,model.frame)
-importFrom(stats,model.matrix)
-importFrom(stats,model.response)
-importFrom(stats,qbeta)
-importFrom(stats,qf)
-importFrom(stats,residuals)
-importFrom(stats,rstudent)
+importFrom(graphics,
+  abline,
+  axis,
+  box,
+  mtext,
+  par,
+  plot,
+  points,
+  text
+)
+importFrom(heplots,
+  Mahalanobis,
+  trans.colors
+)
+importFrom(stats,
+  coef,
+  cooks.distance,
+  hatvalues,
+  influence,
+  model.frame,
+  model.matrix,
+  model.response,
+  qbeta,
+  qf,
+  residuals,
+  rstudent
+)
 importFrom(utils,combn)

@@ -1,8 +1,8 @@
 Package: mvinfluence
 Type: Package
 Title: Influence Measures and Diagnostic Plots for Multivariate Linear Models
-Version: 0.9.3
-Date: 2025-08-08
+Version: 0.9.4
+Date: 2026-08-12
 Authors@R: 
     person(given ="Michael", 
            family = "Friendly",
@@ -31,4 +31,4 @@ Language: en-US
 URL: https://github.com/friendly/mvinfluence, https://friendly.github.io/mvinfluence/
 BugReports: https://github.com/friendly/mvinfluence/issues
 Packaged: 2012-03-18 21:51:10 UTC; Michael
-RoxygenNote: 7.3.2
+Config/roxygen2/version: 8.1.0

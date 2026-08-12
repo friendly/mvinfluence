@@ -170,4 +170,9 @@ Useful links:
 \author{
 \strong{Maintainer}: Michael Friendly \email{friendly@yorku.ca} (\href{https://orcid.org/0000-0002-3237-0941}{ORCID})
 
+Authors:
+\itemize{
+  \item Michael Friendly \email{friendly@yorku.ca} (\href{https://orcid.org/0000-0002-3237-0941}{ORCID})
+}
+
 }

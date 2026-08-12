@@ -1,3 +1,10 @@
+## Version 0.9.4
+
+o Fix bug in `mlm.influence()` where models with transformed response
+  variables (e.g., `lm(cbind(log(y1), log(y2)) ~ ...)`) caused an error
+  in the internal `vec()` helper because the coefficient matrix lacked
+  column names
+
 ## Version 0.9.3
 
 o Add warning for weights in influence diagnostics

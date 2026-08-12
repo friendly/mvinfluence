@@ -83,7 +83,13 @@ function (model, do.coef = TRUE, m=1, ...)
   vec <- function(M) {
   	R <- matrix(M, ncol=1)
   	if (is.vector(M)) return(R)
-  	nn<-expand.grid(dimnames(M))[,2:1]
+  	dn <- dimnames(M)
+  	if (is.null(dn)) dn <- vector("list", 2)
+  	# fill in missing dimnames (e.g., when response variables are
+  	# transformed in the model formula, coef() loses column names)
+  	if (is.null(dn[[1]])) dn[[1]] <- as.character(seq_len(nrow(M)))
+  	if (is.null(dn[[2]])) dn[[2]] <- as.character(seq_len(ncol(M)))
+  	nn<-expand.grid(dn)[,2:1]
   	rownames(R) <- apply(as.matrix(nn), 1, paste, collapse=":")
   	R
   	}
