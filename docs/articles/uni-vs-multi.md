@@ -344,7 +344,29 @@ coef(school.mod)
 #> teacher     -0.18094     -0.3413    0.01055
 ```
 
-`which.coef` does *not* index into this table directly. Internally,
+### `car::confidenceEllipse()`
+
+[`car::confidenceEllipse()`](https://rdrr.io/pkg/car/man/Ellipses.html)
+shows the joint confidence region for two coefficients *within* one
+response equation. The `occupation` and `visit` coefficients turn out to
+be negatively correlated in both the `reading` and `mathematics`
+equations, and `occupation`’s much larger scale echoes what we’re about
+to see in the
+[`coefplot()`](https://friendly.github.io/heplots/reference/coefplot.html)
+figure below:
+
+``` r
+car::confidenceEllipse(school.mod, which.coef = c(3, 4),
+                        fill = TRUE, fill.alpha = 0.2, cex.lab = 1.5)
+car::confidenceEllipse(school.mod, which.coef = c(9, 10),
+                        fill = TRUE, fill.alpha = 0.2, cex.lab = 1.5)
+```
+
+![](uni-vs-multi_files/figure-html/confEllipse-school-1.png)![](uni-vs-multi_files/figure-html/confEllipse-school-2.png)
+
+The indexing by `which.coef()` is a bit confusing here. `which.coef`
+does *not* index into the table given by
+[`coef()`](https://rdrr.io/r/stats/coef.html) directly. Internally,
 [`confidenceEllipse()`](https://rdrr.io/pkg/car/man/Ellipses.html) works
 with `vcov(school.mod)`, whose row/column names are formed by stacking
 the coefficient table’s columns end-to-end, one response at a time – all
@@ -372,26 +394,6 @@ response) they land at positions 3 and 4 – `which.coef = c(3, 4)`; for
 `mathematics` (the 2nd response) the same two predictors shift by
 `6 * (2-1) = 6`, landing at positions 9 and 10 –
 `which.coef = c(9, 10)`.
-
-### `car::confidenceEllipse()`
-
-[`car::confidenceEllipse()`](https://rdrr.io/pkg/car/man/Ellipses.html)
-shows the joint confidence region for two coefficients *within* one
-response equation. The `occupation` and `visit` coefficients turn out to
-be negatively correlated in both the `reading` and `mathematics`
-equations, and `occupation`’s much larger scale echoes what we’re about
-to see in the
-[`coefplot()`](https://friendly.github.io/heplots/reference/coefplot.html)
-figure below:
-
-``` r
-car::confidenceEllipse(school.mod, which.coef = c(3, 4),
-                        fill = TRUE, fill.alpha = 0.2, cex.lab = 1.5)
-car::confidenceEllipse(school.mod, which.coef = c(9, 10),
-                        fill = TRUE, fill.alpha = 0.2, cex.lab = 1.5)
-```
-
-![](uni-vs-multi_files/figure-html/confEllipse-school-1.png)![](uni-vs-multi_files/figure-html/confEllipse-school-2.png)
 
 ### `heplots::coefplot()`
 

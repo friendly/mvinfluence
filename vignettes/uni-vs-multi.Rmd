@@ -267,7 +267,23 @@ school.mod <- lm(cbind(reading, mathematics, selfesteem) ~
 coef(school.mod)
 ```
 
-`which.coef` does *not* index into this table directly. Internally, `confidenceEllipse()` works
+### `car::confidenceEllipse()`
+
+`car::confidenceEllipse()` shows the joint confidence region for two coefficients *within* one
+response equation. The `occupation` and `visit` coefficients turn out to be negatively
+correlated in both the `reading` and `mathematics` equations, and `occupation`'s much larger
+scale echoes what we're about to see in the `coefplot()` figure below:
+
+```{r confEllipse-school, fig.show='hold', out.width="45%", out.height="50%", collapse=FALSE, echo=-1}
+par(mar = c(4, 4, 1, 1)+.1)
+car::confidenceEllipse(school.mod, which.coef = c(3, 4),
+                        fill = TRUE, fill.alpha = 0.2, cex.lab = 1.5)
+car::confidenceEllipse(school.mod, which.coef = c(9, 10),
+                        fill = TRUE, fill.alpha = 0.2, cex.lab = 1.5)
+```
+
+The indexing by `which.coef()` is a bit confusing here.
+`which.coef` does *not* index into the table given by `coef()` directly. Internally, `confidenceEllipse()` works
 with `vcov(school.mod)`, whose row/column names are formed by stacking the coefficient table's
 columns end-to-end, one response at a time -- all 6 predictor rows for `reading` first, then all
 6 for `mathematics`, then `selfesteem`:
@@ -283,20 +299,6 @@ positions 3 and 4 -- `which.coef = c(3, 4)`; for `mathematics` (the 2nd response
 predictors shift by `6 * (2-1) = 6`, landing at positions 9 and 10 --
 `which.coef = c(9, 10)`.
 
-### `car::confidenceEllipse()`
-
-`car::confidenceEllipse()` shows the joint confidence region for two coefficients *within* one
-response equation. The `occupation` and `visit` coefficients turn out to be negatively
-correlated in both the `reading` and `mathematics` equations, and `occupation`'s much larger
-scale echoes what we're about to see in the `coefplot()` figure below:
-
-```{r confEllipse-school, fig.show='hold', out.width="45%", out.height="50%", collapse=FALSE, echo=-1}
-par(mar = c(4, 4, 1, 1)+.1)
-car::confidenceEllipse(school.mod, which.coef = c(3, 4),
-                        fill = TRUE, fill.alpha = 0.2, cex.lab = 1.5)
-car::confidenceEllipse(school.mod, which.coef = c(9, 10),
-                        fill = TRUE, fill.alpha = 0.2, cex.lab = 1.5)
-```
 
 ### `heplots::coefplot()` 
 
