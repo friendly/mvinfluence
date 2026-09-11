@@ -12,7 +12,6 @@ reference:
     desc:  Influence measures for `mlm`s
     contents:
     - mlm.influence
-    - influence.measures
     - influence.mlm
     - cooks.distance.mlm
     - hatvalues.mlm
