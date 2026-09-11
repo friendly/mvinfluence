@@ -35,10 +35,10 @@ library(mvinfluence)
 
 # mvinfluence <img src="man/figures/logo.png" align="right" height="200px" />
 
-**Influence Measures and Diagnostic Plots for Multivariate Linear Models**
+## **Influence Measures and Diagnostic Plots for Multivariate Linear Models**
 
-<!-- Version 0.9.3 -->
-Version `r getNamespaceVersion("mvinfluence")`
+<!-- explicit version number now dynamic -->
+Version `r getNamespaceVersion("mvinfluence")`; documentation built for `pkgdown` `r Sys.Date()`
 
 
 Functions in this package compute regression deletion diagnostics for multivariate linear models following
@@ -56,11 +56,11 @@ as well as other interesting phenomena described by Lawrence (1995).
 Associated methods for the case
 `m>1` are still under development in this package.
 
-## Documentation
+## 📄 Documentation
 Documentation for the package is now available at [https://friendly.github.io/mvinfluence/](https://friendly.github.io/mvinfluence/).
 
 
-## Installation
+## 📂 Installation
 
 Get the released CRAN version or the development version, here or [R-universe](https://friendly.r-universe.dev)
 
@@ -70,7 +70,7 @@ Get the released CRAN version or the development version, here or [R-universe](h
 | R-universe          | `install.packages("mvinfluence", repos = c('https://friendly.r-universe.dev')` |
 | Development version | `remotes::install_github("friendly/mvinfluence")`                              |
 
-## Goals
+## 🎯 Goals
 
 The design goal for this package is that, as an extension of standard methods for univariate linear models, you should be able to fit a linear model with a **multivariate** response,
 
@@ -86,7 +86,7 @@ and then get useful diagnostics and plots with:
 As is done in comparable univariate functions in the `car` package, *noteworthy* points are identified in printed output and graphs.
 
 
-## Examples
+## 📊 Examples
 
 The `Rohwer` data contains data on kindergarten children designed to examine how well performance on a set of paired-associate (PA) 
 learning tasks can predict performance on some measures of aptitude and achievement---
@@ -154,7 +154,7 @@ infIndexPlot(Rohwer.mod,
 In this example, note that while case 5 stands out as influential, it does not have an exceptionally large Mahalanobis
 squared distance, $D^2$ of the residuals.
 
-# Robust MLMs
+## 🛡️ Robust MLMs
 
 Influential cases and those with large residuals can sometimes be dealt with by fitting a **robust** version of
 the multivariate model.  The function `heplots::robmlm()` uses a simple M-estimator that down-weights cases
@@ -198,14 +198,14 @@ of the `ss` task, but there is an even greater one for `PPVT` on the `n` task.
 100 * abs(coef(Rohwer.mod) - coef(Rohwer.rmod)) / coef(Rohwer.mod)
 ```
 
-## Citation
+## 🔖 Citation
 To cite `mvinfluence` in publications, use:
 ```{r citation}
 citation("mvinfluence")
 ```
 
 
-## References
+## 📚 References
 
 Barrett, B. E. and Ling, R. F. (1992).
 General Classes of Influence Measures for Multivariate Regression.

@@ -11,12 +11,11 @@ Commit](https://img.shields.io/github/last-commit/friendly/mvinfluence)](https:/
 
 # mvinfluence <img src="man/figures/logo.png" align="right" height="200px" />
 
-**Influence Measures and Diagnostic Plots for Multivariate Linear
-Models**
+## **Influence Measures and Diagnostic Plots for Multivariate Linear Models**
 
-<!-- Version 0.9.3 -->
+<!-- explicit version number now dynamic -->
 
-Version 0.9.3
+Version 0.9.4; documentation built for `pkgdown` 2026-09-10
 
 Functions in this package compute regression deletion diagnostics for
 multivariate linear models following methods proposed by Barrett & Ling
@@ -33,12 +32,12 @@ individual effects, as well as other interesting phenomena described by
 Lawrence (1995). Associated methods for the case `m>1` are still under
 development in this package.
 
-## Documentation
+## 📄 Documentation
 
 Documentation for the package is now available at
 <https://friendly.github.io/mvinfluence/>.
 
-## Installation
+## 📂 Installation
 
 Get the released CRAN version or the development version, here or
 [R-universe](https://friendly.r-universe.dev)
@@ -49,7 +48,7 @@ Get the released CRAN version or the development version, here or
 | R-universe | `install.packages("mvinfluence", repos = c('https://friendly.r-universe.dev')` |
 | Development version | `remotes::install_github("friendly/mvinfluence")` |
 
-## Goals
+## 🎯 Goals
 
 The design goal for this package is that, as an extension of standard
 methods for univariate linear models, you should be able to fit a linear
@@ -67,7 +66,7 @@ and then get useful diagnostics and plots with:
 As is done in comparable univariate functions in the `car` package,
 *noteworthy* points are identified in printed output and graphs.
 
-## Examples
+## 📊 Examples
 
 The `Rohwer` data contains data on kindergarten children designed to
 examine how well performance on a set of paired-associate (PA) learning
@@ -190,7 +189,7 @@ In this example, note that while case 5 stands out as influential, it
 does not have an exceptionally large Mahalanobis squared distance, $D^2$
 of the residuals.
 
-# Robust MLMs
+## 🛡️ Robust MLMs
 
 Influential cases and those with large residuals can sometimes be dealt
 with by fitting a **robust** version of the multivariate model. The
@@ -256,7 +255,7 @@ greater one for `PPVT` on the `n` task.
 #> ss          -15.173  26.55 -21.288
 ```
 
-## Citation
+## 🔖 Citation
 
 To cite `mvinfluence` in publications, use:
 
@@ -264,8 +263,8 @@ To cite `mvinfluence` in publications, use:
 citation("mvinfluence")
 #> To cite package 'mvinfluence' in publications use:
 #> 
-#>   Friendly M (2025). _mvinfluence: Influence Measures and Diagnostic
-#>   Plots for Multivariate Linear Models_. R package version 0.9.3,
+#>   Friendly M (2026). _mvinfluence: Influence Measures and Diagnostic
+#>   Plots for Multivariate Linear Models_. R package version 0.9.4,
 #>   <https://github.com/friendly/mvinfluence>.
 #> 
 #> A BibTeX entry for LaTeX users is
@@ -273,13 +272,13 @@ citation("mvinfluence")
 #>   @Manual{,
 #>     title = {mvinfluence: Influence Measures and Diagnostic Plots for Multivariate Linear Models},
 #>     author = {Michael Friendly},
-#>     year = {2025},
-#>     note = {R package version 0.9.3},
+#>     year = {2026},
+#>     note = {R package version 0.9.4},
 #>     url = {https://github.com/friendly/mvinfluence},
 #>   }
 ```
 
-## References
+## 📚 References
 
 Barrett, B. E. and Ling, R. F. (1992). General Classes of Influence
 Measures for Multivariate Regression. *Journal of the American
