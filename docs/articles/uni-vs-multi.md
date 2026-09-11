@@ -17,7 +17,6 @@ for the separate responses, as this example illustrates.
 ### Load packages
 
 ``` r
-
 library(tibble)      # Simple Data Frames
 library(ggplot2)     # Create Elegant Data Visualisations Using the Grammar of Graphics
 library(car)         # Companion to Applied Regression
@@ -33,7 +32,6 @@ This example, from Barrett (2003), considers the simplest case, of one
 predictor (`x`) and two response variables, `y1` and `y2`.
 
 ``` r
-
 Toy <- tibble(
    case = 1:9,
    x =  c(1,    1,    2,    2,    3,    3,    4,    4,    10),
@@ -48,7 +46,6 @@ extreme point (case 9). Looking at these pairwise plots doesn’t suggest
 that anything is terribly wrong.
 
 ``` r
-
 car::scatterplotMatrix(~y1 + y2 + x, data=Toy, cex=2,
         col = "blue", pch = 16,
         id = list(n=1, cex=2), 
@@ -67,7 +64,6 @@ plane becomes a line, you can see that the data ellipsoid is essentially
 flat.
 
 ``` r
-
 car::scatter3d(y1 ~ y2 + x, data=Toy,
                ellipsoid = TRUE,              # show the data ellipsoid
                radius = c(rep(1,8), 2),       # make case 9 larger
@@ -84,7 +80,6 @@ We fit the univariate models with `y1` and `y2` separately and then the
 multivariate model.
 
 ``` r
-
 Toy.lm1 <- lm(y1 ~ x, data=Toy)
 Toy.lm2 <- lm(y2 ~ x, data=Toy)
 Toy.mlm <- lm(cbind(y1, y2) ~ x, data=Toy)
@@ -92,11 +87,11 @@ Toy.mlm <- lm(cbind(y1, y2) ~ x, data=Toy)
 
 Note that the coefficients in the multivariate model `Toy.mlm` are
 identical to those in the separate univariate models for `y1` and `y2`.
-That is, $`\mathbf{B} = [ \mathbf{b_{y1}} , \mathbf{b_{y2}} ]`$, as if
-the univariate models were fit individually.
+That is,
+$\mathbf{B} = \left\lbrack \mathbf{b}_{\mathbf{y}\mathbf{1}},\mathbf{b}_{\mathbf{y}\mathbf{2}} \right\rbrack$,
+as if the univariate models were fit individually.
 
 ``` r
-
 coef(Toy.lm1)
 #> (Intercept)           x 
 #>   -0.003704    0.999444
@@ -115,7 +110,6 @@ However, the test for predictors differ, because the multivariate tests
 take the correlation between `y1` and `y2` into account.
 
 ``` r
-
 car::Anova(Toy.lm1)
 #> Anova Table (Type II tests)
 #> 
@@ -161,7 +155,6 @@ The only thing remarkable here is for case 9: The univariate Cook’s Ds,
 over 10 times the next smallest value.
 
 ``` r
-
 df <- Toy
 df$D1  <- cooks.distance(Toy.lm1)
 df$D2  <- cooks.distance(Toy.lm2)
@@ -189,7 +182,6 @@ Neither of these plots suggest that anything is terribly wrong with the
 univariate models.
 
 ``` r
-
 ip1 <- car::influencePlot(Toy.lm1, id = list(cex=1.5), cex.lab = 1.5)
 ip2 <- car::influencePlot(Toy.lm2, id = list(cex=1.5), cex.lab = 1.5)
 ```
@@ -202,7 +194,6 @@ squared studentized residual (denoted `Q` in the output) against the hat
 value. Case 9 stands out as wildly influential.
 
 ``` r
-
 influencePlot(Toy.mlm, id.n=2)
 ```
 
@@ -216,13 +207,12 @@ influencePlot(Toy.mlm, id.n=2)
 
 An alternative form of the multivariate influence plot uses the leverage
 (`L`) and residual (`R`) components. Because influence is the product of
-leverage and residual, a plot of $`\log(L)`$ versus $`\log(R)`$ has the
+leverage and residual, a plot of $\log(L)$ versus $\log(R)$ has the
 attractive property that contours of constant Cook’s distance fall on
 diagonal lines with slope = -1. Adjacent reference lines represent
 constant *multiples* of influence.
 
 ``` r
-
 influencePlot(Toy.mlm, id.n=2, type = 'LR')
 ```
 
@@ -238,7 +228,6 @@ plotting these. The values come from
 return the standardized values.
 
 ``` r
-
 db1 <- as.data.frame(dfbetas(Toy.lm1))
 gg1 <- ggplot(data = db1, aes(x=`(Intercept)`, y=x, label=rownames(db1))) +
   geom_point(size=1.5) +
@@ -275,7 +264,6 @@ My colleague, John Fox, pointed out that the problem arose from the very
 high correlation between `y1` and `y2`:
 
 ``` r
-
 with(Toy, cor(y1, y2))
 #> [1] 0.9997
 ```
@@ -285,7 +273,6 @@ coefficient vector is very ill-conditioned as can be seen by converting
 the covariance matrix to correlations:
 
 ``` r
-
 (corr <- cov2cor(vcov(Toy.mlm)))
 #>                y1:(Intercept)    y1:x y2:(Intercept)    y2:x
 #> y1:(Intercept)         1.0000 -0.7906         0.9973 -0.7885
@@ -299,7 +286,6 @@ This appear in the correlations between the two intercept terms
 visualized by confidence ellipses for pairs of these parameters:
 
 ``` r
-
 par(mar = c(4, 4, 1, 1)+.1)
 car::confidenceEllipse(Toy.mlm, which=c(1,3), levels = 0.68,
                        xlab = row.names(corr)[1], 
@@ -322,6 +308,67 @@ univariate Cook’s Ds), the ill-conditioning magnifies small
 discrepancies in their positions, making the multivariate Cook’s D
 larger.
 
+## Comparing Coefficients
+
+Beyond the ill-conditioning diagnosis above, it’s often useful to ask
+more general questions of a fitted `mlm`:
+
+- how do the coefficients relate to each other?
+- which show large effects?
+
+Two functions answer two different versions of this question:
+
+- [`car::confidenceEllipse()`](https://rdrr.io/pkg/car/man/Ellipses.html)[¹](#fn1)
+  fixes a pair of *coefficients* as the plot axes.
+- [`heplots::coefplot()`](https://friendly.github.io/heplots/reference/coefplot.html)
+  fixes a pair of *responses* and overlays one ellipse per predictor.
+
+We illustrate both with the `schooldata` data from the `heplots` package
+– a model with three response variables (`reading`, `mathematics`,
+`selfesteem`) and several predictors related to the parents and teachers
+of the students.
+
+``` r
+data(schooldata, package = "heplots")
+school.mod <- lm(cbind(reading, mathematics, selfesteem) ~
+                    education + occupation + visit + counseling + teacher,
+                  data = schooldata)
+```
+
+[`car::confidenceEllipse()`](https://rdrr.io/pkg/car/man/Ellipses.html)
+shows the joint confidence region for two coefficients *within* one
+response equation – here, the `occupation` and `visit` coefficients for
+`reading`, which turn out to be negatively correlated:
+
+``` r
+coefnames <- rownames(vcov(school.mod))
+car::confidenceEllipse(school.mod, which.coef = c(3, 4),
+                        xlab = coefnames[3], ylab = coefnames[4],
+                        fill = TRUE, fill.alpha = 0.2, cex.lab = 1.25)
+```
+
+![](uni-vs-multi_files/figure-html/confEllipse-school-1.png)
+
+[`heplots::coefplot()`](https://friendly.github.io/heplots/reference/coefplot.html)
+instead compares predictors *across* two responses – here `reading` vs.
+`mathematics`, for three predictors – showing that `occupation` moves
+both scores together substantially, while `visit` and `counseling`
+barely move either:
+
+``` r
+heplots::coefplot(school.mod, variables = c("reading", "mathematics"),
+                   parm = c("occupation", "visit", "counseling"),
+                   fill = TRUE, lwd = 2, cex.lab = 1.25,
+                   main = "Predictor effects: reading vs. mathematics")
+```
+
+![](uni-vs-multi_files/figure-html/coefplot-school-1.png)
+
+Use [`confidenceEllipse()`](https://rdrr.io/pkg/car/man/Ellipses.html)
+when comparing two specific coefficients; use
+[`coefplot()`](https://friendly.github.io/heplots/reference/coefplot.html)
+when comparing a predictor’s effect across responses.
+
 ## References
 
 Barrett, B. E. and Ling, R. F. (1992). General Classes of Influence
@@ -341,3 +388,15 @@ Regression*. London: Chapman and Hall.
 Lawrence, A. J. (1995). Deletion Influence and Masking in Regression.
 *Journal of the Royal Statistical Society. Series B (Methodological)* ,
 **57**, No. 1, pp. 181-189.
+
+------------------------------------------------------------------------
+
+1.  As of this writing,
+    [`car::confidenceEllipse.mlm()`](https://rdrr.io/pkg/car/man/Ellipses.html)
+    has a bug when `which.coef` is given as character names for an `mlm`
+    object: it correctly subsets
+    [`vcov()`](https://rdrr.io/r/stats/vcov.html) by name, but the
+    coefficient *center* lookup uses unnamed indexing into the
+    coefficient matrix and silently returns `NA`, causing a “need finite
+    ‘xlim’ values” error. Use numeric indices instead, as below, until
+    this is fixed upstream.

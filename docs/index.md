@@ -29,11 +29,11 @@ Documentation for the package is now available at
 Get the released CRAN version or the development version, here or
 [R-universe](https://friendly.r-universe.dev)
 
-|  |  |
-|----|----|
-| CRAN version | `install.packages("mvinfluence")` |
-| R-universe | `install.packages("mvinfluence", repos = c('https://friendly.r-universe.dev')` |
-| Development version | `remotes::install_github("friendly/mvinfluence")` |
+|                     |                                                                                |
+|---------------------|--------------------------------------------------------------------------------|
+| CRAN version        | `install.packages("mvinfluence")`                                              |
+| R-universe          | `install.packages("mvinfluence", repos = c('https://friendly.r-universe.dev')` |
+| Development version | `remotes::install_github("friendly/mvinfluence")`                              |
 
 ## 🎯 Goals
 
@@ -71,7 +71,6 @@ still).
 Here, we fit a MLM to a subset of the Rohwer data (the Low SES group).
 
 ``` r
-
 data(Rohwer, package="heplots")
 Rohwer2 <- subset(Rohwer, subset=group==2)
 rownames(Rohwer2)<- 1:nrow(Rohwer2)
@@ -98,7 +97,6 @@ representing the observations are proportional to generalized Cook’s
 distances.
 
 ``` r
-
 (infl <-influencePlot(Rohwer.mod, id.n=4, type = "stres"))
 ```
 
@@ -123,7 +121,6 @@ often more useful to sort these in descending order by one of the
 influence measures.
 
 ``` r
-
 infl |> dplyr::arrange(desc(H))
 #>        H      Q  CookD     L      R
 #> 5  0.568 0.3439 0.8467 1.316 0.7964
@@ -137,13 +134,12 @@ infl |> dplyr::arrange(desc(H))
 
 An alternative (`type="LR"`) plots residual components against leverage
 components, both on log scales. Because influence is a product of
-residual $`\times`$ Leverage, this plot had the property that contours
-of constant Cook’s distance fall on diagonal lines with slope = -1. Each
+residual $\times$ Leverage, this plot had the property that contours of
+constant Cook’s distance fall on diagonal lines with slope = -1. Each
 successive dashed line represents a **multiple** of Cook’s D. This plot
 is often easier to read than the standard version.
 
 ``` r
-
 influencePlot(Rohwer.mod, id.n=4, type="LR")
 ```
 
@@ -169,7 +165,7 @@ with leverage.
 ### Index plots
 
 If you wish to see how the observations fare on each of the the measures
-(as well as Mahalanobis $`D^2`$ of the residuals from the origin), the
+(as well as Mahalanobis $D^{2}$ of the residuals from the origin), the
 `inflIndexPlot()` function gives you index plots.
 
 There are extensive options for identifying and labeling “noteworthy”
@@ -179,7 +175,6 @@ where the default `id.method = "y"` label points whose Y coordinate is
 very large.
 
 ``` r
-
 infIndexPlot(Rohwer.mod, 
              id.n=3, id.col = "red", id.cex=1.5, id.location="ab")
 ```
@@ -188,7 +183,7 @@ infIndexPlot(Rohwer.mod,
 
 In this example, note that while case 5 stands out as influential, it
 does not have an exceptionally large Mahalanobis squared distance,
-$`D^2`$ of the residuals.
+$D^{2}$ of the residuals.
 
 ## 🛡️ Robust MLMs
 
@@ -203,7 +198,6 @@ residuals from the origin, and a scaling (covariance) matrix calculated
 by [`MASS::cov.trob()`](https://rdrr.io/pkg/MASS/man/cov.trob.html).
 
 ``` r
-
 Rohwer.rmod <- heplots::robmlm(cbind(SAT, PPVT, Raven) ~ n + s + ns + na + ss, 
                                data=Rohwer2)
 ```
@@ -212,7 +206,6 @@ The returned object has a `weights` component, the weight for each case
 in the final iteration. Which ones are less than 0.9 here?
 
 ``` r
-
 which(Rohwer.rmod$weights < .9)
 #> [1] 14 21 25 31
 ```
@@ -221,7 +214,6 @@ A simple index plot makes the down-weighted observations stand out. Case
 5 is not among them, but I label it anyway.
 
 ``` r
-
 par(mar = c(4,4,1,1)+.1)
 wts <- Rohwer.rmod$weights
 idx <- c(5, which(wts < .9))
@@ -241,7 +233,7 @@ text(idx, wts[idx], label=idx, pos=3, cex=1.2, xpd=NA )
 ![](reference/figures/README-rob-index-plot-1.png)
 
 What’s up with case 5? It had the largest leverage, but it’s Mahalanobis
-$`D^2`$ was not large. Thus, it was not down-weighted, even though it is
+$D^{2}$ was not large. Thus, it was not down-weighted, even though it is
 an influential observation.
 
 What difference do these observations make in the fitted regression?
@@ -252,7 +244,6 @@ the `ss` task, but there is an even greater one for `PPVT` on the `n`
 task.
 
 ``` r
-
 100 * abs(coef(Rohwer.mod) - coef(Rohwer.rmod)) / coef(Rohwer.mod)
 #>                 SAT   PPVT   Raven
 #> (Intercept)  -1.001   1.27   0.755
@@ -268,7 +259,6 @@ task.
 To cite `mvinfluence` in publications, use:
 
 ``` r
-
 citation("mvinfluence")
 #> To cite package 'mvinfluence' in publications use:
 #> 

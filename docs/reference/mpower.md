@@ -48,7 +48,6 @@ Michael Friendly
 ## Examples
 
 ``` r
-
 M <- matrix(sample(1:9), 3,3)
 mpower(M,2)
 #>      [,1] [,2] [,3]

@@ -112,7 +112,6 @@ Michael Friendly; borrows code from
 ## Examples
 
 ``` r
-
 # iris data
 data(iris)
 iris.mod <- lm(as.matrix(iris[,1:4]) ~ Species, data=iris)

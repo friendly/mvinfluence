@@ -112,7 +112,6 @@ Michael Friendly
 ## Examples
 
 ``` r
-
 # Rohwer data
 data(Rohwer, package="heplots")
 Rohwer2 <- subset(Rohwer, subset=group==2)

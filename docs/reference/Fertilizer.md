@@ -37,7 +37,6 @@ Statistics*, 16 (1), 25-37.
 ## Examples
 
 ``` r
-
 data(Fertilizer)
 
 # simple plots

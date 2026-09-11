@@ -10,11 +10,9 @@ The design goal for this package is that, as an extension of standard
 methods for univariate linear models, you should be able to fit a linear
 model with a multivariate response,
 
-
       mymlm <- lm( cbind(y1, y2, y3) ~ x1 + x2 + x3, data=mydata)
 
 and then get useful diagnostics and plots with
-
 
       influence(mymlm)
       hatvalues(mymlm)
@@ -136,7 +134,6 @@ are needed, the package functions apply a function, `FUN`, either
 [`tr()`](http://friendly.github.io/mvinfluence/reference/tr.md) to
 calculate a measure of “size”, as in
 
-
       H <- sapply(x$H, FUN)
       Q <- sapply(x$Q, FUN)
       L <- sapply(x$L, FUN)
@@ -204,7 +201,6 @@ Authors:
 ## Examples
 
 ``` r
-
 data(Rohwer, package="heplots")
 Rohwer2 <- subset(Rohwer, subset=group==2)
 rownames(Rohwer2) <- 1:nrow(Rohwer2)

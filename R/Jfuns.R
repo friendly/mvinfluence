@@ -47,6 +47,7 @@
 #' Influence Measures for Multivariate Regression. \emph{Journal of the
 #' American Statistical Association}, \bold{87}(417), 184-191.
 #' @keywords array
+NULL
 
 #' J trace function
 #' @rdname Jfuns

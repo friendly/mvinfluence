@@ -5,6 +5,15 @@ o Fix bug in `mlm.influence()` where models with transformed response
   in the internal `vec()` helper because the coefficient matrix lacked
   column names
 
+o Add "Comparing Coefficients" section to `vignette("uni-vs-multi")`,
+  illustrating `car::confidenceEllipse()` vs. `heplots::coefplot()` for
+  visualizing coefficients of an `mlm`
+
+o Fix `Jfuns.Rd` picking up bogus `\keyword{}` entries ("J", "function",
+  "trace") from an adjacent roxygen block's title text, due to a
+  standalone documentation block with no attached R object; now
+  anchored with `NULL` as roxygen2 recommends
+
 ## Version 0.9.3
 
 o Add warning for weights in influence diagnostics

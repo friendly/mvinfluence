@@ -126,7 +126,6 @@ Michael Friendly
 ## Examples
 
 ``` r
-
 # artificial example from Lawrence (1995)
 x <- c( 0, 0, 7, 7, 8, 8, 9, 9, 10, 10, 11, 11, 18, 18 )
 y <- c( 0, 6, 6, 7, 6, 7, 6, 7, 6,  7,  6,  7,  7,  18 )

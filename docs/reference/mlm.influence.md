@@ -104,7 +104,6 @@ Michael Friendly
 ## Examples
 
 ``` r
-
 data(Rohwer, package = "heplots")
 Rohwer2 <- subset(Rohwer, subset=group==2)
 rownames(Rohwer2)<- 1:nrow(Rohwer2)

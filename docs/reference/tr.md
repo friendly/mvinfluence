@@ -31,7 +31,6 @@ Michael Friendly
 ## Examples
 
 ``` r
-
 M <- matrix(sample(1:9), 3,3)
 tr(M)
 #> [1] 15

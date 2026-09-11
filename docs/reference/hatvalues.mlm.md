@@ -62,7 +62,6 @@ Statistical Association*, **87**(417), 184-191.
 ## Examples
 
 ``` r
-
 data(Rohwer, package="heplots")
 Rohwer2 <- subset(Rohwer, subset=group==2)
 rownames(Rohwer2)<- 1:nrow(Rohwer2)

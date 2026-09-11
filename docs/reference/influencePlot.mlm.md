@@ -130,7 +130,6 @@ Michael Friendly
 ## Examples
 
 ``` r
-
 data(Rohwer, package="heplots")
 Rohwer2 <- subset(Rohwer, subset=group==2)
 Rohwer.mod <- lm(cbind(SAT, PPVT, Raven) ~ n+s+ns+na+ss, data=Rohwer2)

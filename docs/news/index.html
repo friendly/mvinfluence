@@ -38,6 +38,8 @@
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="0.9.4" id="version-094">Version 0.9.4<a class="anchor" aria-label="anchor" href="#version-094"></a></h2>
 <p>o Fix bug in <code><a href="../reference/mlm.influence.html">mlm.influence()</a></code> where models with transformed response variables (e.g., <code>lm(cbind(log(y1), log(y2)) ~ ...)</code>) caused an error in the internal <code>vec()</code> helper because the coefficient matrix lacked column names</p>
+<p>o Add “Comparing Coefficients” section to <code><a href="../articles/uni-vs-multi.html">vignette("uni-vs-multi")</a></code>, illustrating <code><a href="https://rdrr.io/pkg/car/man/Ellipses.html" class="external-link">car::confidenceEllipse()</a></code> vs. <code><a href="https://friendly.github.io/heplots/reference/coefplot.html" class="external-link">heplots::coefplot()</a></code> for visualizing coefficients of an <code>mlm</code></p>
+<p>o Fix <code>Jfuns.Rd</code> picking up bogus <code>\keyword{}</code> entries (“J”, “function”, “trace”) from an adjacent roxygen block’s title text, due to a standalone documentation block with no attached R object; now anchored with <code>NULL</code> as roxygen2 recommends</p>
 </div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="0.9.3" id="version-093">Version 0.9.3<a class="anchor" aria-label="anchor" href="#version-093"></a></h2>

@@ -256,7 +256,8 @@ Two functions answer two different versions of this question:
     below, until this is fixed upstream.
 
 We illustrate both with the `schooldata` data from the `heplots` package -- a model with three
-response variables (`reading`, `mathematics`, `selfesteem`) and several predictors.
+response variables (`reading`, `mathematics`, `selfesteem`) and several predictors related to the
+parents and teachers of the students.
 
 ```{r school-data}
 data(schooldata, package = "heplots")

@@ -2,8 +2,8 @@
 % Please edit documentation in R/Jfuns.R
 \name{Jfuns}
 \alias{Jfuns}
-\alias{Jtr}
 \alias{Jdet}
+\alias{Jtr}
 \alias{COOKD}
 \alias{COVRATIO}
 \alias{DFFITS}
@@ -79,7 +79,4 @@ American Statistical Association}, \bold{87}(417), 184-191.
 \author{
 Michael Friendly
 }
-\keyword{J}
 \keyword{array}
-\keyword{function}
-\keyword{trace}
