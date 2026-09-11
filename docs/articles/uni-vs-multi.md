@@ -319,7 +319,8 @@ more general questions of a fitted `mlm`:
 Two functions answer two different versions of this question:
 
 - [`car::confidenceEllipse()`](https://rdrr.io/pkg/car/man/Ellipses.html)[¹](#fn1)
-  fixes a pair of *coefficients* as the plot axes.
+  fixes a pair of *coefficients* in a multivariate linear model as the
+  plot axes.
 - [`heplots::coefplot()`](https://friendly.github.io/heplots/reference/coefplot.html)
   fixes a pair of *responses* and overlays one ellipse per predictor.
 
@@ -343,11 +344,36 @@ coef(school.mod)
 #> teacher     -0.18094     -0.3413    0.01055
 ```
 
-The coefficient table shows the values that `which.coef` indexes into
-(row-major within each response column): e.g., `which.coef = c(3, 4)`
-selects `occupation` and `visit` for `reading`, the first response
-column, while `which.coef = c(9, 10)` selects the same two predictors
-for `mathematics`, the second column.
+`which.coef` does *not* index into this table directly. Internally,
+[`confidenceEllipse()`](https://rdrr.io/pkg/car/man/Ellipses.html) works
+with `vcov(school.mod)`, whose row/column names are formed by stacking
+the coefficient table’s columns end-to-end, one response at a time – all
+6 predictor rows for `reading` first, then all 6 for `mathematics`, then
+`selfesteem`:
+
+``` r
+rownames(vcov(school.mod))
+#>  [1] "reading:(Intercept)"     "reading:education"      
+#>  [3] "reading:occupation"      "reading:visit"          
+#>  [5] "reading:counseling"      "reading:teacher"        
+#>  [7] "mathematics:(Intercept)" "mathematics:education"  
+#>  [9] "mathematics:occupation"  "mathematics:visit"      
+#> [11] "mathematics:counseling"  "mathematics:teacher"    
+#> [13] "selfesteem:(Intercept)"  "selfesteem:education"   
+#> [15] "selfesteem:occupation"   "selfesteem:visit"       
+#> [17] "selfesteem:counseling"   "selfesteem:teacher"
+```
+
+So `which.coef` is a position in *this* list, counting straight through:
+with 6 predictor rows per response, position
+`6 * (response number - 1) + row number` in the coefficient table above.
+`occupation` and `visit` are rows 3 and 4, so for `reading` (the 1st
+response) they land at positions 3 and 4 – `which.coef = c(3, 4)`; for
+`mathematics` (the 2nd response) the same two predictors shift by
+`6 * (2-1) = 6`, landing at positions 9 and 10 –
+`which.coef = c(9, 10)`.
+
+### `car::confidenceEllipse()`
 
 [`car::confidenceEllipse()`](https://rdrr.io/pkg/car/man/Ellipses.html)
 shows the joint confidence region for two coefficients *within* one
@@ -367,11 +393,19 @@ car::confidenceEllipse(school.mod, which.coef = c(9, 10),
 
 ![](uni-vs-multi_files/figure-html/confEllipse-school-1.png)![](uni-vs-multi_files/figure-html/confEllipse-school-2.png)
 
+### `heplots::coefplot()`
+
 [`heplots::coefplot()`](https://friendly.github.io/heplots/reference/coefplot.html)
 instead compares predictors *across* two responses – here `reading` vs.
 `mathematics`, for three predictors – showing that `occupation` moves
 both scores together substantially, while `visit` and `counseling`
-barely move either:
+barely move either.
+
+In additon,
+[`coefplot()`](https://friendly.github.io/heplots/reference/coefplot.html)
+shows the univariate confidence intervals for each parameter, and dashed
+lines at (0,0) so you can judge the importance of each predictor to the
+multivariate model for that pair of responses.
 
 ``` r
 heplots::coefplot(school.mod, variables = c("reading", "mathematics"),
