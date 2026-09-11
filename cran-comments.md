@@ -1,24 +1,32 @@
 ## Test environments
-* local Windows 10 install, R version 4.5.1
-* win-builder R Under development (unstable) (2025-07-22 r88445 ucrt)
-
+* local Windows 11 install, R version 4.6.1
 
 ## R CMD check results
-There were no ERRORs or WARNINGs or NOTEs
+0 errors | 0 warnings | 0 notes
 
 ## Reverse dependencies
 
-> revdep()
+> tools::package_dependencies("mvinfluence", reverse = TRUE, which = "most")
 [1] "heplots"
 
-revdepcheck() - OK
+heplots's own vignettes (including `Robust.Rmd`, which calls `mvinfluence::influencePlot()`)
+were re-rendered against this version with no errors, as a smoke test in lieu of a full
+`revdepcheck()` run.
 
 ## Comments
-This is a major maintenance release, largely fixing aliases and missing/incorrect links in Rd files.
-Added more usage examples.
+This release bundles three maintenance versions since the last CRAN submission (0.9.2):
 
-### Version 0.9-2
+### Version 0.9.4
+o Fix bug in `mlm.influence()` where models with transformed response variables (e.g.,
+  `lm(cbind(log(y1), log(y2)) ~ ...)`) caused an error in the internal `vec()` helper because the
+  coefficient matrix lacked column names
+o Add "Comparing Coefficients" section to `vignette("uni-vs-multi")`
+o Fix `Jfuns.Rd` picking up bogus `\keyword{}` entries from an adjacent roxygen block
 
+### Version 0.9.3
+o Add warning for weights in influence diagnostics
+
+### Version 0.9.2 (previously released)
 o Revise notation in mvinfluence-package
 o Point to R-universe dev version
 o Add schooldata examples
