@@ -238,15 +238,22 @@ Although each of the `y1` and `y2` values for the high-leverage cases are in-lin
 
 ## Comparing Coefficients
 
-Beyond the ill-conditioning diagnosis above, it's often useful to ask a more general question
-of a fitted `mlm`: how do the coefficients relate to each other? Two functions answer two
-different versions of this question: `car::confidenceEllipse()`^[As of this writing,
-`car::confidenceEllipse.mlm()` has a bug when `which.coef` is given as character names for an
-`mlm` object: it correctly subsets `vcov()` by name, but the coefficient *center* lookup uses
-unnamed indexing into the coefficient matrix and silently returns `NA`, causing a "need finite
-'xlim' values" error. Use numeric indices instead, as below, until this is fixed upstream.]
-fixes a pair of *coefficients* as the plot axes, while `heplots::coefplot()` fixes a pair of
-*responses* and overlays one ellipse per predictor.
+Beyond the ill-conditioning diagnosis above, it's often useful to ask more general questions
+of a fitted `mlm`: 
+
+* how do the coefficients relate to each other? 
+* which show large effects?
+
+Two functions answer two different versions of this question:
+
+* `car::confidenceEllipse()`[^car-bug] fixes a pair of *coefficients* as the plot axes.
+* `heplots::coefplot()` fixes a pair of *responses* and overlays one ellipse per predictor.
+
+[^car-bug]: As of this writing, `car::confidenceEllipse.mlm()` has a bug when `which.coef` is
+    given as character names for an `mlm` object: it correctly subsets `vcov()` by name, but the
+    coefficient *center* lookup uses unnamed indexing into the coefficient matrix and silently
+    returns `NA`, causing a "need finite 'xlim' values" error. Use numeric indices instead, as
+    below, until this is fixed upstream.
 
 We illustrate both with the `schooldata` data from the `heplots` package -- a model with three
 response variables (`reading`, `mathematics`, `selfesteem`) and several predictors.
