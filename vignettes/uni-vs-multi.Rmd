@@ -236,6 +236,55 @@ car::confidenceEllipse(Toy.mlm, which=c(2,4), levels = 0.68,
 Although each of the `y1` and `y2` values for the high-leverage cases are in-line with the univariate regressions (and thus have small univariate Cook's Ds), the ill-conditioning magnifies small discrepancies in their positions, making the multivariate Cook's D larger.
 
 
+## Comparing Coefficients
+
+Beyond the ill-conditioning diagnosis above, it's often useful to ask a more general question
+of a fitted `mlm`: how do the coefficients relate to each other? Two functions answer two
+different versions of this question: `car::confidenceEllipse()`^[As of this writing,
+`car::confidenceEllipse.mlm()` has a bug when `which.coef` is given as character names for an
+`mlm` object: it correctly subsets `vcov()` by name, but the coefficient *center* lookup uses
+unnamed indexing into the coefficient matrix and silently returns `NA`, causing a "need finite
+'xlim' values" error. Use numeric indices instead, as below, until this is fixed upstream.]
+fixes a pair of *coefficients* as the plot axes, while `heplots::coefplot()` fixes a pair of
+*responses* and overlays one ellipse per predictor.
+
+We illustrate both with the `schooldata` data from the `heplots` package -- a model with three
+response variables (`reading`, `mathematics`, `selfesteem`) and several predictors.
+
+```{r school-data}
+data(schooldata, package = "heplots")
+school.mod <- lm(cbind(reading, mathematics, selfesteem) ~
+                    education + occupation + visit + counseling + teacher,
+                  data = schooldata)
+```
+
+`car::confidenceEllipse()` shows the joint confidence region for two coefficients *within* one
+response equation -- here, the `occupation` and `visit` coefficients for `reading`, which turn
+out to be negatively correlated:
+
+```{r confEllipse-school, fig.width=5, fig.height=4, fig.align='center', echo=-1}
+par(mar = c(4, 4, 1, 1)+.1)
+coefnames <- rownames(vcov(school.mod))
+car::confidenceEllipse(school.mod, which.coef = c(3, 4),
+                        xlab = coefnames[3], ylab = coefnames[4],
+                        fill = TRUE, fill.alpha = 0.2, cex.lab = 1.25)
+```
+
+`heplots::coefplot()` instead compares predictors *across* two responses -- here `reading` vs.
+`mathematics`, for three predictors -- showing that `occupation` moves both scores together
+substantially, while `visit` and `counseling` barely move either:
+
+```{r coefplot-school, fig.width=5.5, fig.height=5, fig.align='center', echo=-1}
+par(mar = c(4, 4, 3, 1)+.1)
+heplots::coefplot(school.mod, variables = c("reading", "mathematics"),
+                   parm = c("occupation", "visit", "counseling"),
+                   fill = TRUE, lwd = 2, cex.lab = 1.25,
+                   main = "Predictor effects: reading vs. mathematics")
+```
+
+Use `confidenceEllipse()` when comparing two specific coefficients; use `coefplot()` when
+comparing a predictor's effect across responses.
+
 
 ## References
 
