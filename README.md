@@ -15,7 +15,7 @@ Commit](https://img.shields.io/github/last-commit/friendly/mvinfluence)](https:/
 
 <!-- explicit version number now dynamic -->
 
-Version 0.9.4; documentation built for `pkgdown` 2026-09-10
+Version 0.9.4; documentation built for `pkgdown` 2026-09-11
 
 Functions in this package compute regression deletion diagnostics for
 multivariate linear models following methods proposed by Barrett & Ling
@@ -37,16 +37,21 @@ development in this package.
 Documentation for the package is now available at
 <https://friendly.github.io/mvinfluence/>.
 
+The vignette [Univariate versus Multivariate
+Influence](https://friendly.github.io/mvinfluence/articles/uni-vs-multi.html)
+compares influence diagnostics for univariate models against their
+multivariate (MLM) counterparts, using a worked example.
+
 ## 📂 Installation
 
 Get the released CRAN version or the development version, here or
 [R-universe](https://friendly.r-universe.dev)
 
-|  |  |
-|----|----|
-| CRAN version | `install.packages("mvinfluence")` |
-| R-universe | `install.packages("mvinfluence", repos = c('https://friendly.r-universe.dev')` |
-| Development version | `remotes::install_github("friendly/mvinfluence")` |
+|                     |                                                                                |
+|---------------------|--------------------------------------------------------------------------------|
+| CRAN version        | `install.packages("mvinfluence")`                                              |
+| R-universe          | `install.packages("mvinfluence", repos = c('https://friendly.r-universe.dev')` |
+| Development version | `remotes::install_github("friendly/mvinfluence")`                              |
 
 ## 🎯 Goals
 

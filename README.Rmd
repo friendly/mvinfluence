@@ -59,6 +59,10 @@ Associated methods for the case
 ## 📄 Documentation
 Documentation for the package is now available at [https://friendly.github.io/mvinfluence/](https://friendly.github.io/mvinfluence/).
 
+The vignette [Univariate versus Multivariate Influence](https://friendly.github.io/mvinfluence/articles/uni-vs-multi.html)
+compares influence diagnostics for univariate models against their multivariate (MLM)
+counterparts, using a worked example.
+
 
 ## 📂 Installation
 

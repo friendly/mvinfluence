@@ -1,5 +1,6 @@
 ## Test environments
 * local Windows 11 install, R version 4.6.1
+* win-builder R Under development (unstable) (2026-09-10 r90519 ucrt)
 
 ## R CMD check results
 0 errors | 0 warnings | 0 notes
@@ -14,7 +15,7 @@ were re-rendered against this version with no errors, as a smoke test in lieu of
 `revdepcheck()` run.
 
 ## Comments
-This release bundles three maintenance versions since the last CRAN submission (0.9.2):
+This release bundles two maintenance versions since the last CRAN submission (0.9.2):
 
 ### Version 0.9.4
 o Fix bug in `mlm.influence()` where models with transformed response variables (e.g.,
