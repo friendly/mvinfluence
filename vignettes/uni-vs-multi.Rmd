@@ -264,18 +264,25 @@ data(schooldata, package = "heplots")
 school.mod <- lm(cbind(reading, mathematics, selfesteem) ~
                     education + occupation + visit + counseling + teacher,
                   data = schooldata)
+coef(school.mod)
 ```
 
-`car::confidenceEllipse()` shows the joint confidence region for two coefficients *within* one
-response equation -- here, the `occupation` and `visit` coefficients for `reading`, which turn
-out to be negatively correlated:
+The coefficient table shows the values that `which.coef` indexes into (row-major within each
+response column): e.g., `which.coef = c(3, 4)` selects `occupation` and `visit` for `reading`,
+the first response column, while `which.coef = c(9, 10)` selects the same two predictors for
+`mathematics`, the second column.
 
-```{r confEllipse-school, fig.width=5, fig.height=4, fig.align='center', echo=-1}
+`car::confidenceEllipse()` shows the joint confidence region for two coefficients *within* one
+response equation. The `occupation` and `visit` coefficients turn out to be negatively
+correlated in both the `reading` and `mathematics` equations, and `occupation`'s much larger
+scale echoes what we're about to see in the `coefplot()` figure below:
+
+```{r confEllipse-school, fig.show='hold', out.width="45%", out.height="50%", collapse=FALSE, echo=-1}
 par(mar = c(4, 4, 1, 1)+.1)
-coefnames <- rownames(vcov(school.mod))
 car::confidenceEllipse(school.mod, which.coef = c(3, 4),
-                        xlab = coefnames[3], ylab = coefnames[4],
-                        fill = TRUE, fill.alpha = 0.2, cex.lab = 1.25)
+                        fill = TRUE, fill.alpha = 0.2, cex.lab = 1.5)
+car::confidenceEllipse(school.mod, which.coef = c(9, 10),
+                        fill = TRUE, fill.alpha = 0.2, cex.lab = 1.5)
 ```
 
 `heplots::coefplot()` instead compares predictors *across* two responses -- here `reading` vs.

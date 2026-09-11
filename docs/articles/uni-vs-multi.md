@@ -333,21 +333,39 @@ data(schooldata, package = "heplots")
 school.mod <- lm(cbind(reading, mathematics, selfesteem) ~
                     education + occupation + visit + counseling + teacher,
                   data = schooldata)
+coef(school.mod)
+#>              reading mathematics selfesteem
+#> (Intercept) -0.17935     -0.3661   -0.04135
+#> education    0.20271      0.1102   -0.04482
+#> occupation   3.74507      4.7702    2.22723
+#> visit       -0.28301     -0.5288    0.19456
+#> counseling  -0.09146      0.1425   -0.05625
+#> teacher     -0.18094     -0.3413    0.01055
 ```
+
+The coefficient table shows the values that `which.coef` indexes into
+(row-major within each response column): e.g., `which.coef = c(3, 4)`
+selects `occupation` and `visit` for `reading`, the first response
+column, while `which.coef = c(9, 10)` selects the same two predictors
+for `mathematics`, the second column.
 
 [`car::confidenceEllipse()`](https://rdrr.io/pkg/car/man/Ellipses.html)
 shows the joint confidence region for two coefficients *within* one
-response equation – here, the `occupation` and `visit` coefficients for
-`reading`, which turn out to be negatively correlated:
+response equation. The `occupation` and `visit` coefficients turn out to
+be negatively correlated in both the `reading` and `mathematics`
+equations, and `occupation`’s much larger scale echoes what we’re about
+to see in the
+[`coefplot()`](https://friendly.github.io/heplots/reference/coefplot.html)
+figure below:
 
 ``` r
-coefnames <- rownames(vcov(school.mod))
 car::confidenceEllipse(school.mod, which.coef = c(3, 4),
-                        xlab = coefnames[3], ylab = coefnames[4],
-                        fill = TRUE, fill.alpha = 0.2, cex.lab = 1.25)
+                        fill = TRUE, fill.alpha = 0.2, cex.lab = 1.5)
+car::confidenceEllipse(school.mod, which.coef = c(9, 10),
+                        fill = TRUE, fill.alpha = 0.2, cex.lab = 1.5)
 ```
 
-![](uni-vs-multi_files/figure-html/confEllipse-school-1.png)
+![](uni-vs-multi_files/figure-html/confEllipse-school-1.png)![](uni-vs-multi_files/figure-html/confEllipse-school-2.png)
 
 [`heplots::coefplot()`](https://friendly.github.io/heplots/reference/coefplot.html)
 instead compares predictors *across* two responses – here `reading` vs.

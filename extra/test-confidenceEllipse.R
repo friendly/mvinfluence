@@ -27,6 +27,17 @@ confidenceEllipse(school.mod, which.coef = c(2, 5))
 # xlab/ylab correctly pulled from rownames(vcov(school.mod)), i.e.
 # "reading:education" / "reading:occupation"
 
+# vignette example:
+coefnames <- rownames(vcov(school.mod))
+car::confidenceEllipse(school.mod, which.coef = c(3, 4),
+                        xlab = coefnames[3], ylab = coefnames[4],
+                        fill = TRUE, fill.alpha = 0.2, cex.lab = 1.25)
+
+# Don't need xlab / ylab
+car::confidenceEllipse(school.mod, which.coef = c(3, 4),
+                        fill = TRUE, fill.alpha = 0.2, cex.lab = 1.25)
+
+
 # compare this with heplots::coefplot()
 coefplot(school.mod, fill=TRUE)
 
